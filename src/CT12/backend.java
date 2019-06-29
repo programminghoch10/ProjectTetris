@@ -65,7 +65,7 @@ public class backend {
 	}
 }
 
-class Stone				
+class Stone
 {
 	String 		type;
 	int 		xPosition;
@@ -202,7 +202,9 @@ class Stone
 	}
 	void drop() 
 	{
-		
+		while (!this.endPosition) {
+			this.fall();
+		}
 	}
 	
 }
