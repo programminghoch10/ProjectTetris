@@ -129,7 +129,9 @@ class Stone
 			this.relx4 = 1;
 			this.rely4 = 0;
 		}
-		
+		for (int i = 0; i<((int)(Math.random()*3)); i++) {
+			this.rotate();
+		}
 	}
 	
 	void rotate() {
