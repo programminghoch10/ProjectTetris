@@ -61,56 +61,56 @@ class Stone
 		this.endPosition = endPosition;
 		switch (type) {
 		case "I":
-			this.relx2 = 0;
+			this.relx2 = -1;
 			this.rely2 = 0;
 			this.relx3 = 0;
-			this.rely3 = 0;
-			this.relx4 = 0;
+			this.rely3 = -1;
+			this.relx4 = 1;
 			this.rely4 = 0;
 		case "Ll":
 			this.relx2 = 0;
-			this.rely2 = 0;
+			this.rely2 = -1;
 			this.relx3 = 0;
-			this.rely3 = 0;
-			this.relx4 = 0;
-			this.rely4 = 0;
+			this.rely3 = 1;
+			this.relx4 = -1;
+			this.rely4 = 1;
 		case "Lr":
 			this.relx2 = 0;
-			this.rely2 = 0;
+			this.rely2 = -1;
 			this.relx3 = 0;
-			this.rely3 = 0;
-			this.relx4 = 0;
-			this.rely4 = 0;
+			this.rely3 = 1;
+			this.relx4 = 1;
+			this.rely4 = -1;
 		case "Sq":
-			this.relx2 = 0;
+			this.relx2 = 1;
 			this.rely2 = 0;
-			this.relx3 = 0;
-			this.rely3 = 0;
+			this.relx3 = 1;
+			this.rely3 = 1;
 			this.relx4 = 0;
-			this.rely4 = 0;
+			this.rely4 = 1;
 		case "S":
 			this.relx2 = 0;
-			this.rely2 = 0;
-			this.relx3 = 0;
-			this.rely3 = 0;
-			this.relx4 = 0;
+			this.rely2 = 1;
+			this.relx3 = 1;
+			this.rely3 = 1;
+			this.relx4 = -1;
 			this.rely4 = 0;
 		case "T":
-			this.relx2 = 0;
-			this.rely2 = 0;
+			this.relx2 = -1;
+			this.rely2 = -1;
 			this.relx3 = 0;
-			this.rely3 = 0;
-			this.relx4 = 0;
-			this.rely4 = 0;
+			this.rely3 = -1;
+			this.relx4 = 1;
+			this.rely4 = -1;
 		case "Z":
-			this.relx2 = 0;
-			this.rely2 = 0;
+			this.relx2 = -1;
+			this.rely2 = -1;
 			this.relx3 = 0;
-			this.rely3 = 0;
-			this.relx4 = 0;
+			this.rely3 = -1;
+			this.relx4 = 1;
 			this.rely4 = 0;
-			
 		}
+		
 	}
 	
 	void rotate() 
