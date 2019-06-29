@@ -47,8 +47,8 @@ public class backend {
 		
 		//e.g. create a object Stone Stein1 = new Stone(1,1,1,re,0,0,0,);
 		
-		Stone stone1 = new Stone(Stone.arrayStoneType[0], 2, 1, "bl", false, false, false);
-		stone1.fall();
+		Stone stone1 = new Stone(Stone.arrayStoneType[6], 2, 1, "bl", false, false, false);
+		//stone1.fall();
 		gamematrix = staticmatrix;
 		stone1.insertintogamematrix();
 		for (int y = 0; y < 5; y++) {
@@ -95,12 +95,13 @@ class Stone
 		this.endPosition = endPosition;
 		switch (type) {
 		case "I":
-			this.relx2 = -1;
-			this.rely2 = 0;
+			this.relx2 = 0;
+			this.rely2 = -1;
 			this.relx3 = 0;
-			this.rely3 = -1;
-			this.relx4 = 1;
-			this.rely4 = 0;
+			this.rely3 = 1;
+			this.relx4 = 0;
+			this.rely4 = 2;
+			break;
 		case "Ll":
 			this.relx2 = 0;
 			this.rely2 = -1;
@@ -108,13 +109,15 @@ class Stone
 			this.rely3 = 1;
 			this.relx4 = -1;
 			this.rely4 = 1;
+			break;
 		case "Lr":
 			this.relx2 = 0;
 			this.rely2 = -1;
 			this.relx3 = 0;
 			this.rely3 = 1;
 			this.relx4 = 1;
-			this.rely4 = -1;
+			this.rely4 = 1;
+			break;
 		case "Sq":
 			this.relx2 = 1;
 			this.rely2 = 0;
@@ -122,13 +125,15 @@ class Stone
 			this.rely3 = 1;
 			this.relx4 = 0;
 			this.rely4 = 1;
+			break;
 		case "S":
 			this.relx2 = 0;
-			this.rely2 = 1;
-			this.relx3 = 1;
-			this.rely3 = 1;
-			this.relx4 = -1;
-			this.rely4 = 0;
+			this.rely2 = -1;
+			this.relx3 = -1;
+			this.rely3 = 0;
+			this.relx4 = 1;
+			this.rely4 = -1;
+			break;
 		case "T":
 			this.relx2 = -1;
 			this.rely2 = -1;
@@ -136,6 +141,7 @@ class Stone
 			this.rely3 = -1;
 			this.relx4 = 1;
 			this.rely4 = -1;
+			break;
 		case "Z":
 			this.relx2 = -1;
 			this.rely2 = -1;
@@ -143,10 +149,19 @@ class Stone
 			this.rely3 = -1;
 			this.relx4 = 1;
 			this.rely4 = 0;
+			break;
+		default:
+			this.relx2 = 0;
+			this.rely2 = 0;
+			this.relx3 = 0;
+			this.rely3 = 0;
+			this.relx4 = 0;
+			this.rely4 = 0;
+			break;
 		}
-		for (int i = 0; i<((int)(Math.random()*3)); i++) {
+		/*for (int i = 0; i<((int)(Math.random()*3)); i++) {
 			this.rotate();
-		}
+		}*/
 	}
 	
 	void insertintogamematrix() {
@@ -157,6 +172,7 @@ class Stone
 	}
 	
 	void rotate() {
+		if (this.type == "Sq") return;
 		int newrelx2 = this.rely2 *(-1);
 		int newrely2 = this.relx2;
 		int newrelx3 = this.rely3 *(-1);
