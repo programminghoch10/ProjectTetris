@@ -59,18 +59,18 @@ public class ui {
  				System.out.println("pressed key \""+e.getKeyChar()+"\"");
  				switch (e.getKeyCode()) {
  				case KeyEvent.VK_UP:
- 					//backend.currentstone.rotate();
+ 					backend.currentstone.rotate();
  					break;
  				case KeyEvent.VK_DOWN:
  					break;
  				case KeyEvent.VK_LEFT:
- 					//backend.currentstone.move(-1);
+ 					backend.currentstone.move(-1);
  					break;
  				case KeyEvent.VK_RIGHT:
- 					//backend.currentstone.move(+1);
+ 					backend.currentstone.move(+1);
  					break;
  				case KeyEvent.VK_SPACE:
- 					//backend.currentstone.drop();
+ 					backend.currentstone.drop();
  					break;
  				} 
  			}

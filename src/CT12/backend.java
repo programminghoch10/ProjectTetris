@@ -48,21 +48,15 @@ public class backend {
 	public static Stone currentstone = null;
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		new Thread() {
+		Thread UI = new Thread() { 			//start UI Thread
 			@Override 
 			public void run() {
 				ui.UIstart(args);
 			}
-		}.start();
+		};
+		UI.start(); //comment this line out to disable UI
 		
-		System.out.println("1");
-		//e.g. create a object Stone Stein1 = new Stone(1,1,1,re,0,0,0,);
-		
-		int nextStonetype = (int)(Math.random()*6);
-		currentstone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], true, false, false);
-		
-		new Thread() {
+		Thread Dropper = new Thread() { 			//parallel processing
 			@Override 
 			public void run() {
 				while (backend.active) {
@@ -72,22 +66,61 @@ public class backend {
 						e.printStackTrace();
 					}
 					if (backend.paused) {
-						while (backend.paused);
-						continue;
+						while (backend.paused); //wait if game paused
+						continue;	// skip moving directly after resume
 					}
-					System.out.println(backend.currentstone.yPosition);
+					while (backend.currentstone == null); //wait for creation of object
 					backend.currentstone.fall();
+					
+					/*for (int y = 0; y < gamematrix.length; y++) {
+						for (int x = 0; x < gamematrix[0].length; x++) {
+							if (gamematrix[y][x] != "")	{
+								System.out.print("1");
+							} else {
+								System.out.print("0");
+							}
+						}
+						System.out.println();
+					}*/
+					if (!backend.currentstone.endPosition) {
+						//System.out.println("not yet at end");
+						for (int y = 0; y < staticmatrix.length; y++) {
+							for (int x = 0; x < staticmatrix[0].length; x++) {
+								gamematrix[y][x] = staticmatrix[y][x];
+							}
+						}
+						//backend.gamematrix = backend.staticmatrix;
+						backend.currentstone.insertintogamematrix();
+					}
 				}
 			}
-		}.start();
-		
+		};
+		Dropper.start(); //Comment this line out to disable gameplay
+
+		//System.out.println("enabled loop");
 		while (active) {
 			while (!paused) {
 				//loop for managing game
-
-				if (currentstone.endPosition) {
-					gamematrix = staticmatrix;
+				
+				if (currentstone == null) {
+					int nextStonetype = (int)(Math.random()*6);
+					currentstone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], true, false, false);
+				}
+				
+				if (backend.currentstone.endPosition) {
+					System.out.println("received end position");
+					for (int y = 0; y < staticmatrix.length; y++) {
+						for (int x = 0; x < staticmatrix[0].length; x++) {
+							gamematrix[y][x] = staticmatrix[y][x];
+						}
+					}
 					currentstone.insertintogamematrix();
+					for (int y = 0; y < staticmatrix.length; y++) {
+						for (int x = 0; x < staticmatrix[0].length; x++) {
+							staticmatrix[y][x] = gamematrix[y][x];
+						}
+					}
+					currentstone = null;
 					
 					//debug: show matrix in console
 					for (int y = 0; y < gamematrix.length; y++) {
@@ -101,8 +134,24 @@ public class backend {
 						System.out.println();
 					}
 				}
-				
-				
+				try {
+					Thread.sleep(100);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				for (int i = 0; i<10; i++) {
+					System.out.println("");
+				}
+				for (int y = 0; y < gamematrix.length; y++) {
+					for (int x = 0; x < gamematrix[0].length; x++) {
+						if (gamematrix[y][x] != "")	{
+							System.out.print("1");
+						} else {
+							System.out.print("0");
+						}
+					}
+					System.out.println();
+				}
 			}
 		}
 	}
@@ -250,22 +299,22 @@ class Stone
 	
 	
 	void fall() {
-		if (!(	this.xPosition < backend.gamematrix[9].length
-			 && this.yPosition < backend.gamematrix.length
-			 && this.xPosition + this.relx2 < backend.gamematrix[9].length
-			 && this.yPosition + this.rely2 + 1 < backend.gamematrix.length
-			 && this.xPosition + this.relx3 < backend.gamematrix[9].length
-			 && this.yPosition + this.rely3 + 1 < backend.gamematrix.length
-			 && this.xPosition + this.relx4 < backend.gamematrix[9].length
-			 && this.yPosition + this.rely4 + 1 < backend.gamematrix.length)) {
+		if (!(	this.xPosition < backend.staticmatrix[0].length
+			 && this.yPosition + 1 < backend.staticmatrix.length
+			 && this.xPosition + this.relx2 < backend.staticmatrix[0].length
+			 && this.yPosition + this.rely2 + 1 < backend.staticmatrix.length
+			 && this.xPosition + this.relx3 < backend.staticmatrix[0].length
+			 && this.yPosition + this.rely3 + 1 < backend.staticmatrix.length
+			 && this.xPosition + this.relx4 < backend.staticmatrix[0].length
+			 && this.yPosition + this.rely4 + 1 < backend.staticmatrix.length)) {
 			//bottom reached, declaring final position
 			this.endPosition = true;
 			return;
 		}
-		if (   backend.staticmatrix[this.yPosition +1][this.xPosition] == "" 
-			&& backend.staticmatrix[this.yPosition + this.rely2 +1][this.xPosition + this.relx2] == "" 
-			&& backend.staticmatrix[this.yPosition + this.rely3 +1][this.xPosition + this.relx3] == "" 
-			&& backend.staticmatrix[this.yPosition + this.rely4 +1][this.xPosition + this.relx4] == "" ) {
+		if (   backend.staticmatrix[this.yPosition + 1][this.xPosition] == "" 
+			&& backend.staticmatrix[this.yPosition + this.rely2 + 1][this.xPosition + this.relx2] == "" 
+			&& backend.staticmatrix[this.yPosition + this.rely3 + 1][this.xPosition + this.relx3] == "" 
+			&& backend.staticmatrix[this.yPosition + this.rely4 + 1][this.xPosition + this.relx4] == "" ) {
 				yPosition = yPosition + 1;		
 			} else {
 				// collision detected, declaring final position
