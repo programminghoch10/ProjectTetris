@@ -23,6 +23,25 @@ public class backend {
 	// only predefined like this until there is a proper initialization within the backend main function
 	// also comes in handy for testing connection to ui class
 	
+	public static String[][] staticmatrix = {
+			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
+			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
+			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
+			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
+			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
+			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
+			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
+			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
+			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
+			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
+			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
+			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
+			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
+			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
+			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
+	};
+	//matrix only contains static (fallen) stones, to test collision
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
@@ -113,9 +132,25 @@ class Stone
 		
 	}
 	
-	void rotate() 
-	{
-		
+	void rotate() {
+		int newrelx2 = this.rely2 *(-1);
+		int newrely2 = this.relx2;
+		int newrelx3 = this.rely3 *(-1);
+		int newrely3 = this.relx3;
+		int newrelx4 = this.rely4 *(-1);
+		int newrely4 = this.relx4;
+		if (   backend.staticmatrix[this.yPosition + newrely2][this.xPosition + newrelx2] == "0"
+			&& backend.staticmatrix[this.yPosition + newrely3][this.xPosition + newrelx3] == "0"
+			&& backend.staticmatrix[this.yPosition + newrely4][this.xPosition + newrelx4] == "0") {
+			this.relx2 = newrelx2;
+			this.rely2 = newrely2;
+			this.relx3 = newrelx3;
+			this.rely3 = newrely3;
+			this.relx4 = newrelx4;
+			this.rely4 = newrely4;
+		} else {
+			// collision detected
+		}
 	} 
 	
 	void moveright()
