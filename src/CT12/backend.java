@@ -26,6 +26,44 @@ public class backend {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+		Stone Stein1 = new Stone();
+		
 	}
+}
 
+class Stone
+{
+	
+	String coler;
+	String transparant;
+	String type;
+	int drop;
+	int xPosition;
+	int yPosition;
+	
+	
+	
+	void rotate() 
+	{
+		
+	} 
+	
+	void moveright()
+	{
+		
+	}
+	
+	void moveleft()
+	{
+		
+	}
+	void fall() 
+	{
+		
+	}
+	void drop() 
+	{
+		
+	}
+	
 }
