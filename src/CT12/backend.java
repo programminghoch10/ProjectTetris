@@ -2,6 +2,9 @@ package CT12;
 
 public class backend {
 	
+	public static boolean paused = false;
+	public static boolean active = true;
+	
 	private static String gmi = ""; //gamematrix initial value for every cell for testing
 	public static String[][] gamematrix = {
 			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
@@ -49,29 +52,59 @@ public class backend {
 		new Thread() {
 			@Override 
 			public void run() {
-				ui UI = new ui();
 				ui.UIstart(args);
 			}
 		}.start();
 		
-		
+		System.out.println("1");
 		//e.g. create a object Stone Stein1 = new Stone(1,1,1,re,0,0,0,);
 		
-		Stone stone1 = new Stone(Stone.arrayStoneType[6], 2, 1, "bl", false, false, false);
-		//stone1.fall();
-		gamematrix = staticmatrix;
-		stone1.insertintogamematrix();
-		for (int y = 0; y < 5; y++) {
-			for (int x = 0; x < 5; x++) {
-				if (gamematrix[y][x] != "")	{
-					System.out.print("1");
-				} else {
-					System.out.print("0");
+		int nextStonetype = (int)(Math.random()*6);
+		currentstone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], true, false, false);
+		
+		new Thread() {
+			@Override 
+			public void run() {
+				while (backend.active) {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					if (backend.paused) {
+						while (backend.paused);
+						continue;
+					}
+					System.out.println(backend.currentstone.yPosition);
+					backend.currentstone.fall();
 				}
 			}
-			System.out.println();
-		}
+		}.start();
 		
+		while (active) {
+			while (!paused) {
+				//loop for managing game
+
+				if (currentstone.endPosition) {
+					gamematrix = staticmatrix;
+					currentstone.insertintogamematrix();
+					
+					//debug: show matrix in console
+					for (int y = 0; y < gamematrix.length; y++) {
+						for (int x = 0; x < gamematrix[0].length; x++) {
+							if (gamematrix[y][x] != "")	{
+								System.out.print("1");
+							} else {
+								System.out.print("0");
+							}
+						}
+						System.out.println();
+					}
+				}
+				
+				
+			}
+		}
 	}
 }
 
@@ -86,6 +119,7 @@ class Stone
 	boolean 	endPosition;
 	
 	static String[] arrayStoneType = {"I","Ll","Lr","Sq","S","T","Z"}; //Array with the types of stones
+	static String[] arrayStoneTypeColor = {"bl","ye","re","gr","or","cy","ma"}; //Array with the colors of stones
 	
 	int relx2 = 0;
 	int rely2 = 0;
@@ -199,40 +233,50 @@ class Stone
 			this.relx4 = newrelx4;
 			this.rely4 = newrely4;
 		} else {
-			// collision detected
+			// collision detected, no rotation possible
 		}
 	}
 	
 	void move(int direction) {
-		if (	   backend.staticmatrix[this.yPosition][this.xPosition + direction] == "" 
-				&& backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.relx2 + direction] == "" 
-				&& backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.relx3 + direction] == "" 
-				&& backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.relx4 + direction] == "" ) {
+		if (   backend.staticmatrix[this.yPosition][this.xPosition + direction] == "" 
+			&& backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.relx2 + direction] == "" 
+			&& backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.relx3 + direction] == "" 
+			&& backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.relx4 + direction] == "" ) {
 				xPosition = xPosition + direction;		
 			} else { 
-				// collision detected
+				// collision detected, move not possible
 			}
 	}
 	
 	
-	void fall() 
-	{
-		if (	   backend.staticmatrix[this.yPosition +1][this.xPosition] == "" 
-				&& backend.staticmatrix[this.yPosition + this.rely2 +1][this.xPosition + this.relx2] == "" 
-				&& backend.staticmatrix[this.yPosition + this.rely3 +1][this.xPosition + this.relx3] == "" 
-				&& backend.staticmatrix[this.yPosition + this.rely4 +1][this.xPosition + this.relx4] == "" ) {
+	void fall() {
+		if (!(	this.xPosition < backend.gamematrix[9].length
+			 && this.yPosition < backend.gamematrix.length
+			 && this.xPosition + this.relx2 < backend.gamematrix[9].length
+			 && this.yPosition + this.rely2 + 1 < backend.gamematrix.length
+			 && this.xPosition + this.relx3 < backend.gamematrix[9].length
+			 && this.yPosition + this.rely3 + 1 < backend.gamematrix.length
+			 && this.xPosition + this.relx4 < backend.gamematrix[9].length
+			 && this.yPosition + this.rely4 + 1 < backend.gamematrix.length)) {
+			//bottom reached, declaring final position
+			this.endPosition = true;
+			return;
+		}
+		if (   backend.staticmatrix[this.yPosition +1][this.xPosition] == "" 
+			&& backend.staticmatrix[this.yPosition + this.rely2 +1][this.xPosition + this.relx2] == "" 
+			&& backend.staticmatrix[this.yPosition + this.rely3 +1][this.xPosition + this.relx3] == "" 
+			&& backend.staticmatrix[this.yPosition + this.rely4 +1][this.xPosition + this.relx4] == "" ) {
 				yPosition = yPosition + 1;		
 			} else {
-				endPosition = true;
-				// collision detected
+				// collision detected, declaring final position
+				this.endPosition = true;
 			}
 	}
 	
 	void drop() 
 	{
-		while (!this.endPosition) {
+		while (!this.endPosition) { //dropping until at end
 			this.fall();
 		}
 	}
-	
 }

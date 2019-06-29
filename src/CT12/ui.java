@@ -51,32 +51,33 @@ public class ui {
 	    
 	    
 	 // Keyboard controls
-	 		frame.addKeyListener(new KeyListener() {
-	 			public void keyTyped(KeyEvent e) {
-	 			}
-	 			
-	 			public void keyPressed(KeyEvent e) {
-	 				switch (e.getKeyCode()) {
-	 				case KeyEvent.VK_UP:
-	 					backend.currentstone.rotate();
-	 					break;
-	 				case KeyEvent.VK_DOWN:
-	 					break;
-	 				case KeyEvent.VK_LEFT:
-	 					backend.currentstone.move(-1);
-	 					break;
-	 				case KeyEvent.VK_RIGHT:
-	 					backend.currentstone.move(+1);
-	 					break;
-	 				case KeyEvent.VK_SPACE:
-	 					backend.currentstone.drop();
-	 					break;
-	 				} 
-	 			}
-	 			
-	 			public void keyReleased(KeyEvent e) {
-	 			}
-	 		});
+ 		frame.addKeyListener(new KeyListener() {
+ 			public void keyTyped(KeyEvent e) {
+ 			}
+ 			
+ 			public void keyPressed(KeyEvent e) {
+ 				System.out.println("pressed key \""+e.getKeyChar()+"\"");
+ 				switch (e.getKeyCode()) {
+ 				case KeyEvent.VK_UP:
+ 					//backend.currentstone.rotate();
+ 					break;
+ 				case KeyEvent.VK_DOWN:
+ 					break;
+ 				case KeyEvent.VK_LEFT:
+ 					//backend.currentstone.move(-1);
+ 					break;
+ 				case KeyEvent.VK_RIGHT:
+ 					//backend.currentstone.move(+1);
+ 					break;
+ 				case KeyEvent.VK_SPACE:
+ 					//backend.currentstone.drop();
+ 					break;
+ 				} 
+ 			}
+ 			
+ 			public void keyReleased(KeyEvent e) {
+ 			}
+ 		});
 	    
 		
 		//==========================================================
@@ -84,7 +85,7 @@ public class ui {
 		
 		
 		//==========================================================
-
+ 		
 	}
 	
 	
