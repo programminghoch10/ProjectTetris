@@ -48,7 +48,7 @@ public class backend {
 		//e.g. create a object Stone Stein1 = new Stone(1,1,1,re,0,0,0,);
 		
 		Stone stone1 = new Stone(Stone.arrayStoneType[0], 2, 1, "bl", false, false, false);
-		stone1.movehorizontal(-2);
+		stone1.fall();
 		gamematrix = staticmatrix;
 		stone1.insertintogamematrix();
 		for (int y = 0; y < 5; y++) {
@@ -177,29 +177,31 @@ class Stone
 		}
 	}
 	
-	void movehorizontal(int direction)
-	{
-		
-		
-		if(		backend.staticmatrix[this.yPosition][this.xPosition + direction] == "" && 								
-				backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.relx2 + direction] == "" &&
-				backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.relx3 + direction] == "" &&
-				backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.relx4 + direction] == "" )
-		{
+	void movehorizontal(int direction) {
+		if (	   backend.staticmatrix[this.yPosition][this.xPosition + direction] == "" 
+				&& backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.relx2 + direction] == "" 
+				&& backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.relx3 + direction] == "" 
+				&& backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.relx4 + direction] == "" ) {
 				xPosition = xPosition + direction;		
-			
-		}
-		
-		else 
-		
-		{}
+			} else { 
+				// collision detected
+			}
 	}
 	
 	
 	void fall() 
 	{
-		
+		if (	   backend.staticmatrix[this.yPosition +1][this.xPosition] == "" 
+				&& backend.staticmatrix[this.yPosition + this.rely2 +1][this.xPosition + this.relx2] == "" 
+				&& backend.staticmatrix[this.yPosition + this.rely3 +1][this.xPosition + this.relx3] == "" 
+				&& backend.staticmatrix[this.yPosition + this.rely4 +1][this.xPosition + this.relx4] == "" ) {
+				yPosition = yPosition + 1;		
+			} else {
+				endPosition = true;
+				// collision detected
+			}
 	}
+	
 	void drop() 
 	{
 		
