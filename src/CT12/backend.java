@@ -2,7 +2,7 @@ package CT12;
 
 public class backend {
 	
-	private static String gmi = "bl-n-n"; //gamematrix initial value for every cell for testing
+	private static String gmi = ""; //gamematrix initial value for every cell for testing
 	public static String[][] gamematrix = {
 			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
 			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
@@ -45,7 +45,21 @@ public class backend {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		//e. g. create a object Stone Stein1 = new Stone(1,1,1,re,0,0,0,);
+		//e.g. create a object Stone Stein1 = new Stone(1,1,1,re,0,0,0,);
+		
+		Stone stone1 = new Stone(Stone.arrayStoneType[0], 1, 1, "bl", false, false, false);
+		gamematrix = staticmatrix;
+		stone1.insertintogamematrix();
+		for (int y = 0; y < 3; y++) {
+			for (int x = 0; x < 3; x++) {
+				if (gamematrix[y][x] != "")	{
+					System.out.print("1");
+				} else {
+					System.out.print("0");
+				}
+			}
+			System.out.println();
+		}
 		
 	}
 }
@@ -56,7 +70,7 @@ class Stone
 	int 		xPosition;
 	int 		yPosition;
 	String 		color;
-	boolean 	drop;
+	boolean 	dropping;
 	boolean 	ghost;
 	boolean 	endPosition;
 	
@@ -69,13 +83,13 @@ class Stone
 	int relx4 = 0;
 	int rely4 = 0;
 	
-	Stone(String type, int xPosition, int yPosition, String color, boolean drop, boolean ghost, boolean endPosition) // constructor
+	Stone(String type, int xPosition, int yPosition, String color, boolean dropping, boolean ghost, boolean endPosition) // constructor
 	{
 		this.type = type;
 		this.xPosition = xPosition;
 		this.yPosition = yPosition;
 		this.color = color;
-		this.drop = drop;
+		this.dropping = dropping;
 		this.ghost = ghost;
 		this.endPosition = endPosition;
 		switch (type) {
@@ -134,6 +148,13 @@ class Stone
 		}
 	}
 	
+	void insertintogamematrix() {
+		backend.gamematrix[this.yPosition][this.xPosition] = this.color + "-" + this.ghost + "-" + this.dropping;
+		backend.gamematrix[this.yPosition + this.rely2][this.xPosition + this.relx2] = this.color + "-" + this.ghost + "-" + this.dropping;
+		backend.gamematrix[this.yPosition + this.rely3][this.xPosition + this.relx3] = this.color + "-" + this.ghost + "-" + this.dropping;
+		backend.gamematrix[this.yPosition + this.rely4][this.xPosition + this.relx4] = this.color + "-" + this.ghost + "-" + this.dropping;
+	}
+	
 	void rotate() {
 		int newrelx2 = this.rely2 *(-1);
 		int newrely2 = this.relx2;
@@ -141,9 +162,9 @@ class Stone
 		int newrely3 = this.relx3;
 		int newrelx4 = this.rely4 *(-1);
 		int newrely4 = this.relx4;
-		if (   backend.staticmatrix[this.yPosition + newrely2][this.xPosition + newrelx2] == "0"
-			&& backend.staticmatrix[this.yPosition + newrely3][this.xPosition + newrelx3] == "0"
-			&& backend.staticmatrix[this.yPosition + newrely4][this.xPosition + newrelx4] == "0") {
+		if (   backend.staticmatrix[this.yPosition + newrely2][this.xPosition + newrelx2] == ""
+			&& backend.staticmatrix[this.yPosition + newrely3][this.xPosition + newrelx3] == ""
+			&& backend.staticmatrix[this.yPosition + newrely4][this.xPosition + newrelx4] == "") {
 			this.relx2 = newrelx2;
 			this.rely2 = newrely2;
 			this.relx3 = newrelx3;
@@ -153,7 +174,7 @@ class Stone
 		} else {
 			// collision detected
 		}
-	} 
+	}
 	
 	void moveright()
 	{
