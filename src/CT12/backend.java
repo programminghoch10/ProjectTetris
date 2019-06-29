@@ -126,9 +126,9 @@ public class backend {
 					for (int y = 0; y < gamematrix.length; y++) {
 						for (int x = 0; x < gamematrix[0].length; x++) {
 							if (gamematrix[y][x] != "")	{
-								System.out.print("1");
+								System.out.print("#");
 							} else {
-								System.out.print("0");
+								System.out.print(".");
 							}
 						}
 						System.out.println();
@@ -145,9 +145,9 @@ public class backend {
 				for (int y = 0; y < gamematrix.length; y++) {
 					for (int x = 0; x < gamematrix[0].length; x++) {
 						if (gamematrix[y][x] != "")	{
-							System.out.print("1");
+							System.out.print("#");
 						} else {
-							System.out.print("0");
+							System.out.print("-");
 						}
 					}
 					System.out.println();
