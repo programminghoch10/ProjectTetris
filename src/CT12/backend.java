@@ -31,17 +31,26 @@ public class backend {
 	}
 }
 
-class Stone
+class Stone				
 {
+	String 		type;
+	int 		xPosition;
+	int 		yPosition;
+	String 		coler;
+	boolean 	drop;
+	boolean 	ghost;
+	boolean 	endPosition;
 	
-	String coler;
-	String transparant;
-	String type;
-	int drop;
-	int xPosition;
-	int yPosition;
-	
-	
+	Stone(String type, int xPosition, int yPosition, String coler, boolean drop, boolean ghost, boolean endPosition) // Konstruktor
+	{
+		this.type = type;
+		this.xPosition = xPosition;
+		this.yPosition = yPosition;
+		this.coler = coler;
+		this.drop = drop;
+		this.ghost = ghost;
+		this.endPosition = endPosition;
+	}
 	
 	void rotate() 
 	{
