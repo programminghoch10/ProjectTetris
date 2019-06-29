@@ -36,24 +36,82 @@ class Stone
 	String 		type;
 	int 		xPosition;
 	int 		yPosition;
-	String 		coler;
+	String 		color;
 	boolean 	drop;
 	boolean 	ghost;
 	boolean 	endPosition;
 	
-	Stone(String type, int xPosition, int yPosition, String coler, boolean drop, boolean ghost, boolean endPosition) // constructor
+	static String[] arrayStoneType = {"I","Ll","Lr","Sq","S","T","Z"}; //Array with the types of stones
+	
+	int relx2 = 0;
+	int rely2 = 0;
+	int relx3 = 0;
+	int rely3 = 0;
+	int relx4 = 0;
+	int rely4 = 0;
+	
+	Stone(String type, int xPosition, int yPosition, String color, boolean drop, boolean ghost, boolean endPosition) // constructor
 	{
 		this.type = type;
 		this.xPosition = xPosition;
 		this.yPosition = yPosition;
-		this.coler = coler;
+		this.color = color;
 		this.drop = drop;
 		this.ghost = ghost;
 		this.endPosition = endPosition;
+		switch (type) {
+		case "I":
+			this.relx2 = 0;
+			this.rely2 = 0;
+			this.relx3 = 0;
+			this.rely3 = 0;
+			this.relx4 = 0;
+			this.rely4 = 0;
+		case "Ll":
+			this.relx2 = 0;
+			this.rely2 = 0;
+			this.relx3 = 0;
+			this.rely3 = 0;
+			this.relx4 = 0;
+			this.rely4 = 0;
+		case "Lr":
+			this.relx2 = 0;
+			this.rely2 = 0;
+			this.relx3 = 0;
+			this.rely3 = 0;
+			this.relx4 = 0;
+			this.rely4 = 0;
+		case "Sq":
+			this.relx2 = 0;
+			this.rely2 = 0;
+			this.relx3 = 0;
+			this.rely3 = 0;
+			this.relx4 = 0;
+			this.rely4 = 0;
+		case "S":
+			this.relx2 = 0;
+			this.rely2 = 0;
+			this.relx3 = 0;
+			this.rely3 = 0;
+			this.relx4 = 0;
+			this.rely4 = 0;
+		case "T":
+			this.relx2 = 0;
+			this.rely2 = 0;
+			this.relx3 = 0;
+			this.rely3 = 0;
+			this.relx4 = 0;
+			this.rely4 = 0;
+		case "Z":
+			this.relx2 = 0;
+			this.rely2 = 0;
+			this.relx3 = 0;
+			this.rely3 = 0;
+			this.relx4 = 0;
+			this.rely4 = 0;
+			
+		}
 	}
-	
-	static String[] arrayStoneType = {"i","ll","lr","sq","s","t","z"}; //Array with the types of stones
-
 	
 	void rotate() 
 	{
