@@ -2,6 +2,8 @@ package CT12;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class ui {
 	
@@ -12,6 +14,9 @@ public class ui {
 	//=========================================================
 	
 	public static void main(String[] args) {
+		backend.main(args);
+	}
+	public static void UIstart(String[] args) {
 		// TODO Auto-generated method stub
 		//System.out.print(backend.gamematrix[1][1].split("-")[0]);
 		
@@ -43,6 +48,35 @@ public class ui {
 	    	}
 	    	frame.add(J);
 	    }
+	    
+	    
+	 // Keyboard controls
+	 		frame.addKeyListener(new KeyListener() {
+	 			public void keyTyped(KeyEvent e) {
+	 			}
+	 			
+	 			public void keyPressed(KeyEvent e) {
+	 				switch (e.getKeyCode()) {
+	 				case KeyEvent.VK_UP:
+	 					backend.currentstone.rotate();
+	 					break;
+	 				case KeyEvent.VK_DOWN:
+	 					break;
+	 				case KeyEvent.VK_LEFT:
+	 					backend.currentstone.move(-1);
+	 					break;
+	 				case KeyEvent.VK_RIGHT:
+	 					backend.currentstone.move(+1);
+	 					break;
+	 				case KeyEvent.VK_SPACE:
+	 					backend.currentstone.drop();
+	 					break;
+	 				} 
+	 			}
+	 			
+	 			public void keyReleased(KeyEvent e) {
+	 			}
+	 		});
 	    
 		
 		//==========================================================

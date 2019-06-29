@@ -42,8 +42,18 @@ public class backend {
 	};
 	//matrix only contains static (fallen) stones, to test collision
 	
+	public static Stone currentstone = null;
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		new Thread() {
+			@Override 
+			public void run() {
+				ui UI = new ui();
+				ui.UIstart(args);
+			}
+		}.start();
+		
 		
 		//e.g. create a object Stone Stein1 = new Stone(1,1,1,re,0,0,0,);
 		
@@ -193,7 +203,7 @@ class Stone
 		}
 	}
 	
-	void movehorizontal(int direction) {
+	void move(int direction) {
 		if (	   backend.staticmatrix[this.yPosition][this.xPosition + direction] == "" 
 				&& backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.relx2 + direction] == "" 
 				&& backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.relx3 + direction] == "" 
