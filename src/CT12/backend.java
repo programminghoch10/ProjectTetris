@@ -26,7 +26,7 @@ public class backend {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		Stone Stein1 = new Stone();
+		//e. g. create a object Stone Stein1 = new Stone(1,1,1,re,0,0,0,);
 		
 	}
 }
@@ -41,7 +41,7 @@ class Stone
 	boolean 	ghost;
 	boolean 	endPosition;
 	
-	Stone(String type, int xPosition, int yPosition, String coler, boolean drop, boolean ghost, boolean endPosition) // Konstruktor
+	Stone(String type, int xPosition, int yPosition, String coler, boolean drop, boolean ghost, boolean endPosition) // constructor
 	{
 		this.type = type;
 		this.xPosition = xPosition;
