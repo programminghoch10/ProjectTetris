@@ -47,11 +47,12 @@ public class backend {
 		
 		//e.g. create a object Stone Stein1 = new Stone(1,1,1,re,0,0,0,);
 		
-		Stone stone1 = new Stone(Stone.arrayStoneType[0], 1, 1, "bl", false, false, false);
+		Stone stone1 = new Stone(Stone.arrayStoneType[0], 2, 1, "bl", false, false, false);
+		stone1.movehorizontal(-2);
 		gamematrix = staticmatrix;
 		stone1.insertintogamematrix();
-		for (int y = 0; y < 3; y++) {
-			for (int x = 0; x < 3; x++) {
+		for (int y = 0; y < 5; y++) {
+			for (int x = 0; x < 5; x++) {
 				if (gamematrix[y][x] != "")	{
 					System.out.print("1");
 				} else {
@@ -176,19 +177,17 @@ class Stone
 		}
 	}
 	
-	void moveright()
+	void movehorizontal(int direction)
 	{
 		
 		
-		if(		backend.staticmatrix[this.yPosition][this.xPosition +1] == "" && 								
-				backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.relx2 +1] == "" &&
-				backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.relx3 +1] == "" &&
-				backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.relx4 +1] == "" )
+		if(		backend.staticmatrix[this.yPosition][this.xPosition + direction] == "" && 								
+				backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.relx2 + direction] == "" &&
+				backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.relx3 + direction] == "" &&
+				backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.relx4 + direction] == "" )
 		{
-				xPosition = xPosition +1;		
-				this.relx2 = this.relx2 +1;
-				this.relx3 = this.relx3 +1;
-				this.relx4 = this.relx4 +1;
+				xPosition = xPosition + direction;		
+			
 		}
 		
 		else 
@@ -196,10 +195,7 @@ class Stone
 		{}
 	}
 	
-	void moveleft()
-	{
-		
-	}
+	
 	void fall() 
 	{
 		
