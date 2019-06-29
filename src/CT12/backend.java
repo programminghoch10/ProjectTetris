@@ -158,6 +158,21 @@ class Stone
 	void moveright()
 	{
 		
+		
+		if(		backend.staticmatrix[this.yPosition][this.xPosition +1] == "" && 								
+				backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.relx2 +1] == "" &&
+				backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.relx3 +1] == "" &&
+				backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.relx4 +1] == "" )
+		{
+				xPosition = xPosition +1;		
+				this.relx2 = this.relx2 +1;
+				this.relx3 = this.relx3 +1;
+				this.relx4 = this.relx4 +1;
+		}
+		
+		else 
+		
+		{}
 	}
 	
 	void moveleft()
