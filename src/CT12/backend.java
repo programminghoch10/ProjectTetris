@@ -52,6 +52,9 @@ class Stone
 		this.endPosition = endPosition;
 	}
 	
+	static String[] arrayStoneType = {"i","ll","lr","sq","s","t","z"}; //Array with the types of stones
+
+	
 	void rotate() 
 	{
 		
