@@ -60,6 +60,10 @@ public class ui {
  				case KeyEvent.VK_SPACE:
  					backend.currentstone.drop();
  					break;
+ 				case KeyEvent.VK_P:
+ 					backend.paused = !backend.paused;
+ 					System.out.println("new pause state: " + backend.paused);
+ 					break;
  				}
  				} catch (NullPointerException e) {} //catch error if currentstone is null
  			}
