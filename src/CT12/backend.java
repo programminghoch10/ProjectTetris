@@ -157,7 +157,7 @@ public class backend {
 	}
 }
 
-class Stone
+class Stone    
 {
 	String 		type;
 	int 		xPosition;
@@ -287,14 +287,26 @@ class Stone
 	}
 	
 	void move(int direction) {
-		if (   backend.staticmatrix[this.yPosition][this.xPosition + direction] == "" 
-			&& backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.relx2 + direction] == "" 
-			&& backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.relx3 + direction] == "" 
-			&& backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.relx4 + direction] == "" ) {
-				xPosition = xPosition + direction;		
+			
+		if(		   backend.staticmatrix[this.yPosition][this.xPosition] != backend.staticmatrix[this.yPosition] [0] 
+				|| backend.staticmatrix[this.yPosition][this.xPosition] != backend.staticmatrix[this.yPosition] [9]
+				|| backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.relx2] != backend.staticmatrix[this.yPosition + this.rely2][0] 
+				|| backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.relx2] != backend.staticmatrix[this.yPosition + this.rely2][9]
+				|| backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.relx3] != backend.staticmatrix[this.yPosition + this.rely3][0] 
+				|| backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.relx3] != backend.staticmatrix[this.yPosition + this.rely3][9]
+				|| backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.relx4] != backend.staticmatrix[this.yPosition + this.rely4][0] 
+				|| backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.relx4] != backend.staticmatrix[this.yPosition + this.rely4][9]){}
+				
+		else{
+			if (   	   backend.staticmatrix[this.yPosition][this.xPosition + direction] == "" 
+					&& backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.relx2 + direction] == "" 
+					&& backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.relx3 + direction] == "" 
+					&& backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.relx4 + direction] == "" ) {
+					xPosition = xPosition + direction;		
 			} else { 
 				// collision detected, move not possible
 			}
+		}
 	}
 	
 	
