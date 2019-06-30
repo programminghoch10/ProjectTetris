@@ -21,9 +21,9 @@ public class ui {
 		//System.out.print(backend.gamematrix[1][1].split("-")[0]);
 		
 		JFrame frame = new JFrame("Tetris Game CT12"); 				//create new Frame
-		frame.setSize(600, 1000);										//set start size 		
+		frame.setSize(600, 1000);									//set start size 		
 		frame.setVisible(true);										//Window becomes visible
-		frame.setLayout(new GridLayout(15, 10));
+		frame.setLayout(new GridLayout(15, 10));					//Elements in the container "frame" are displayed in a GridLayout
 	    for (int i=0; i<15*10; i++) {
 	    	JPanel J = new JPanel();
 	    	switch ((int)(Math.random()*6)) {
