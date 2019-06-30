@@ -2,48 +2,15 @@ package CT12;
 
 public class backend {
 	
+	public static int dimensionx = 10;
+	public static int dimensiony = 15;
+	
 	public static boolean paused = false;
 	public static boolean active = true;
 	
-	private static String gmi = ""; //gamematrix initial value for every cell for testing
-	public static String[][] gamematrix = {
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-	};
-	// only predefined like this until there is a proper initialization within the backend main function
-	// also comes in handy for testing connection to ui class
-	
-	public static String[][] staticmatrix = {
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-			{gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi,gmi},
-	};
-	//matrix only contains static (fallen) stones, to test collision
+	public static String mi = ""; //initial value for gamematrix and staticmatrix
+	public static String[][] gamematrix = new String[dimensiony][dimensionx];		//gamematrix contains everything that needs to be visible
+	public static String[][] staticmatrix = new String[dimensiony][dimensionx];		//staticmatrix only contains static (fallen) stones, to test collision
 	
 	public static Stone currentstone = null;
 	public static int score = 0;
@@ -114,8 +81,15 @@ public class backend {
 	
 	public static void main(String[] args) {
 		
-		UI.start(); //comment this line out to disable UI
-		Dropper.start(); //Comment this line out to disable gameplay
+		for (int y = 0; y < staticmatrix.length; y++) {
+			for (int x = 0; x < staticmatrix[0].length; x++) {
+				staticmatrix[y][x] = mi;
+				gamematrix[y][x] = mi;
+			}
+		}
+		
+		UI.start();			//comment this line out to disable UI
+		Dropper.start();	//Comment this line out to disable gameplay
 		
 		//System.out.println("enabled loop");
 		while (active) {
