@@ -150,29 +150,27 @@ public class backend {
 					System.out.println("end position: removed current stone");
 					currentstone = null;
 					
-					int linecount = 0;			//check for full last line
-					for(int i=0; i <  backend.staticmatrix[0].length; i++){
-						if (backend.staticmatrix[backend.staticmatrix.length - 1][i] != "") {
+				for(int h = 0; h < backend.staticmatrix.length; h++) {	//check every line of fullness
+					int linecount = 0; 
+						for(int i=0; i <  backend.staticmatrix[0].length; i++) { //check for full last line
+							if (backend.staticmatrix[h][i] != "") {	// yes or no
 							linecount++;
-						}
-					}
-					
-					if( backend.staticmatrix[0].length == linecount ) {  //delete last line
-						for(int k=0; k < backend.staticmatrix[0].length; k++) {
-							backend.staticmatrix[backend.staticmatrix.length - 1][k] = ""; 
-						}
-						
-						for(int y = backend.staticmatrix.length - 2; y > 0; y--) {
-							for(int x = 0; x < backend.staticmatrix[0].length; x++) {
-								backend.staticmatrix[y + 1][x] = backend.staticmatrix[y][x];
-								backend.gamematrix[y + 1][x] = backend.staticmatrix[y][x];
 							}
 						}
-						score = score +1; // increase the score
-						System.out.println("Score: " + score);
-					}
-					
-					
+						if( backend.staticmatrix[0].length == linecount ) {  //delete last line
+							for(int k=0; k < backend.staticmatrix[0].length; k++) { // clean the line
+								backend.staticmatrix[h][k] = ""; 
+							}
+							for(int y = h - 1; y > 0; y--) { //move the elements down
+								for(int x = 0; x < backend.staticmatrix[0].length; x++) {
+									backend.staticmatrix[y + 1][x] = backend.staticmatrix[y][x];
+									backend.gamematrix[y + 1][x] = backend.staticmatrix[y][x];
+								}
+							}
+							score = score +1; // increase the score
+							System.out.println("Score: " + score);
+						}
+				}
 					
 					//debug: show matrix in console
 					for (int y = 0; y < staticmatrix.length; y++) {
