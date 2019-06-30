@@ -20,37 +20,69 @@ public class ui {
 		// TODO Auto-generated method stub
 		//System.out.print(backend.gamematrix[1][1].split("-")[0]);
 		
+		JPanel[] jpanelarray = new JPanel[15*10];
+		
 		JFrame frame = new JFrame("Tetris Game CT12"); 				//create new Frame
 		frame.setSize(600, 1000);									//set start size 		
 		frame.setVisible(true);										//Window becomes visible
-		frame.setLayout(new GridLayout(15, 10));					//Elements in the container "frame" are displayed in a GridLayout
+		Container pane = frame.getContentPane();
+		frame.setLayout(new GridLayout(15,10));					//Elements in the container "frame" are displayed in a GridLayout
 	    for (int i=0; i<15*10; i++) {
-	    	JPanel J = new JPanel();
+	    	jpanelarray[i] = new JPanel();
 	    	switch ((int)(Math.random()*6)) {
 	    	case 0:
-	    		J.setBackground(Color.BLACK);
+	    		jpanelarray[i].setBackground(Color.BLACK);
 	    		break;
 	    	case 1:
-	    		J.setBackground(Color.GREEN);
+	    		jpanelarray[i].setBackground(Color.GREEN);
 	    		break;
 	    	case 2:
-	    		J.setBackground(Color.BLUE);
+	    		jpanelarray[i].setBackground(Color.BLUE);
 	    		break;
 	    	case 3:
-	    		J.setBackground(Color.MAGENTA);
+	    		jpanelarray[i].setBackground(Color.MAGENTA);
 	    		break;
 	    	case 4:
-	    		J.setBackground(Color.RED);
+	    		jpanelarray[i].setBackground(Color.RED);
 	    		break;
 	    	case 5:
-	    		J.setBackground(Color.ORANGE);
+	    		jpanelarray[i].setBackground(Color.ORANGE);
 	    		break;
 	    	}
-	    	frame.add(J);
+	    	pane.add(jpanelarray[i]);
 	    }
 	    
+	    try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	    for (int i=0; i<15*10; i++) {
+	    	switch ((int)(Math.random()*6)) {
+	    	case 0:
+	    		jpanelarray[i].setBackground(Color.BLACK);
+	    		break;
+	    	case 1:
+	    		jpanelarray[i].setBackground(Color.GREEN);
+	    		break;
+	    	case 2:
+	    		jpanelarray[i].setBackground(Color.BLUE);
+	    		break;
+	    	case 3:
+	    		jpanelarray[i].setBackground(Color.MAGENTA);
+	    		break;
+	    	case 4:
+	    		jpanelarray[i].setBackground(Color.RED);
+	    		break;
+	    	case 5:
+	    		jpanelarray[i].setBackground(Color.ORANGE);
+	    		break;
+	    	}
+	    	pane.add(jpanelarray[i]);
+	    }
 	    
-	 // Keyboard controls
+	    // Keyboard controls
  		frame.addKeyListener(new KeyListener() {
  			public void keyTyped(KeyEvent key) {
  			}
