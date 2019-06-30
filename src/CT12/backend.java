@@ -92,16 +92,6 @@ public class backend {
 					}
 					System.out.println();
 				}*/
-				if (!backend.currentstone.endPosition) {
-					//System.out.println("not yet at end");
-					for (int y = 0; y < staticmatrix.length; y++) {
-						for (int x = 0; x < staticmatrix[0].length; x++) {
-							gamematrix[y][x] = staticmatrix[y][x];
-						}
-					}
-					//backend.gamematrix = backend.staticmatrix;
-					backend.currentstone.insertintogamematrix();
-				}
 			}
 		}
 	};
@@ -188,14 +178,26 @@ public class backend {
 					}
 				}
 				try {
-					Thread.sleep(100);
+					Thread.sleep(10);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 				for (int i = 0; i<10; i++) {
 					System.out.println("");
 				}
-				for (int y = 0; y < gamematrix.length; y++) {
+				
+				if (backend.currentstone != null) { //save to gamematrix
+					//System.out.println("not yet at end");
+					for (int y = 0; y < staticmatrix.length; y++) {
+						for (int x = 0; x < staticmatrix[0].length; x++) {
+							gamematrix[y][x] = staticmatrix[y][x];
+						}
+					}
+					//backend.gamematrix = backend.staticmatrix;
+					backend.currentstone.insertintogamematrix();
+				}
+				
+				/*for (int y = 0; y < gamematrix.length; y++) { //console gameplay
 					for (int x = 0; x < gamematrix[0].length; x++) {
 						if (gamematrix[y][x] != "")	{
 							System.out.print("#");
@@ -204,7 +206,7 @@ public class backend {
 						}
 					}
 					System.out.println();
-				}
+				}*/
 			}
 		}
 	}
