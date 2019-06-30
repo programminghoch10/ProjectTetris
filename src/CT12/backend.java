@@ -116,9 +116,8 @@ public class backend {
 	public static void main(String[] args) {
 		
 		UI.start(); //comment this line out to disable UI
-		//Dropper.start(); //Comment this line out to disable gameplay
+		Dropper.start(); //Comment this line out to disable gameplay
 		
-		while(backend.fastdropping == false);
 		//System.out.println("enabled loop");
 		while (active) {
 			while (!paused) {

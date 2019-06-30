@@ -87,24 +87,37 @@ public class ui {
 	 		
 		    for (int y = 0; y < jpanelarray.length; y++) {
 		    	for (int x = 0; x < jpanelarray[0].length; x++) {
-			    	switch ((int)(Math.random()*6)) {
-			    	case 0:
+			    	switch (backend.gamematrix[y][x].split("-")[0]) {
+			    	
+			    	case "bk":
 			    		jpanelarray[y][x].setBackground(Color.BLACK);
 			    		break;
-			    	case 1:
-			    		jpanelarray[y][x].setBackground(Color.GREEN);
+			    	case "wh":
+			    		jpanelarray[y][x].setBackground(Color.WHITE);
 			    		break;
-			    	case 2:
+			    	case "bl":
 			    		jpanelarray[y][x].setBackground(Color.BLUE);
 			    		break;
-			    	case 3:
-			    		jpanelarray[y][x].setBackground(Color.MAGENTA);
+			    	case "gr":
+			    		jpanelarray[y][x].setBackground(Color.GREEN);
 			    		break;
-			    	case 4:
+			    	case "ye":
+			    		jpanelarray[y][x].setBackground(Color.YELLOW);
+			    		break;
+			    	case "re":
 			    		jpanelarray[y][x].setBackground(Color.RED);
 			    		break;
-			    	case 5:
+			    	case "ma":
+			    		jpanelarray[y][x].setBackground(Color.MAGENTA);
+			    		break;
+			    	case "or":
 			    		jpanelarray[y][x].setBackground(Color.ORANGE);
+			    		break;
+			    	case "cy":
+			    		jpanelarray[y][x].setBackground(Color.CYAN);
+			    		break;
+			    	case "":
+			    		jpanelarray[y][x].setBackground(Color.BLACK);
 			    		break;
 			    	}
 		    	}
