@@ -9,7 +9,7 @@ public class ui {
 	
 	//=========================================================
 	
-	
+	static JPanel[][] jpanelarray = new JPanel[backend.staticmatrix.length][backend.staticmatrix[0].length];
 	
 	//=========================================================
 	
@@ -20,68 +20,19 @@ public class ui {
 		// TODO Auto-generated method stub
 		//System.out.print(backend.gamematrix[1][1].split("-")[0]);
 		
-		JPanel[] jpanelarray = new JPanel[15*10];
-		
 		JFrame frame = new JFrame("Tetris Game CT12"); 				//create new Frame
 		frame.setSize(600, 1000);									//set start size 		
 		frame.setVisible(true);										//Window becomes visible
 		Container pane = frame.getContentPane();
-		frame.setLayout(new GridLayout(15,10));					//Elements in the container "frame" are displayed in a GridLayout
-	    for (int i=0; i<15*10; i++) {
-	    	jpanelarray[i] = new JPanel();
-	    	switch ((int)(Math.random()*6)) {
-	    	case 0:
-	    		jpanelarray[i].setBackground(Color.BLACK);
-	    		break;
-	    	case 1:
-	    		jpanelarray[i].setBackground(Color.GREEN);
-	    		break;
-	    	case 2:
-	    		jpanelarray[i].setBackground(Color.BLUE);
-	    		break;
-	    	case 3:
-	    		jpanelarray[i].setBackground(Color.MAGENTA);
-	    		break;
-	    	case 4:
-	    		jpanelarray[i].setBackground(Color.RED);
-	    		break;
-	    	case 5:
-	    		jpanelarray[i].setBackground(Color.ORANGE);
-	    		break;
-	    	}
-	    	pane.add(jpanelarray[i]);
-	    }
+		frame.setLayout(new GridLayout(jpanelarray.length,jpanelarray[0].length));					//Elements in the container "frame" are displayed in a GridLayout
 	    
-	    try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-	    for (int i=0; i<15*10; i++) {
-	    	switch ((int)(Math.random()*6)) {
-	    	case 0:
-	    		jpanelarray[i].setBackground(Color.BLACK);
-	    		break;
-	    	case 1:
-	    		jpanelarray[i].setBackground(Color.GREEN);
-	    		break;
-	    	case 2:
-	    		jpanelarray[i].setBackground(Color.BLUE);
-	    		break;
-	    	case 3:
-	    		jpanelarray[i].setBackground(Color.MAGENTA);
-	    		break;
-	    	case 4:
-	    		jpanelarray[i].setBackground(Color.RED);
-	    		break;
-	    	case 5:
-	    		jpanelarray[i].setBackground(Color.ORANGE);
-	    		break;
+		for (int y = 0; y < jpanelarray.length; y++) {
+	    	for (int x = 0; x < jpanelarray[0].length; x++) {
+	    		jpanelarray[y][x] = new JPanel();
+		    	pane.add(jpanelarray[y][x]);
 	    	}
-	    	pane.add(jpanelarray[i]);
 	    }
-	    
+		
 	    // Keyboard controls
  		frame.addKeyListener(new KeyListener() {
  			public void keyTyped(KeyEvent key) {
@@ -126,7 +77,39 @@ public class ui {
 		
 		//==========================================================
 		
-		
+ 		while(backend.active) {
+	 		/*try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}*/
+	 		
+		    for (int y = 0; y < jpanelarray.length; y++) {
+		    	for (int x = 0; x < jpanelarray[0].length; x++) {
+			    	switch ((int)(Math.random()*6)) {
+			    	case 0:
+			    		jpanelarray[y][x].setBackground(Color.BLACK);
+			    		break;
+			    	case 1:
+			    		jpanelarray[y][x].setBackground(Color.GREEN);
+			    		break;
+			    	case 2:
+			    		jpanelarray[y][x].setBackground(Color.BLUE);
+			    		break;
+			    	case 3:
+			    		jpanelarray[y][x].setBackground(Color.MAGENTA);
+			    		break;
+			    	case 4:
+			    		jpanelarray[y][x].setBackground(Color.RED);
+			    		break;
+			    	case 5:
+			    		jpanelarray[y][x].setBackground(Color.ORANGE);
+			    		break;
+			    	}
+		    	}
+		    }
+ 		}
 		
 		//==========================================================
  		
