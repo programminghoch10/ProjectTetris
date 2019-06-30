@@ -288,36 +288,33 @@ class Stone
 	
 	void move(int direction) {
 			
-		if(		   backend.staticmatrix[this.yPosition][this.xPosition] != backend.staticmatrix[this.yPosition] [0] 
-				|| backend.staticmatrix[this.yPosition][this.xPosition] != backend.staticmatrix[this.yPosition] [9]
-				|| backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.relx2] != backend.staticmatrix[this.yPosition + this.rely2][0] 
-				|| backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.relx2] != backend.staticmatrix[this.yPosition + this.rely2][9]
-				|| backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.relx3] != backend.staticmatrix[this.yPosition + this.rely3][0] 
-				|| backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.relx3] != backend.staticmatrix[this.yPosition + this.rely3][9]
-				|| backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.relx4] != backend.staticmatrix[this.yPosition + this.rely4][0] 
-				|| backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.relx4] != backend.staticmatrix[this.yPosition + this.rely4][9]){}
-				
-		else{
-			if (   	   backend.staticmatrix[this.yPosition][this.xPosition + direction] == "" 
-					&& backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.relx2 + direction] == "" 
-					&& backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.relx3 + direction] == "" 
-					&& backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.relx4 + direction] == "" ) {
-					xPosition = xPosition + direction;		
-			} else { 
-				// collision detected, move not possible
-			}
+		if (!(		this.xPosition  + direction < backend.staticmatrix[0].length
+				 && this.xPosition + this.relx2 + direction < backend.staticmatrix[0].length
+				 && this.xPosition + this.relx3 + direction < backend.staticmatrix[0].length
+				 && this.xPosition + this.relx4 + direction < backend.staticmatrix[0].length
+				 && this.xPosition  + direction >= 0
+				 && this.xPosition + this.relx2 + direction >= 0
+				 && this.xPosition + this.relx3 + direction >= 0
+				 && this.xPosition + this.relx4 + direction >= 0)) {
+				//reached side, can't move
+				return;
 		}
+		
+		if (   	   backend.staticmatrix[this.yPosition][this.xPosition + direction] == "" 
+				&& backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.relx2 + direction] == "" 
+				&& backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.relx3 + direction] == "" 
+				&& backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.relx4 + direction] == "" ) {
+				xPosition = xPosition + direction;		
+		} else { 
+			// collision detected, move not possible
+		}
+		
 	}
 	
-	
 	void fall() {
-		if (!(	this.xPosition < backend.staticmatrix[0].length
-			 && this.yPosition + 1 < backend.staticmatrix.length
-			 && this.xPosition + this.relx2 < backend.staticmatrix[0].length
+		if (!(	this.yPosition + 1 < backend.staticmatrix.length
 			 && this.yPosition + this.rely2 + 1 < backend.staticmatrix.length
-			 && this.xPosition + this.relx3 < backend.staticmatrix[0].length
 			 && this.yPosition + this.rely3 + 1 < backend.staticmatrix.length
-			 && this.xPosition + this.relx4 < backend.staticmatrix[0].length
 			 && this.yPosition + this.rely4 + 1 < backend.staticmatrix.length)) {
 			//bottom reached, declaring final position
 			this.endPosition = true;
