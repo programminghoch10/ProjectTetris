@@ -61,7 +61,16 @@ public class backend {
 					//if interrupt comes from ui thread with intention to fast drop, do not show error
 				}
 				if (backend.paused) {
-					while (backend.paused); //wait if game paused
+					System.out.println("dropper paused");
+					while (backend.paused) {
+						//wait if game paused
+						try {
+							Thread.sleep(500);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+					System.out.println("dropper resumed");
 					continue;	// skip moving directly after resume
 				}
 				while (backend.currentstone == null); //wait for creation of object
@@ -70,7 +79,7 @@ public class backend {
 					//System.out.println("now dropping");
 					while (backend.fastdropping == true && backend.currentstone.endPosition == false) {
 						try {
-							Thread.sleep(200);
+							Thread.sleep(100);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
@@ -110,7 +119,7 @@ public class backend {
 		
 		//System.out.println("enabled loop");
 		while (active) {
-			while (!paused) {
+			while (!paused && active) {
 				//loop for managing game
 				
 				if (currentstone == null) {
@@ -182,9 +191,6 @@ public class backend {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
-				for (int i = 0; i<10; i++) {
-					System.out.println("");
-				}
 				
 				if (backend.currentstone != null) { //save to gamematrix
 					//System.out.println("not yet at end");
@@ -197,7 +203,11 @@ public class backend {
 					backend.currentstone.insertintogamematrix();
 				}
 				
-				/*for (int y = 0; y < gamematrix.length; y++) { //console gameplay
+				/*
+				for (int i = 0; i<10; i++) {
+					System.out.println("");
+				}
+				for (int y = 0; y < gamematrix.length; y++) { //console gameplay
 					for (int x = 0; x < gamematrix[0].length; x++) {
 						if (gamematrix[y][x] != "")	{
 							System.out.print("#");
@@ -207,6 +217,11 @@ public class backend {
 					}
 					System.out.println();
 				}*/
+			}
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
 		}
 	}
@@ -321,6 +336,7 @@ class Stone
 	
 	void rotate() {
 		if (this.type == "Sq") return;
+		try {
 		int newrelx2 = this.rely2 *(-1);
 		int newrely2 = this.relx2;
 		int newrelx3 = this.rely3 *(-1);
@@ -338,6 +354,9 @@ class Stone
 			this.rely4 = newrely4;
 		} else {
 			// collision detected, no rotation possible
+		}
+		} catch (ArrayIndexOutOfBoundsException aerr) {
+			//error expected, no action needed
 		}
 	}
 	
