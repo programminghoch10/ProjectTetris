@@ -63,6 +63,10 @@ public class ui {
  					backend.currentstone.rotate();
  					break;
  				case KeyEvent.VK_DOWN:
+ 					if (!backend.fastdropping) {
+	 					backend.fastdropping = true;
+	 					backend.Dropper.interrupt();
+ 					}
  					break;
  				case KeyEvent.VK_LEFT:
  					backend.currentstone.move(-1);
@@ -78,6 +82,12 @@ public class ui {
  			}
  			
  			public void keyReleased(KeyEvent key) {
+ 				System.out.println("released key \""+key.getKeyChar()+"\" with KeyCode " + key.getKeyCode());
+ 				switch (key.getKeyCode()) {
+ 				case KeyEvent.VK_DOWN:
+ 					backend.fastdropping = false;
+ 					break;
+ 				}
  			}
  		});
 	    

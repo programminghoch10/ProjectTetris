@@ -48,54 +48,74 @@ public class backend {
 	public static Stone currentstone = null;
 	public static int score = 0;
 	
-	public static void main(String[] args) {
-		Thread UI = new Thread() { 			//start UI Thread
-			@Override 
-			public void run() {
-				ui.UIstart(args);
-			}
-		};
-		UI.start(); //comment this line out to disable UI
-		
-		Thread Dropper = new Thread() { 			//parallel processing
-			@Override 
-			public void run() {
-				while (backend.active) {
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					if (backend.paused) {
-						while (backend.paused); //wait if game paused
-						continue;	// skip moving directly after resume
-					}
-					while (backend.currentstone == null); //wait for creation of object
-					backend.currentstone.fall();
-					
-					/*for (int y = 0; y < gamematrix.length; y++) {
-						for (int x = 0; x < gamematrix[0].length; x++) {
-							if (gamematrix[y][x] != "")	{
-								System.out.print("1");
-							} else {
-								System.out.print("0");
-							}
+	public static boolean fastdropping = false;
+	
+	public static Thread Dropper = new Thread() { 			//parallel processing
+		@Override 
+		public void run() {
+			while (backend.active) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					if (!backend.fastdropping == true) e.printStackTrace();
+					//if interrupt comes from ui thread with intention to fast drop, do not show error
+				}
+				if (backend.paused) {
+					while (backend.paused); //wait if game paused
+					continue;	// skip moving directly after resume
+				}
+				while (backend.currentstone == null); //wait for creation of object
+				
+				if (backend.fastdropping == true) {
+					//System.out.println("now dropping");
+					while (backend.fastdropping == true && backend.currentstone.endPosition == false) {
+						try {
+							Thread.sleep(200);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
 						}
-						System.out.println();
-					}*/
-					if (!backend.currentstone.endPosition) {
-						//System.out.println("not yet at end");
-						for (int y = 0; y < staticmatrix.length; y++) {
-							for (int x = 0; x < staticmatrix[0].length; x++) {
-								gamematrix[y][x] = staticmatrix[y][x];
-							}
-						}
-						//backend.gamematrix = backend.staticmatrix;
-						backend.currentstone.insertintogamematrix();
+						backend.currentstone.fall();
 					}
+					//System.out.println("stopped dropping");
+					continue;
+				}
+				
+				backend.currentstone.fall();
+				
+				/*for (int y = 0; y < gamematrix.length; y++) {
+					for (int x = 0; x < gamematrix[0].length; x++) {
+						if (gamematrix[y][x] != "")	{
+							System.out.print("1");
+						} else {
+							System.out.print("0");
+						}
+					}
+					System.out.println();
+				}*/
+				if (!backend.currentstone.endPosition) {
+					//System.out.println("not yet at end");
+					for (int y = 0; y < staticmatrix.length; y++) {
+						for (int x = 0; x < staticmatrix[0].length; x++) {
+							gamematrix[y][x] = staticmatrix[y][x];
+						}
+					}
+					//backend.gamematrix = backend.staticmatrix;
+					backend.currentstone.insertintogamematrix();
 				}
 			}
-		};
+		}
+	};
+	
+	static Thread UI = new Thread() { 			//start UI Thread
+		@Override 
+		public void run() {
+			ui.UIstart(null);
+		}
+	};
+	
+	public static void main(String[] args) {
+		
+		UI.start(); //comment this line out to disable UI
 		Dropper.start(); //Comment this line out to disable gameplay
 
 		//System.out.println("enabled loop");
@@ -131,22 +151,22 @@ public class backend {
 					System.out.println("end position: removed current stone");
 					currentstone = null;
 					
-					int l = 0;			//check for full last line
-					for(int i=0; i <  backend.staticmatrix[0].length;i++){
-						if (backend.staticmatrix[backend.staticmatrix.length-1][i] != "") {
-							l++;
+					int linecount = 0;			//check for full last line
+					for(int i=0; i <  backend.staticmatrix[0].length; i++){
+						if (backend.staticmatrix[backend.staticmatrix.length - 1][i] != "") {
+							linecount++;
 						}
 					}
 					
-					if(	l == backend.staticmatrix[0].length) {  //delete last line
-						for(int k=0; k < backend.staticmatrix[0].length;k++) {
-							backend.staticmatrix[backend.staticmatrix.length-1][k] = ""; 
+					if( backend.staticmatrix[0].length == linecount ) {  //delete last line
+						for(int k=0; k < backend.staticmatrix[0].length; k++) {
+							backend.staticmatrix[backend.staticmatrix.length - 1][k] = ""; 
 						}
 						
 						for(int y = backend.staticmatrix.length - 2; y > 0; y--) {
 							for(int x = 0; x < backend.staticmatrix[0].length; x++) {
-								backend.staticmatrix[y+1][x] = backend.staticmatrix[y][x];
-								backend.gamematrix[y+1][x] = backend.staticmatrix[y][x];
+								backend.staticmatrix[y + 1][x] = backend.staticmatrix[y][x];
+								backend.gamematrix[y + 1][x] = backend.staticmatrix[y][x];
 							}
 						}
 						score = score +1; // increase the score
