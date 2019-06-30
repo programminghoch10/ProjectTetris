@@ -46,7 +46,7 @@ public class backend {
 	//matrix only contains static (fallen) stones, to test collision
 	
 	public static Stone currentstone = null;
-	public static int score;
+	public static int score = 0;
 	
 	public static void main(String[] args) {
 		Thread UI = new Thread() { 			//start UI Thread
@@ -106,6 +106,7 @@ public class backend {
 				if (currentstone == null) {
 					System.out.println(currentstone);
 					int nextStonetype = (int)(Math.random()*6);
+					//int nextStonetype = 3;
 					currentstone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], true, false, false);
 					System.out.println("new stone created: " + currentstone);
 					System.out.println("X: " + currentstone.xPosition);
@@ -142,20 +143,22 @@ public class backend {
 							backend.staticmatrix[backend.staticmatrix.length-1][k] = ""; 
 						}
 						
-						/*for(int y = 0; y < backend.staticmatrix.length-1; y++) {
+						for(int y = backend.staticmatrix.length - 2; y > 0; y--) {
 							for(int x = 0; x < backend.staticmatrix[0].length; x++) {
 								backend.staticmatrix[y+1][x] = backend.staticmatrix[y][x];
+								backend.gamematrix[y+1][x] = backend.staticmatrix[y][x];
 							}
-						}*/
+						}
 						score = score +1; // increase the score
+						System.out.println("Score: " + score);
 					}
 					
 					
 					
 					//debug: show matrix in console
-					for (int y = 0; y < gamematrix.length; y++) {
-						for (int x = 0; x < gamematrix[0].length; x++) {
-							if (gamematrix[y][x] != "")	{
+					for (int y = 0; y < staticmatrix.length; y++) {
+						for (int x = 0; x < staticmatrix[0].length; x++) {
+							if (staticmatrix[y][x] != "")	{
 								System.out.print("#");
 							} else {
 								System.out.print(".");
