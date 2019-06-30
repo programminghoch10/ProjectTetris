@@ -52,12 +52,13 @@ public class ui {
 	    
 	 // Keyboard controls
  		frame.addKeyListener(new KeyListener() {
- 			public void keyTyped(KeyEvent e) {
+ 			public void keyTyped(KeyEvent key) {
  			}
  			
- 			public void keyPressed(KeyEvent e) {
- 				System.out.println("pressed key \""+e.getKeyChar()+"\"");
- 				switch (e.getKeyCode()) {
+ 			public void keyPressed(KeyEvent key) {
+ 				System.out.println("pressed key \""+key.getKeyChar()+"\" with KeyCode " + key.getKeyCode());
+ 				try {
+ 				switch (key.getKeyCode()) {
  				case KeyEvent.VK_UP:
  					backend.currentstone.rotate();
  					break;
@@ -72,10 +73,11 @@ public class ui {
  				case KeyEvent.VK_SPACE:
  					backend.currentstone.drop();
  					break;
- 				} 
+ 				}
+ 				} catch (NullPointerException e) {} //catch error if currentstone is null
  			}
  			
- 			public void keyReleased(KeyEvent e) {
+ 			public void keyReleased(KeyEvent key) {
  			}
  		});
 	    
