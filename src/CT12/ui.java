@@ -29,6 +29,7 @@ public class ui {
 		for (int y = 0; y < jpanelarray.length; y++) {
 	    	for (int x = 0; x < jpanelarray[0].length; x++) {
 	    		jpanelarray[y][x] = new JPanel();
+	    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.gray));
 		    	pane.add(jpanelarray[y][x]);
 	    	}
 	    }
