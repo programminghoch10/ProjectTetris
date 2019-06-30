@@ -46,6 +46,7 @@ public class backend {
 	//matrix only contains static (fallen) stones, to test collision
 	
 	public static Stone currentstone = null;
+	public static int score;
 	
 	public static void main(String[] args) {
 		Thread UI = new Thread() { 			//start UI Thread
@@ -121,6 +122,28 @@ public class backend {
 						}
 					}
 					currentstone = null;
+					
+					int l = 0;			//check for full last line
+					for(int i=0; i <  backend.staticmatrix[0].length;i++){
+						if (backend.staticmatrix[backend.staticmatrix.length-1][i] != "") {
+							l++;
+						}
+					}
+					
+					if(	l == backend.staticmatrix[0].length) {  //delete last line
+						for(int k=0; k < backend.staticmatrix[0].length;k++) {
+							backend.staticmatrix[backend.staticmatrix.length-1][k] = ""; 
+						}
+						
+						/*for(int y = 0; y < backend.staticmatrix.length-1; y++) {
+							for(int x = 0; x < backend.staticmatrix[0].length; x++) {
+								backend.staticmatrix[y+1][x] = backend.staticmatrix[y][x];
+							}
+						}*/
+						score = score +1; // increase the score
+					}
+					
+					
 					
 					//debug: show matrix in console
 					for (int y = 0; y < gamematrix.length; y++) {
