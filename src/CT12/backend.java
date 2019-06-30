@@ -103,8 +103,14 @@ public class backend {
 				//loop for managing game
 				
 				if (currentstone == null) {
+					System.out.println(currentstone);
 					int nextStonetype = (int)(Math.random()*6);
 					currentstone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], true, false, false);
+					System.out.println("new stone created: " + currentstone);
+					System.out.println("X: " + currentstone.xPosition);
+					System.out.println("Y: " + currentstone.yPosition);
+					System.out.println("Type: " + currentstone.type);
+					System.out.println("Color: " + currentstone.color);
 				}
 				
 				if (backend.currentstone.endPosition) {
@@ -120,6 +126,7 @@ public class backend {
 							staticmatrix[y][x] = gamematrix[y][x];
 						}
 					}
+					System.out.println("end position: removed current stone");
 					currentstone = null;
 					
 					//debug: show matrix in console
