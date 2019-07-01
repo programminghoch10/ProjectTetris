@@ -81,7 +81,7 @@ public class backend {
 		}
 		
 		UI.start();			//comment this line out to disable UI
-		while (!started) {try{Thread.sleep(1000);} catch (InterruptedException ir) {}}   //wait for UI to start game
+		while (!started && active) {try{Thread.sleep(1000);} catch (InterruptedException ir) {}}   //wait for UI to start game
 		Dropper.start();	//Comment this line out to disable gameplay/dropping
 		
 		System.out.println("Main started");
@@ -92,15 +92,15 @@ public class backend {
 				if (currentstone == null) {
 					int nextStonetype = (int)(Math.random()*6);
 					currentstone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], true, false, false);
-					System.out.println("new stone created: " + currentstone);
-					System.out.println("X: " + currentstone.xPosition);
-					System.out.println("Y: " + currentstone.yPosition);
-					System.out.println("Type: " + currentstone.type);
-					System.out.println("Color: " + currentstone.color);
+					//System.out.println("new stone created: " + currentstone);
+					//System.out.println("X: " + currentstone.xPosition);
+					//System.out.println("Y: " + currentstone.yPosition);
+					//System.out.println("Type: " + currentstone.type);
+					//System.out.println("Color: " + currentstone.color);
 				}
 				
 				if (backend.currentstone.endPosition) {
-					System.out.println("received end position");
+					//System.out.println("received end position");
 					for (int y = 0; y < staticmatrix.length; y++) {
 						for (int x = 0; x < staticmatrix[0].length; x++) {
 							gamematrix[y][x] = staticmatrix[y][x];
@@ -112,7 +112,7 @@ public class backend {
 							staticmatrix[y][x] = gamematrix[y][x];
 						}
 					}
-					System.out.println("end position: removed current stone");
+					//System.out.println("end position: removed current stone");
 					currentstone = null;
 					
 					for(int h = 0; h < backend.staticmatrix.length; h++) {	//check every line of fullness
@@ -158,6 +158,7 @@ public class backend {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("Score: " + score);
 		System.out.println("Main stopped");
 	}
 }

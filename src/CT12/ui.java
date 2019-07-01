@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class ui {
 	
@@ -34,6 +36,13 @@ public class ui {
 	    	}
 	    }
 		
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent event) {
+				backend.active = false;
+			}
+		});
+		
 		//====================================================
 		
 	    // Keyboard controls
@@ -42,7 +51,7 @@ public class ui {
  			}
  			
  			public void keyPressed(KeyEvent key) {
- 				System.out.println("pressed key \""+key.getKeyChar()+"\" with KeyCode " + key.getKeyCode());
+ 				//System.out.println("pressed key \""+key.getKeyChar()+"\" with KeyCode " + key.getKeyCode());
  				try {
  				switch (key.getKeyCode()) {
  				case KeyEvent.VK_UP:
@@ -78,7 +87,7 @@ public class ui {
  			}
  			
  			public void keyReleased(KeyEvent key) {
- 				System.out.println("released key \""+key.getKeyChar()+"\" with KeyCode " + key.getKeyCode());
+ 				//System.out.println("released key \""+key.getKeyChar()+"\" with KeyCode " + key.getKeyCode());
  				switch (key.getKeyCode()) {
  				case KeyEvent.VK_DOWN:
  					backend.fastdropping = false;
