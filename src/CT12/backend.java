@@ -31,7 +31,7 @@ public class backend {
 				}
 				if (backend.paused) {
 					System.out.println("Dropper paused");
-					while (backend.paused) {
+					while (backend.paused && backend.active) {
 						//wait if game paused
 						try {Thread.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
 					}
