@@ -17,12 +17,12 @@ public class ui {
 		backend.main(args);
 	}
 	public static void UIstart(String[] args) {
-		// TODO Auto-generated method stub
 		//System.out.print(backend.gamematrix[1][1].split("-")[0]);
 		
 		JFrame frame = new JFrame("Tetris Game CT12"); 				//create new Frame
 		frame.setSize(600, 1000);									//set start size 		
 		frame.setVisible(true);										//Window becomes visible
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);	//set window to do nothing on close, we got our own way to close
 		Container pane = frame.getContentPane();
 		frame.setLayout(new GridLayout(jpanelarray.length,jpanelarray[0].length));					//Elements in the container "frame" are displayed in a GridLayout
 	    
@@ -63,9 +63,15 @@ public class ui {
  				case KeyEvent.VK_SPACE:
  					backend.currentstone.drop();
  					break;
+ 				case KeyEvent.VK_ENTER:
+ 					backend.started = true;
+ 					break;
  				case KeyEvent.VK_P:
  					backend.paused = !backend.paused;
  					System.out.println("new pause state: " + backend.paused);
+ 					break;
+ 				case KeyEvent.VK_ESCAPE:
+ 					backend.active = false;
  					break;
  				}
  				} catch (NullPointerException e) {} //catch error if currentstone is null
@@ -85,12 +91,11 @@ public class ui {
 		//==========================================================
 		
  		while(backend.active) {
-	 		/*try {
-				Thread.sleep(2000);
+	 		try {
+				Thread.sleep(1);
 			} catch (InterruptedException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
-			}*/
+			}
 	 		
 		    for (int y = 0; y < jpanelarray.length; y++) {
 		    	for (int x = 0; x < jpanelarray[0].length; x++) {
@@ -133,6 +138,8 @@ public class ui {
 		
 		//==========================================================
  		
+ 		backend.active = false;		//declare that app is closing
+ 		frame.dispose();			//close window
 	}
 	
 	

@@ -5,6 +5,7 @@ public class backend {
 	public static int dimensionx = 10;
 	public static int dimensiony = 15;
 	
+	public static boolean started = false;
 	public static boolean paused = false;
 	public static boolean active = true;
 	
@@ -20,15 +21,15 @@ public class backend {
 	public static Thread Dropper = new Thread() { 			//parallel processing
 		@Override 
 		public void run() {
+			System.out.println("Dropper started");
 			while (backend.active) {
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
-					if (!backend.fastdropping == true) e.printStackTrace();
-					//if interrupt comes from ui thread with intention to fast drop, do not show error
+					if (!backend.fastdropping == true) e.printStackTrace();		//if interrupt comes from ui thread with intention to fast drop, do not show error
 				}
 				if (backend.paused) {
-					System.out.println("dropper paused");
+					System.out.println("Dropper paused");
 					while (backend.paused) {
 						//wait if game paused
 						try {
@@ -69,13 +70,16 @@ public class backend {
 					System.out.println();
 				}*/
 			}
+			System.out.println("Dropper stopped.");
 		}
 	};
 	
 	static Thread UI = new Thread() { 			//start UI Thread
 		@Override 
 		public void run() {
+			System.out.println("UI started");
 			ui.UIstart(null);
+			System.out.println("UI stopped");
 		}
 	};
 	
@@ -89,9 +93,10 @@ public class backend {
 		}
 		
 		UI.start();			//comment this line out to disable UI
+		while (!started) {try{Thread.sleep(1000);} catch (InterruptedException ir) {}}   //wait for UI to start game
 		Dropper.start();	//Comment this line out to disable gameplay
 		
-		//System.out.println("enabled loop");
+		System.out.println("Main started");
 		while (active) {
 			while (!paused && active) {
 				//loop for managing game
@@ -147,7 +152,7 @@ public class backend {
 				}
 					
 					//debug: show matrix in console
-					for (int y = 0; y < staticmatrix.length; y++) {
+					/*for (int y = 0; y < staticmatrix.length; y++) {
 						for (int x = 0; x < staticmatrix[0].length; x++) {
 							if (staticmatrix[y][x] != "")	{
 								System.out.print("#");
@@ -156,7 +161,7 @@ public class backend {
 							}
 						}
 						System.out.println();
-					}
+					}*/
 				}
 				try {
 					Thread.sleep(10);
@@ -196,6 +201,7 @@ public class backend {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("Main stopped");
 	}
 }
 
