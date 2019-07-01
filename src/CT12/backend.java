@@ -2,12 +2,12 @@ package CT12;
 
 public class backend {
 	
-	public static int dimensionx = 10;
+	public static int dimensionx = 10;		//game field dimensions
 	public static int dimensiony = 15;
 	
-	public static boolean started = false;
-	public static boolean paused = false;
-	public static boolean active = true;
+	public static boolean started = false;		//defining if game has started
+	public static boolean paused = false;		//defining if game is paused
+	public static boolean active = true;		//defining if game is active/running, end processes if not
 	
 	public static String mi = ""; //initial value for gamematrix and staticmatrix
 	public static String[][] gamematrix = new String[dimensiony][dimensionx];		//gamematrix contains everything that needs to be visible
@@ -16,13 +16,14 @@ public class backend {
 	public static Stone currentstone = null;
 	public static int score = 0;
 	
-	public static boolean fastdropping = false;
+	public static boolean fastdropping = false;		//defines if currentstone is fastdropping (when arrow down key is pressed)
 	
 	public static Thread Dropper = new Thread() { 			//parallel processing
 		@Override 
 		public void run() {
 			System.out.println("Dropper started");
 			while (backend.active) {
+				// second Thread for managing autodrop and fast dropping
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
@@ -32,19 +33,17 @@ public class backend {
 					System.out.println("Dropper paused");
 					while (backend.paused) {
 						//wait if game paused
-						try {
-							Thread.sleep(500);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
+						try {Thread.sleep(500);} catch (InterruptedException e) {e.printStackTrace();}
 					}
-					System.out.println("dropper resumed");
+					System.out.println("Dropper resumed");
 					continue;	// skip moving directly after resume
 				}
-				while (backend.currentstone == null); //wait for creation of object
+				while (backend.currentstone == null) { //wait for creation of object
+					try {Thread.sleep(100);} catch (InterruptedException e) {e.printStackTrace();}
+				}
 				
 				if (backend.fastdropping == true) {
-					//System.out.println("now dropping");
+					//System.out.println("started fast dropping");
 					while (backend.fastdropping == true && backend.currentstone.endPosition == false) {
 						try {
 							Thread.sleep(100);
@@ -53,22 +52,10 @@ public class backend {
 						}
 						backend.currentstone.fall();
 					}
-					//System.out.println("stopped dropping");
+					//System.out.println("stopped fast dropping");
 					continue;
 				}
-				
 				backend.currentstone.fall();
-				
-				/*for (int y = 0; y < gamematrix.length; y++) {
-					for (int x = 0; x < gamematrix[0].length; x++) {
-						if (gamematrix[y][x] != "")	{
-							System.out.print("1");
-						} else {
-							System.out.print("0");
-						}
-					}
-					System.out.println();
-				}*/
 			}
 			System.out.println("Dropper stopped.");
 		}
@@ -77,6 +64,7 @@ public class backend {
 	static Thread UI = new Thread() { 			//start UI Thread
 		@Override 
 		public void run() {
+			//Thread for UI
 			System.out.println("UI started");
 			ui.UIstart(null);
 			System.out.println("UI stopped");
@@ -85,7 +73,7 @@ public class backend {
 	
 	public static void main(String[] args) {
 		
-		for (int y = 0; y < staticmatrix.length; y++) {
+		for (int y = 0; y < staticmatrix.length; y++) {				//setup initial values of matrices
 			for (int x = 0; x < staticmatrix[0].length; x++) {
 				staticmatrix[y][x] = mi;
 				gamematrix[y][x] = mi;
@@ -94,17 +82,15 @@ public class backend {
 		
 		UI.start();			//comment this line out to disable UI
 		while (!started) {try{Thread.sleep(1000);} catch (InterruptedException ir) {}}   //wait for UI to start game
-		Dropper.start();	//Comment this line out to disable gameplay
+		Dropper.start();	//Comment this line out to disable gameplay/dropping
 		
 		System.out.println("Main started");
 		while (active) {
 			while (!paused && active) {
-				//loop for managing game
+				//general game managing loop
 				
 				if (currentstone == null) {
-					System.out.println(currentstone);
 					int nextStonetype = (int)(Math.random()*6);
-					//int nextStonetype = 3;
 					currentstone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], true, false, false);
 					System.out.println("new stone created: " + currentstone);
 					System.out.println("X: " + currentstone.xPosition);
@@ -129,39 +115,27 @@ public class backend {
 					System.out.println("end position: removed current stone");
 					currentstone = null;
 					
-				for(int h = 0; h < backend.staticmatrix.length; h++) {	//check every line of fullness
-					int linecount = 0; 
-						for(int i=0; i <  backend.staticmatrix[0].length; i++) { //check for full last line
-							if (backend.staticmatrix[h][i] != "") {	// yes or no
-							linecount++;
-							}
-						}
-						if( backend.staticmatrix[0].length == linecount ) {  //delete last line
-							for(int k=0; k < backend.staticmatrix[0].length; k++) { // clean the line
-								backend.staticmatrix[h][k] = ""; 
-							}
-							for(int y = h - 1; y > 0; y--) { //move the elements down
-								for(int x = 0; x < backend.staticmatrix[0].length; x++) {
-									backend.staticmatrix[y + 1][x] = backend.staticmatrix[y][x];
-									backend.gamematrix[y + 1][x] = backend.staticmatrix[y][x];
+					for(int h = 0; h < backend.staticmatrix.length; h++) {	//check every line of fullness
+						int linecount = 0; 
+							for(int i=0; i <  backend.staticmatrix[0].length; i++) { //check for full last line
+								if (backend.staticmatrix[h][i] != "") {	// yes or no
+								linecount++;
 								}
 							}
-							score = score +1; // increase the score
-							System.out.println("Score: " + score);
-						}
-				}
-					
-					//debug: show matrix in console
-					/*for (int y = 0; y < staticmatrix.length; y++) {
-						for (int x = 0; x < staticmatrix[0].length; x++) {
-							if (staticmatrix[y][x] != "")	{
-								System.out.print("#");
-							} else {
-								System.out.print(".");
+							if( backend.staticmatrix[0].length == linecount ) {  //delete last line
+								for(int k=0; k < backend.staticmatrix[0].length; k++) { // clean the line
+									backend.staticmatrix[h][k] = ""; 
+								}
+								for(int y = h - 1; y > 0; y--) { //move the elements down
+									for(int x = 0; x < backend.staticmatrix[0].length; x++) {
+										backend.staticmatrix[y + 1][x] = backend.staticmatrix[y][x];
+										backend.gamematrix[y + 1][x] = backend.staticmatrix[y][x];
+									}
+								}
+								score = score + 1; // increase the score
+								System.out.println("Score: " + score);
 							}
-						}
-						System.out.println();
-					}*/
+					}
 				}
 				try {
 					Thread.sleep(10);
@@ -170,30 +144,13 @@ public class backend {
 				}
 				
 				if (backend.currentstone != null) { //save to gamematrix
-					//System.out.println("not yet at end");
 					for (int y = 0; y < staticmatrix.length; y++) {
 						for (int x = 0; x < staticmatrix[0].length; x++) {
 							gamematrix[y][x] = staticmatrix[y][x];
 						}
 					}
-					//backend.gamematrix = backend.staticmatrix;
 					backend.currentstone.insertintogamematrix();
 				}
-				
-				/*
-				for (int i = 0; i<10; i++) {
-					System.out.println("");
-				}
-				for (int y = 0; y < gamematrix.length; y++) { //console gameplay
-					for (int x = 0; x < gamematrix[0].length; x++) {
-						if (gamematrix[y][x] != "")	{
-							System.out.print("#");
-						} else {
-							System.out.print("-");
-						}
-					}
-					System.out.println();
-				}*/
 			}
 			try {
 				Thread.sleep(500);
@@ -215,8 +172,8 @@ class Stone
 	boolean 	ghost;
 	boolean 	endPosition;
 	
-	static String[] arrayStoneType = {"I","Ll","Lr","Sq","S","T","Z"}; //Array with the types of stones
-	static String[] arrayStoneTypeColor = {"bl","ye","re","gr","or","cy","ma"}; //Array with the colors of stones
+	static String[] arrayStoneType = {"I","Ll","Lr","Sq","S","T","Z"}; 				//Array with the types of stones
+	static String[] arrayStoneTypeColor = {"bl","ye","re","gr","or","cy","ma"}; 	//Array with the colors of stones
 	
 	int relx2 = 0;
 	int rely2 = 0;
@@ -300,9 +257,9 @@ class Stone
 			this.rely4 = 0;
 			break;
 		}
-		/*for (int i = 0; i<((int)(Math.random()*3)); i++) {
+		for (int i = 0; i<((int)(Math.random()*3)); i++) {
 			this.rotate();
-		}*/
+		}
 	}
 	
 	void insertintogamematrix() {
