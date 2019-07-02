@@ -89,69 +89,76 @@ public class backend {
 			while (!paused && active) {
 				//general game managing loop
 				
-				if (currentstone == null) {
-					int nextStonetype = (int)(Math.random()*6);
-					currentstone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], true, false, false);
-					//System.out.println("new stone created: " + currentstone);
-					//System.out.println("X: " + currentstone.xPosition);
-					//System.out.println("Y: " + currentstone.yPosition);
-					//System.out.println("Type: " + currentstone.type);
-					//System.out.println("Color: " + currentstone.color);
-				}
-				
-				if (backend.currentstone.endPosition) {
-					//System.out.println("received end position");
-					for (int y = 0; y < staticmatrix.length; y++) {
-						for (int x = 0; x < staticmatrix[0].length; x++) {
-							gamematrix[y][x] = staticmatrix[y][x];
-						}
+				if(staticmatrix[1][5] == "")	{ //is enough place for a new stone, following the creation of a new stone
+					if (currentstone == null) {
+						int nextStonetype = (int)(Math.random()*6);
+						currentstone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], true, false, false);
+						//System.out.println("new stone created: " + currentstone);
+						//System.out.println("X: " + currentstone.xPosition);
+						//System.out.println("Y: " + currentstone.yPosition);
+						//System.out.println("Type: " + currentstone.type);
+						//System.out.println("Color: " + currentstone.color);
 					}
-					currentstone.insertintogamematrix();
-					for (int y = 0; y < staticmatrix.length; y++) {
-						for (int x = 0; x < staticmatrix[0].length; x++) {
-							staticmatrix[y][x] = gamematrix[y][x];
-						}
-					}
-					//System.out.println("end position: removed current stone");
-					currentstone = null;
 					
-					for(int h = 0; h < backend.staticmatrix.length; h++) {	//check every line of fullness
-						int linecount = 0; 
-							for(int i=0; i <  backend.staticmatrix[0].length; i++) { //check for full last line
-								if (backend.staticmatrix[h][i] != "") {	// yes or no
-								linecount++;
-								}
+					if (backend.currentstone.endPosition) {
+						//System.out.println("received end position");
+						for (int y = 0; y < staticmatrix.length; y++) {
+							for (int x = 0; x < staticmatrix[0].length; x++) {
+								gamematrix[y][x] = staticmatrix[y][x];
 							}
-							if( backend.staticmatrix[0].length == linecount ) {  //delete last line
-								for(int k=0; k < backend.staticmatrix[0].length; k++) { // clean the line
-									backend.staticmatrix[h][k] = ""; 
-								}
-								for(int y = h - 1; y > 0; y--) { //move the elements down
-									for(int x = 0; x < backend.staticmatrix[0].length; x++) {
-										backend.staticmatrix[y + 1][x] = backend.staticmatrix[y][x];
-										backend.gamematrix[y + 1][x] = backend.staticmatrix[y][x];
+						}
+						currentstone.insertintogamematrix();
+						for (int y = 0; y < staticmatrix.length; y++) {
+							for (int x = 0; x < staticmatrix[0].length; x++) {
+								staticmatrix[y][x] = gamematrix[y][x];
+							}
+						}
+						//System.out.println("end position: removed current stone");
+						currentstone = null;
+						
+						for(int h = 0; h < backend.staticmatrix.length; h++) {	//check every line of fullness
+							int linecount = 0; 
+								for(int i=0; i <  backend.staticmatrix[0].length; i++) { //check for full last line
+									if (backend.staticmatrix[h][i] != "") {	// yes or no
+									linecount++;
 									}
 								}
-								score = score + 1; // increase the score
-								System.out.println("Score: " + score);
-							}
-					}
-				}
-				try {
-					Thread.sleep(10);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				
-				if (backend.currentstone != null) { //save to gamematrix
-					for (int y = 0; y < staticmatrix.length; y++) {
-						for (int x = 0; x < staticmatrix[0].length; x++) {
-							gamematrix[y][x] = staticmatrix[y][x];
+								if( backend.staticmatrix[0].length == linecount ) {  //delete last line
+									for(int k=0; k < backend.staticmatrix[0].length; k++) { // clean the line
+										backend.staticmatrix[h][k] = ""; 
+									}
+									for(int y = h - 1; y > 0; y--) { //move the elements down
+										for(int x = 0; x < backend.staticmatrix[0].length; x++) {
+											backend.staticmatrix[y + 1][x] = backend.staticmatrix[y][x];
+											backend.gamematrix[y + 1][x] = backend.staticmatrix[y][x];
+										}
+									}
+									score = score + 1; // increase the score
+									System.out.println("Score: " + score);
+								}
 						}
 					}
-					backend.currentstone.insertintogamematrix();
 				}
-			}
+					else{
+						paused = true; // it is not enough place for a new stone
+						//System.out.println(paused);
+					}
+					
+					try {
+						Thread.sleep(10);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					
+					if (backend.currentstone != null) { //save to gamematrix
+						for (int y = 0; y < staticmatrix.length; y++) {
+							for (int x = 0; x < staticmatrix[0].length; x++) {
+								gamematrix[y][x] = staticmatrix[y][x];
+							}
+						}
+						backend.currentstone.insertintogamematrix();
+					}
+				}
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
