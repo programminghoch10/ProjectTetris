@@ -174,7 +174,7 @@ class Stone
 	boolean 	endPosition;
 	
 	static String[] arrayStoneType = {"I","Ll","Lr","Sq","S","T","Z"}; 				//Array with the types of stones
-	static String[] arrayStoneTypeColor = {"bl","ye","re","gr","or","cy","ma"}; 	//Array with the colors of stones
+	static String[] arrayStoneTypeColor = {"cy","bl","or","ye","re","ma","gr"}; 	//Array with the colors of stones
 	
 	int relx2 = 0;
 	int rely2 = 0;
