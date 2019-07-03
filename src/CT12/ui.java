@@ -168,6 +168,8 @@ public class ui {
 		icon.setOpaque(true);
 		icon.setBackground(Color.BLACK);
 		
+		jbutton.grabFocus();
+		
 		while(!backend.started && backend.active) {
 			try{Thread.sleep(1000);} catch (InterruptedException ir) {}	
 		}
