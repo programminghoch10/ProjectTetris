@@ -1,5 +1,6 @@
 package CT12;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,6 +9,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class ui {
 	
@@ -105,27 +109,49 @@ public class ui {
  		
  		frame.setLayout(new GridLayout(6,3));
 		
-		for (int y = 0; y < 7; y++) {
+		for (int y = 0; y < 4; y++) {
 	    	menuarray[y] = new JPanel();
 		    pane.add(menuarray[y]);
 	    }
+		BufferedImage bufferedlogo = null;
+		try {
+			bufferedlogo = ImageIO.read(new File("Logo.png"));
+		} catch (IOException e2) {
+			e2.printStackTrace();
+		}
+		ImageIcon imageIcon = null;
+		JLabel icon = new JLabel(imageIcon, JLabel.CENTER);
+		pane.add(icon);
+		for (int y = 4; y < 6; y++) {
+	    	menuarray[y] = new JPanel();
+		    pane.add(menuarray[y]);
+	    }
+		JButton jbutton = new JButton("START");
+		Font f = new Font("Monosoaced" , Font.BOLD , 30);
+		jbutton.setFont(f);
+		jbutton.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		jbutton.setBackground(Color.BLACK);
+		jbutton.setForeground(Color.GREEN);
 		
-		
-		JButton jbutton = new JButton("start");
 		pane.add(jbutton);
 		
-		for (int y = 7; y < 9; y++) {
+		for (int y = 6; y < 8; y++) {
     		menuarray[y] = new JPanel();
 	    	pane.add(menuarray[y]);
     	}
 	
-		JButton jknopf = new JButton("exit");
+		JButton jknopf = new JButton("EXIT");
+		jknopf.setFont(f);
+		jknopf.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		jknopf.setBackground(Color.BLACK);
+		jknopf.setForeground(Color.GREEN);
 		pane.add(jknopf);
 		
-		for (int y = 9; y < 16; y++) {
+		for (int y = 8; y < 15; y++) {
     		menuarray[y] = new JPanel();
 	    	pane.add(menuarray[y]);
 		}
+		
 	
 		jbutton.addActionListener(new ActionListener() {
 			@Override
@@ -143,17 +169,31 @@ public class ui {
 			}
 		});
 		
+		for (int y = 0; y < 15; y++) {
+	    	menuarray[y].setBackground(Color.black);
+		   
+	    }
+		
 		frame.validate();
+		Image logo = bufferedlogo.getScaledInstance(icon.getWidth(), icon.getHeight(),
+		        Image.SCALE_SMOOTH);
+		imageIcon = new ImageIcon(logo);
+		icon.setIcon(imageIcon);
+		icon.setOpaque(true);
+		icon.setBackground(Color.BLACK);
+		
+		jbutton.grabFocus();
 		
 		while(!backend.started && backend.active) {
 			try{Thread.sleep(1000);} catch (InterruptedException ir) {}	
 		}
 		
-		for (int y = 0; y < 16; y++) {
+		for (int y = 0; y < 15; y++) {
 			//System.out.println(y);
 	    	pane.remove(menuarray[y]);
     	}
 	    	
+		pane.remove(icon);
 		pane.remove(jbutton); 
 		pane.remove(jknopf);
 		
