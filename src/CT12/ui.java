@@ -128,10 +128,10 @@ public class ui {
 		    pane.add(menuarray[y]);
 	    }
 		JButton jbutton = new JButton("START");
-		Font f = new Font("Monosoaced" , Font.BOLD , 30);
-		jbutton.setFont(f);
-		jbutton.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		jbutton.setBackground(Color.BLACK);
+		Font z = new Font("Serif" , Font.BOLD , 30);
+		jbutton.setFont(z);
+		jbutton.setBorder(BorderFactory.createLineBorder(new Color(0,0,0)));
+		jbutton.setBackground(new Color(15,15,15));
 		jbutton.setForeground(Color.GREEN);
 		
 		pane.add(jbutton);
@@ -142,16 +142,27 @@ public class ui {
     	}
 	
 		JButton jknopf = new JButton("EXIT");
-		jknopf.setFont(f);
-		jknopf.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		jknopf.setBackground(Color.BLACK);
+		jknopf.setFont(z);
+		jknopf.setBorder(BorderFactory.createLineBorder(new Color(0,0,0)));
+		jknopf.setBackground(new Color(15,15,15));
 		jknopf.setForeground(Color.GREEN);
 		pane.add(jknopf);
 		
-		for (int y = 8; y < 15; y++) {
+		for (int y = 8; y < 14; y++) {
     		menuarray[y] = new JPanel();
 	    	pane.add(menuarray[y]);
 		}
+		
+		
+		JButton credits = new JButton();
+		Font f = new Font("Monosoaced" , Font.BOLD , 15);
+		pane.add(credits);
+		credits.setText("Credits: CT_12_19");
+		credits.setFont(f);
+		credits.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		credits.setBackground(Color.BLACK);
+		credits.setForeground(Color.GREEN);
+
 		
 	
 		jbutton.addActionListener(new ActionListener() {
@@ -170,7 +181,7 @@ public class ui {
 			}
 		});
 		
-		for (int y = 0; y < 15; y++) {
+		for (int y = 0; y < 14; y++) {
 	    	menuarray[y].setBackground(Color.black);
 		   
 	    }
@@ -183,13 +194,11 @@ public class ui {
 		icon.setOpaque(true);
 		icon.setBackground(Color.BLACK);
 		
-		jbutton.grabFocus();
-		
 		while(!backend.started && backend.active) {
 			try{Thread.sleep(1000);} catch (InterruptedException ir) {}	
 		}
 		
-		for (int y = 0; y < 15; y++) {
+		for (int y = 0; y < 14; y++) {
 			//System.out.println(y);
 	    	pane.remove(menuarray[y]);
     	}
@@ -197,6 +206,7 @@ public class ui {
 		pane.remove(icon);
 		pane.remove(jbutton); 
 		pane.remove(jknopf);
+		pane.remove(credits);
 		
 		
 	
