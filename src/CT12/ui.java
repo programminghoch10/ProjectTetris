@@ -154,11 +154,14 @@ public class ui {
 		
 		
 		JButton credits = new JButton();
-		Font f = new Font("Monosoaced" , Font.BOLD , 15);
+		Font f = new Font("Monospaced" , Font.BOLD , 15);
 		pane.add(credits);
+		credits.setBorderPainted(false);
+		credits.setFocusable(false);
+		credits.setFocusPainted(false);
+		//credits.set(false);
 		credits.setText("Credits: CT_12_19");
 		credits.setFont(f);
-		credits.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		credits.setBackground(Color.BLACK);
 		credits.setForeground(Color.GREEN);
 
@@ -270,20 +273,13 @@ public class ui {
 				e1.printStackTrace();
 			}
 	 		
-	 		if (backend.gameover) {
-	 			labelscore.setText("GAME OVER!   Score: " + backend.score);
-	 			labelscore.setForeground(Color.RED);
-	 		} else {
-	 			labelscore.setText("Score: " + backend.score);
-	 		}
-
 		    for (int y = 0; y < jpanelarray.length; y++) {
 		    	for (int x = 0; x < jpanelarray[0].length; x++) {
 
 		    		
 		    		if(backend.paused == true) {
 		    			
-		    			labelscore.setForeground(Color.GRAY);
+		    			labelscore.setForeground(Color.WHITE);
 		    			
 		    			if(backend.gamematrix[y][x] == "") {
 		    				jpanelarray[y][x].setBackground(Color.BLACK);
@@ -305,6 +301,9 @@ public class ui {
 		    		}
 		    		
 		    		else {
+		    			
+		    			labelscore.setForeground(Color.GREEN);
+		    			
 		    			if ((backend.gamematrix[y][x]+"-false").split("-")[1].contentEquals("false")) {
 		    			
 		    				switch (backend.gamematrix[y][x].split("-")[0]) {
@@ -401,6 +400,13 @@ public class ui {
 			    	}
 		    	}
 		    }
+		    
+		    if (backend.gameover) {
+	 			labelscore.setText("GAME OVER!   Score: " + backend.score);
+	 			labelscore.setForeground(Color.RED);
+	 		} else {
+	 			labelscore.setText("Score: " + backend.score);
+	 		}
  		}
  		
  	//=========================================================
