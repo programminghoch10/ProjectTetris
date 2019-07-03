@@ -153,17 +153,16 @@ public class ui {
 		}
 		
 		
-		JButton credits = new JButton();
-		Font f = new Font("Monosoaced" , Font.BOLD , 15);
+		Label credits = new Label();
+		Font f = new Font("Monospaced" , Font.BOLD , 15);
 		pane.add(credits);
 		credits.setText("Credits: CT_12_19");
 		credits.setFont(f);
-		credits.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		credits.setBackground(Color.BLACK);
 		credits.setForeground(Color.GREEN);
-
 		
-	
+		
+		
 		jbutton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
