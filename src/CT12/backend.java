@@ -18,9 +18,8 @@ public class backend {
 	
 	public static boolean fastdropping = false;		//defines if currentstone is fastdropping (when arrow down key is pressed)
 	
-	public static Thread Dropper = new Thread() { 			//parallel processing@Override 
-	
-	
+	public static Thread Dropper = new Thread() { 			//parallel processing
+		@Override 
 		public void run() {
 			System.out.println("Dropper started");
 			while (backend.active) {
@@ -277,6 +276,13 @@ class Stone
 		for (int i = 0; i<((int)(Math.random()*3)); i++) {
 			this.rotate();
 		}
+		if (!(	backend.staticmatrix[this.yPosition][this.xPosition] == ""
+			 && backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.rely2] == ""
+			 && backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.rely3] == ""
+			 && backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.rely4] == "")) {
+				backend.paused = true;
+				backend.currentstone = null;
+			}
 	}
 	
 	void insertintogamematrix() {
