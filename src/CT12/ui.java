@@ -204,8 +204,7 @@ public class ui {
 		    		}
 		    		
 		    		else {
-		    			
-		    			if (backend.gamematrix[y][x]+"-false".split("-")[1] == "false") {
+		    			if ((backend.gamematrix[y][x]+"-false").split("-")[1].contentEquals("false")) {
 		    			
 		    				switch (backend.gamematrix[y][x].split("-")[0]) {
 		    				
