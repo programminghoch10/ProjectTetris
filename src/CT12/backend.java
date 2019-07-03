@@ -27,7 +27,7 @@ public class backend {
 				try {
 					Thread.sleep(1000);
 				} catch (InterruptedException e) {
-					if (!backend.fastdropping == true) e.printStackTrace();		//if interrupt comes from ui thread with intention to fast drop, do not show error
+					if (!backend.fastdropping) e.printStackTrace();		//if interrupt comes from ui thread with intention to fast drop, do not show error
 				}
 				if (backend.paused) {
 					System.out.println("Dropper paused");
@@ -42,9 +42,9 @@ public class backend {
 					try {Thread.sleep(100);} catch (InterruptedException e) {e.printStackTrace();}
 				}
 				
-				if (backend.fastdropping == true) {
+				if (backend.fastdropping) {
 					//System.out.println("started fast dropping");
-					while (backend.fastdropping == true && backend.currentstone.endPosition == false) {
+					while (backend.fastdropping && backend.currentstone.endPosition) {
 						try {
 							Thread.sleep(100);
 						} catch (InterruptedException e) {
