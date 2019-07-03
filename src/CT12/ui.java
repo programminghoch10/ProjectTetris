@@ -101,14 +101,13 @@ public class ui {
 		});
  		
  		
- 	//=====================================================================
+ 	//=========================================================
  	//menu
  		
  		frame.setLayout(new GridLayout(6,3));
 		
 		for (int y = 0; y < 7; y++) {
 	    	menuarray[y] = new JPanel();
-	    	//menuarray[y].setBorder(BorderFactory.createLineBorder(Color.gray));			//displays a grid
 		    pane.add(menuarray[y]);
 	    }
 		
@@ -118,7 +117,6 @@ public class ui {
 		
 		for (int y = 7; y < 9; y++) {
     		menuarray[y] = new JPanel();
-    		//menuarray[y].setBorder(BorderFactory.createLineBorder(Color.gray));			//displays a grid
 	    	pane.add(menuarray[y]);
     	}
 	
@@ -127,14 +125,12 @@ public class ui {
 		
 		for (int y = 9; y < 16; y++) {
     		menuarray[y] = new JPanel();
-       		//menuarray[y].setBorder(BorderFactory.createLineBorder(Color.gray));			//displays a grid
 	    	pane.add(menuarray[y]);
 		}
 	
 		jbutton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				System.out.println("start");
 				backend.started = true;
 			}
@@ -143,7 +139,6 @@ public class ui {
 		jknopf.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				System.out.println("exit");
 				backend.active = false;
 			}
@@ -165,7 +160,7 @@ public class ui {
 		
 		
 		
-	//===================================================================
+	//=========================================================
 	//display the panels
 
 		
@@ -174,7 +169,6 @@ public class ui {
 		for (int y = 0; y < jpanelarray.length; y++) {
 	    	for (int x = 0; x < jpanelarray[0].length; x++) {
 	    		jpanelarray[y][x] = new JPanel();
-	    		//jpanelarray[y][x].setBorder(BorderFactory.createEmptyBorder());
 		    	pane.add(jpanelarray[y][x]);
 	    	}
 	    }
@@ -205,7 +199,7 @@ public class ui {
 		    			
 		    			else {
 		    				jpanelarray[y][x].setBackground(Color.GRAY);
-		    				jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.GRAY));			//displays a grid
+		    				jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.GRAY));
 		    			}
 		    		}
 		    		
@@ -216,47 +210,47 @@ public class ui {
 				    	case "bk":
 				    		if (jpanelarray[y][x].getBackground() == Color.BLACK) break;
 				    		jpanelarray[y][x].setBackground(Color.BLACK);
-				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK));			//displays a grid
+				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK));
 				    		break;
 				    	case "wh":
 				    		if (jpanelarray[y][x].getBackground() == Color.WHITE) break;
 				    		jpanelarray[y][x].setBackground(Color.WHITE);
-				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE));			//displays a grid
+				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE));
 				    		break;
 				    	case "bl":
 				    		if (jpanelarray[y][x].getBackground() == Color.BLUE) break;
 				    		jpanelarray[y][x].setBackground(Color.BLUE);
-				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLUE));			//displays a grid
+				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLUE));
 				    		break;
 				    	case "gr":
 				    		if (jpanelarray[y][x].getBackground() == Color.GREEN) break;
 				    		jpanelarray[y][x].setBackground(Color.GREEN);
-				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.GREEN));			//displays a grid
+				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.GREEN));
 				    		break;
 				    	case "ye":
 				    		if (jpanelarray[y][x].getBackground() == Color.YELLOW) break;
 				    		jpanelarray[y][x].setBackground(Color.YELLOW);
-				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.YELLOW));			//displays a grid
+				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.YELLOW));
 				    		break;
 				    	case "re":
 				    		if (jpanelarray[y][x].getBackground() == Color.RED) break;
 				    		jpanelarray[y][x].setBackground(Color.RED);
-				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.RED));				//displays a grid
+				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.RED));
 				    		break;
 				    	case "ma":
 				    		if (jpanelarray[y][x].getBackground() == Color.MAGENTA) break;
 				    		jpanelarray[y][x].setBackground(Color.MAGENTA);
-				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.MAGENTA));			//displays a grid
+				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.MAGENTA));
 				    		break;
 				    	case "or":
 				    		if (jpanelarray[y][x].getBackground() == Color.ORANGE) break;
 				    		jpanelarray[y][x].setBackground(Color.ORANGE);
-				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.ORANGE));			//displays a grid
+				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.ORANGE));
 				    		break;
 				    	case "cy":
 				    		if (jpanelarray[y][x].getBackground() == Color.CYAN) break;
 				    		jpanelarray[y][x].setBackground(Color.CYAN);
-				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.CYAN));			//displays a grid
+				    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.CYAN));
 				    		break;
 				    	case "":
 				    		if (jpanelarray[y][x].getBackground() == Color.BLACK) break;
@@ -269,7 +263,7 @@ public class ui {
 		    }
  		}
  		
- 	//==========================================================
+ 	//=========================================================
  	//close
  		
  		backend.active = false;		//declare that app is closing
