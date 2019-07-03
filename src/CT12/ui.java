@@ -32,7 +32,6 @@ public class ui {
 		Container pane = frame.getContentPane();
 		
 		
-		
 	//=========================================================
 	// Keyboard controls
 		
@@ -161,19 +160,39 @@ public class ui {
 		
 	
 	//=========================================================
-	//BorderLayout
+	//score display
 		
-	//	frame.setLayout(new GridLayout
+		frame.setLayout(new BorderLayout());
+		
+		
+		JPanel panelscore = new JPanel();
+		
+		JLabel label1 = new JLabel("Score: " + backend.score);
+		panelscore.add(label1);
+		
+		
+		
+		
+		JPanel panelstone = new JPanel();
+		
+		JLabel label2 = new JLabel("Jannik");
+		panelstone.add(label2);
+		
+		frame.add(panelscore, BorderLayout.NORTH);
+	//	frame.add(panelstone, BorderLayout.WEST);
+		
 	//=========================================================
 	//display the panels
 
+		JPanel panelgame = new JPanel();
+		frame.add(panelgame, BorderLayout.CENTER);
 		
-		frame.setLayout(new GridLayout(jpanelarray.length,jpanelarray[0].length));					//Elements in the container "frame" are displayed in a GridLayout
+		panelgame.setLayout(new GridLayout(jpanelarray.length,jpanelarray[0].length));					//Elements in the container "frame" are displayed in a GridLayout
 	    
 		for (int y = 0; y < jpanelarray.length; y++) {
 	    	for (int x = 0; x < jpanelarray[0].length; x++) {
 	    		jpanelarray[y][x] = new JPanel();
-		    	pane.add(jpanelarray[y][x]);
+		    	panelgame.add(jpanelarray[y][x]);
 	    	}
 	    }
 		
@@ -189,6 +208,8 @@ public class ui {
 			} catch (InterruptedException e1) {
 				e1.printStackTrace();
 			}
+	 		
+	 		label1.setText("Score: " + backend.score);
 	 		
 		    for (int y = 0; y < jpanelarray.length; y++) {
 		    	for (int x = 0; x < jpanelarray[0].length; x++) {
