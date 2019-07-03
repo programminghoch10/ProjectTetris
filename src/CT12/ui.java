@@ -159,7 +159,11 @@ public class ui {
 		pane.remove(jknopf);
 		
 		
+	
+	//=========================================================
+	//BorderLayout
 		
+	//	frame.setLayout(new GridLayout
 	//=========================================================
 	//display the panels
 
@@ -198,8 +202,16 @@ public class ui {
 		    			}
 		    			
 		    			else {
-		    				jpanelarray[y][x].setBackground(Color.GRAY);
-		    				jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		    				
+		    				if((backend.gamematrix[y][x]+"-false").split("-")[1].contentEquals("false")) {
+		    					jpanelarray[y][x].setBackground(Color.GRAY);
+		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		    				}
+		    				
+		    				else {
+		    					jpanelarray[y][x].setBackground(Color.BLACK);
+		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+		    				}
 		    			}
 		    		}
 		    		
