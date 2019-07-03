@@ -44,7 +44,7 @@ public class backend {
 				
 				if (backend.fastdropping) {
 					//System.out.println("started fast dropping");
-					while (backend.fastdropping && backend.currentstone.endPosition) {
+					while (backend.fastdropping && !backend.currentstone.endPosition) {
 						try {
 							Thread.sleep(100);
 						} catch (InterruptedException e) {
