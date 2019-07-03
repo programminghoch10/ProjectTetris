@@ -260,8 +260,12 @@ public class ui {
 				e1.printStackTrace();
 			}
 	 		
-	 		labelscore.setText("Score: " + backend.score);
-	 		
+	 		if (backend.gameover) {
+	 			labelscore.setText("GAME OVER!   Score: " + backend.score);
+	 		} else {
+	 			labelscore.setText("Score: " + backend.score);
+	 		}
+
 		    for (int y = 0; y < jpanelarray.length; y++) {
 		    	for (int x = 0; x < jpanelarray[0].length; x++) {
 
