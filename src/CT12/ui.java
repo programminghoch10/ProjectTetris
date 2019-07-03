@@ -249,7 +249,11 @@ public class ui {
 				e1.printStackTrace();
 			}
 	 		
-	 		label1.setText("Score: " + backend.score);
+	 		if (backend.gameover) {
+	 			label1.setText("GAME OVER!   Score: " + backend.score);
+	 		} else {
+	 			label1.setText("Score: " + backend.score);
+	 		}
 	 		
 		    for (int y = 0; y < jpanelarray.length; y++) {
 		    	for (int x = 0; x < jpanelarray[0].length; x++) {
