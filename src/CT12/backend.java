@@ -15,6 +15,7 @@ public class backend {
 	public static String[][] staticmatrix = new String[dimensiony][dimensionx];		//staticmatrix only contains static (fallen) stones, to test collision
 	
 	public static Stone currentstone = null;
+	public static Stone ghoststone = null;
 	public static int score = 0;
 	
 	public static boolean fastdropping = false;		//defines if currentstone is fastdropping (when arrow down key is pressed)
@@ -57,6 +58,7 @@ public class backend {
 					continue;
 				}
 				backend.currentstone.fall();
+				backend.ghoststone.fall();
 			}
 			System.out.println("Dropper stopped.");
 		}
@@ -93,6 +95,7 @@ public class backend {
 				if (currentstone == null) {
 					int nextStonetype = (int)(Math.random()*6);
 					currentstone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], true, false, false);
+					ghoststone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], true, true, false);
 					//System.out.println("new stone created: " + currentstone);
 					//System.out.println("X: " + currentstone.xPosition);
 					//System.out.println("Y: " + currentstone.yPosition);
@@ -115,6 +118,7 @@ public class backend {
 					}
 					//System.out.println("end position: removed current stone");
 					currentstone = null;
+					ghoststone = null;
 					
 					for(int h = 0; h < backend.staticmatrix.length; h++) {	//check every line of fullness
 						int linecount = 0; 
@@ -150,6 +154,8 @@ public class backend {
 							gamematrix[y][x] = staticmatrix[y][x];
 						}
 					}
+					backend.ghoststone.drop();
+					backend.ghoststone.insertintogamematrix();
 					backend.currentstone.insertintogamematrix();
 				}
 			}
@@ -352,8 +358,19 @@ class Stone
 	
 	void drop() 
 	{
+		if (this.ghost) {
+			this.xPosition = backend.currentstone.xPosition;
+			this.yPosition = backend.currentstone.yPosition;
+			this.relx2 = backend.currentstone.relx2;
+			this.rely2 = backend.currentstone.rely2;
+			this.relx3 = backend.currentstone.relx3;
+			this.rely3 = backend.currentstone.rely3;
+			this.relx4 = backend.currentstone.relx4;
+			this.rely4 = backend.currentstone.rely4;
+		}
 		while (!this.endPosition) { //dropping until at end
 			this.fall();
 		}
+		if (this.ghost) this.endPosition = false;
 	}
 }
