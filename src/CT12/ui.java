@@ -2,6 +2,8 @@ package CT12;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
@@ -12,6 +14,8 @@ public class ui {
 	//=========================================================
 	
 	static JPanel[][] jpanelarray = new JPanel[backend.staticmatrix.length][backend.staticmatrix[0].length];
+	
+	static JPanel[] menuarray = new JPanel[20];
 	
 	//=========================================================
 	
@@ -26,22 +30,8 @@ public class ui {
 		frame.setVisible(true);										//Window becomes visible
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);	//set window to do nothing on close, we got our own way to close
 		Container pane = frame.getContentPane();
-		frame.setLayout(new GridLayout(jpanelarray.length,jpanelarray[0].length));					//Elements in the container "frame" are displayed in a GridLayout
-	    
-		for (int y = 0; y < jpanelarray.length; y++) {
-	    	for (int x = 0; x < jpanelarray[0].length; x++) {
-	    		jpanelarray[y][x] = new JPanel();
-	    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.gray));			//displays a grid
-		    	pane.add(jpanelarray[y][x]);
-	    	}
-	    }
 		
-		frame.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent event) {
-				backend.active = false;
-			}
-		});
+		
 		
 		//====================================================
 		
@@ -95,6 +85,86 @@ public class ui {
  				}
  			}
  		});
+ 		
+ 		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent event) {
+				backend.active = false;
+			}
+		});
+ 		
+ 		
+ 		frame.setLayout(new GridLayout(6,3));
+		
+		for (int y = 0; y < 7; y++) {
+	    		menuarray[y] = new JPanel();
+	    		//menuarray[y].setBorder(BorderFactory.createLineBorder(Color.gray));			//displays a grid
+		    	pane.add(menuarray[y]);
+	    	}
+		
+		
+		JButton jbutton = new JButton("start");
+		pane.add(jbutton);
+		
+		for (int y = 7; y < 9; y++) {
+    		menuarray[y] = new JPanel();
+    		//menuarray[y].setBorder(BorderFactory.createLineBorder(Color.gray));			//displays a grid
+	    	pane.add(menuarray[y]);
+    	}
+	
+		JButton jknopf = new JButton("exit");
+		pane.add(jknopf);
+		
+		for (int y = 9; y < 16; y++) {
+    		menuarray[y] = new JPanel();
+       		//menuarray[y].setBorder(BorderFactory.createLineBorder(Color.gray));			//displays a grid
+	    	pane.add(menuarray[y]);
+		}
+	
+		jbutton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("start");
+				backend.started = true;
+			}
+		});
+		
+		jknopf.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println("exit");
+				backend.active = false;
+			}
+		});
+		
+		while(!backend.started && backend.active) {
+			try{Thread.sleep(1000);} catch (InterruptedException ir) {}	
+		}
+		
+		for (int y = 0; y < 16; y++) {
+			//System.out.println(y);
+	    	pane.remove(menuarray[y]);
+    	}
+	    	
+		pane.remove(jbutton); 
+		pane.remove(jknopf);
+
+		
+		frame.setLayout(new GridLayout(jpanelarray.length,jpanelarray[0].length));					//Elements in the container "frame" are displayed in a GridLayout
+	    
+		for (int y = 0; y < jpanelarray.length; y++) {
+	    	for (int x = 0; x < jpanelarray[0].length; x++) {
+	    		jpanelarray[y][x] = new JPanel();
+	    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.gray));			//displays a grid
+		    	pane.add(jpanelarray[y][x]);
+	    	}
+	    }
+		
+		 frame.invalidate();
+         frame.validate();
+
 	    
 		
 		//==========================================================
