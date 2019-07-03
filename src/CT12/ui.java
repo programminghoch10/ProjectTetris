@@ -44,26 +44,31 @@ public class ui {
  				//System.out.println("pressed key \""+key.getKeyChar()+"\" with KeyCode " + key.getKeyCode());
  				try {
  				switch (key.getKeyCode()) {
+ 				case KeyEvent.VK_W:
  				case KeyEvent.VK_UP:
  					backend.currentstone.rotate();
  					break;
+ 				case KeyEvent.VK_S:
  				case KeyEvent.VK_DOWN:
  					if (!backend.fastdropping) {
 	 					backend.fastdropping = true;
 	 					backend.Dropper.interrupt();
  					}
  					break;
+ 				case KeyEvent.VK_A:
  				case KeyEvent.VK_LEFT:
  					backend.currentstone.move(-1);
  					break;
+ 				case KeyEvent.VK_D:
  				case KeyEvent.VK_RIGHT:
  					backend.currentstone.move(+1);
  					break;
  				case KeyEvent.VK_SPACE:
+ 					if (backend.paused) {
+ 						backend.paused = false;
+ 						break;
+ 					}
  					backend.currentstone.drop();
- 					break;
- 				case KeyEvent.VK_ENTER:
- 					backend.started = true;
  					break;
  				case KeyEvent.VK_P:
  					backend.paused = !backend.paused;
@@ -79,6 +84,7 @@ public class ui {
  			public void keyReleased(KeyEvent key) {
  				//System.out.println("released key \""+key.getKeyChar()+"\" with KeyCode " + key.getKeyCode());
  				switch (key.getKeyCode()) {
+ 				case KeyEvent.VK_S:
  				case KeyEvent.VK_DOWN:
  					backend.fastdropping = false;
  					break;
@@ -142,6 +148,8 @@ public class ui {
 				backend.active = false;
 			}
 		});
+		
+		frame.validate();
 		
 		while(!backend.started && backend.active) {
 			try{Thread.sleep(1000);} catch (InterruptedException ir) {}	
