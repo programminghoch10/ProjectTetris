@@ -26,7 +26,7 @@ public class ui {
 		//System.out.print(backend.gamematrix[1][1].split("-")[0]);
 		
 		JFrame frame = new JFrame("Tetris Game CT12"); 				//create new Frame
-		frame.setSize(600, 1000);									//set start size 		
+		frame.setSize(700, 1100);									//set start size 		
 		frame.setVisible(true);										//Window becomes visible
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);	//set window to do nothing on close, we got our own way to close
 		Container pane = frame.getContentPane();
@@ -166,6 +166,7 @@ public class ui {
 		for (int y = 0; y < jpanelarray.length; y++) {
 	    	for (int x = 0; x < jpanelarray[0].length; x++) {
 	    		jpanelarray[y][x] = new JPanel();
+	    		//jpanelarray[y][x].setBorder(BorderFactory.createEmptyBorder());
 		    	pane.add(jpanelarray[y][x]);
 	    	}
 	    }
