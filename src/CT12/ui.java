@@ -283,6 +283,8 @@ public class ui {
 		    		
 		    		if(backend.paused == true) {
 		    			
+		    			labelscore.setForeground(Color.GRAY);
+		    			
 		    			if(backend.gamematrix[y][x] == "") {
 		    				jpanelarray[y][x].setBackground(Color.BLACK);
 		    				jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));			//displays a grid
