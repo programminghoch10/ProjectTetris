@@ -233,7 +233,7 @@ public class ui {
 		    				
 		    				else {
 		    					jpanelarray[y][x].setBackground(Color.BLACK);
-		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 4));
 		    				}
 		    			}
 		    		}
