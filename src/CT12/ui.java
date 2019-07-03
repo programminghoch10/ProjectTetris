@@ -155,9 +155,7 @@ public class ui {
 		Label credits = new Label();
 		Font f = new Font("Monospaced" , Font.BOLD , 15);
 		pane.add(credits);
-		credits.setBorderPainted(false);
 		credits.setFocusable(false);
-		credits.setFocusPainted(false);
 		//credits.set(false);
 		credits.setText("Credits: CT_12_19");
 		credits.setFont(f);
