@@ -26,7 +26,7 @@ public class ui {
 		//System.out.print(backend.gamematrix[1][1].split("-")[0]);
 		
 		JFrame frame = new JFrame("Tetris Game CT12"); 				//create new Frame
-		frame.setSize(600, 1000);									//set start size 		
+		frame.setSize(601, 1001);									//set start size 		
 		frame.setVisible(true);										//Window becomes visible
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);	//set window to do nothing on close, we got our own way to close
 		Container pane = frame.getContentPane();
@@ -44,26 +44,31 @@ public class ui {
  				//System.out.println("pressed key \""+key.getKeyChar()+"\" with KeyCode " + key.getKeyCode());
  				try {
  				switch (key.getKeyCode()) {
+ 				case KeyEvent.VK_W:
  				case KeyEvent.VK_UP:
  					backend.currentstone.rotate();
  					break;
+ 				case KeyEvent.VK_S:
  				case KeyEvent.VK_DOWN:
  					if (!backend.fastdropping) {
 	 					backend.fastdropping = true;
 	 					backend.Dropper.interrupt();
  					}
  					break;
+ 				case KeyEvent.VK_A:
  				case KeyEvent.VK_LEFT:
  					backend.currentstone.move(-1);
  					break;
+ 				case KeyEvent.VK_D:
  				case KeyEvent.VK_RIGHT:
  					backend.currentstone.move(+1);
  					break;
  				case KeyEvent.VK_SPACE:
+ 					if (backend.paused) {
+ 						backend.paused = false;
+ 						break;
+ 					}
  					backend.currentstone.drop();
- 					break;
- 				case KeyEvent.VK_ENTER:
- 					backend.started = true;
  					break;
  				case KeyEvent.VK_P:
  					backend.paused = !backend.paused;
@@ -79,6 +84,7 @@ public class ui {
  			public void keyReleased(KeyEvent key) {
  				//System.out.println("released key \""+key.getKeyChar()+"\" with KeyCode " + key.getKeyCode());
  				switch (key.getKeyCode()) {
+ 				case KeyEvent.VK_S:
  				case KeyEvent.VK_DOWN:
  					backend.fastdropping = false;
  					break;
@@ -166,6 +172,7 @@ public class ui {
 		for (int y = 0; y < jpanelarray.length; y++) {
 	    	for (int x = 0; x < jpanelarray[0].length; x++) {
 	    		jpanelarray[y][x] = new JPanel();
+	    		//jpanelarray[y][x].setBorder(BorderFactory.createEmptyBorder());
 		    	pane.add(jpanelarray[y][x]);
 	    	}
 	    }
@@ -225,7 +232,7 @@ public class ui {
 			    		break;
 			    	case "":
 			    		jpanelarray[y][x].setBackground(Color.BLACK);
-			    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE));			//displays a grid -> maingrid
+			    		jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));		//displays a grid -> maingrid
 			    		break;
 			    	}
 		    	}
