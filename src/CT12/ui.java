@@ -127,7 +127,13 @@ public class ui {
 	    	menuarray[y] = new JPanel();
 		    pane.add(menuarray[y]);
 	    }
-		JButton jbutton = new JButton("start");
+		JButton jbutton = new JButton("START");
+		Font f = new Font("Monosoaced" , Font.BOLD , 30);
+		jbutton.setFont(f);
+		jbutton.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		jbutton.setBackground(Color.BLACK);
+		jbutton.setForeground(Color.GREEN);
+		
 		pane.add(jbutton);
 		
 		for (int y = 6; y < 8; y++) {
@@ -135,7 +141,11 @@ public class ui {
 	    	pane.add(menuarray[y]);
     	}
 	
-		JButton jknopf = new JButton("exit");
+		JButton jknopf = new JButton("EXIT");
+		jknopf.setFont(f);
+		jknopf.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		jknopf.setBackground(Color.BLACK);
+		jknopf.setForeground(Color.GREEN);
 		pane.add(jknopf);
 		
 		for (int y = 8; y < 15; y++) {
@@ -159,6 +169,11 @@ public class ui {
 				backend.active = false;
 			}
 		});
+		
+		for (int y = 0; y < 15; y++) {
+	    	menuarray[y].setBackground(Color.black);
+		   
+	    }
 		
 		frame.validate();
 		Image logo = bufferedlogo.getScaledInstance(icon.getWidth(), icon.getHeight(),
