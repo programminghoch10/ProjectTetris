@@ -156,7 +156,6 @@ public class ui {
 		Font f = new Font("Monospaced" , Font.BOLD , 15);
 		pane.add(credits);
 		credits.setFocusable(false);
-		//credits.set(false);
 		credits.setText("Credits: CT_12_19");
 		credits.setFont(f);
 		credits.setBackground(Color.BLACK);
@@ -278,8 +277,6 @@ public class ui {
 		    		
 		    		if(backend.paused == true) {
 		    			
-		    			labelscore.setForeground(Color.WHITE);
-		    			
 		    			if(backend.gamematrix[y][x] == "") {
 		    				jpanelarray[y][x].setBackground(Color.BLACK);
 		    				jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));			//displays a grid
@@ -300,8 +297,6 @@ public class ui {
 		    		}
 		    		
 		    		else {
-		    			
-		    			labelscore.setForeground(Color.GREEN);
 		    			
 		    			if ((backend.gamematrix[y][x]+"-false").split("-")[1].contentEquals("false")) {
 		    			
@@ -403,9 +398,17 @@ public class ui {
 		    if (backend.gameover) {
 	 			labelscore.setText("GAME OVER!   Score: " + backend.score);
 	 			labelscore.setForeground(Color.RED);
-	 		} else {
-	 			labelscore.setText("Score: " + backend.score);
 	 		}
+		    else {
+	 			labelscore.setText("Score: " + backend.score);
+	 			
+	 			if(backend.paused == true) {
+			    	labelscore.setForeground(Color.WHITE);
+			    }
+			    else {
+			    	labelscore.setForeground(Color.GREEN);
+			    }
+	 		}   
  		}
  		
  	//=========================================================
