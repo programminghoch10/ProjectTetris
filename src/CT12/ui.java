@@ -204,7 +204,7 @@ public class ui {
 		    			
 		    			else {
 		    				jpanelarray[y][x].setBackground(Color.GRAY);
-		    				jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));			//displays a grid
+		    				jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.GRAY));			//displays a grid
 		    			}
 		    		}
 		    		
