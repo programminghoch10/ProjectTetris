@@ -33,9 +33,9 @@ public class ui {
 		
 		
 		
-		//====================================================
+	//=========================================================
+	// Keyboard controls
 		
-	    // Keyboard controls
  		frame.addKeyListener(new KeyListener() {
  			public void keyTyped(KeyEvent key) {
  			}
@@ -86,6 +86,7 @@ public class ui {
  			}
  		});
  		
+ 	 		
  		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent event) {
@@ -93,6 +94,9 @@ public class ui {
 			}
 		});
  		
+ 		
+ 	//=====================================================================
+ 	//menue
  		
  		frame.setLayout(new GridLayout(6,3));
 		
@@ -167,8 +171,9 @@ public class ui {
 
 	    
 		
-		//==========================================================
-		
+	//========================================================== 
+	//display the panels
+         
  		while(backend.active) {
 	 		try {
 				Thread.sleep(1);
@@ -215,7 +220,8 @@ public class ui {
 		    }
  		}
 		
-		//==========================================================
+	//==========================================================
+ 	//close
  		
  		backend.active = false;		//declare that app is closing
  		frame.dispose();			//close window
