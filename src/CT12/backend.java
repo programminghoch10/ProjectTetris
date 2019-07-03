@@ -139,7 +139,7 @@ public class backend {
 										}
 									}
 									score = score + 1; // increase the score
-									System.out.println("Score: " + score);
+									//System.out.println("Score: " + score);
 								}
 						}
 					}
