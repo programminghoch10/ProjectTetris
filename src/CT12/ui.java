@@ -272,6 +272,7 @@ public class ui {
 	 		
 	 		if (backend.gameover) {
 	 			labelscore.setText("GAME OVER!   Score: " + backend.score);
+	 			labelscore.setForeground(Color.RED);
 	 		} else {
 	 			labelscore.setText("Score: " + backend.score);
 	 		}
