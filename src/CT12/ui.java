@@ -169,7 +169,7 @@ public class ui {
 		 frame.invalidate();
          frame.validate();
 
-	    
+         frame.requestFocusInWindow();
 		
 	//========================================================== 
 	//display the panels
