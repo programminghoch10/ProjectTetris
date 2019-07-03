@@ -8,6 +8,7 @@ public class backend {
 	public static boolean started = false;		//defining if game has started
 	public static boolean paused = false;		//defining if game is paused
 	public static boolean active = true;		//defining if game is active/running, end processes if not
+	public static boolean gameover = false;		//defining if game is over
 	
 	public static String mi = ""; //initial value for gamematrix and staticmatrix
 	public static String[][] gamematrix = new String[dimensiony][dimensionx];		//gamematrix contains everything that needs to be visible
@@ -265,6 +266,7 @@ class Stone
 			 && backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.rely2] == ""
 			 && backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.rely3] == ""
 			 && backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.rely4] == "")) {
+				backend.gameover = true;
 				backend.paused = true;
 				backend.currentstone = null;
 			}
