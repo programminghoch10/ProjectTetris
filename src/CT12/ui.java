@@ -160,6 +160,7 @@ public class ui {
 		credits.setFont(f);
 		credits.setBackground(Color.BLACK);
 		credits.setForeground(Color.GREEN);
+		credits.setAlignment(Label.CENTER);
 		
 		
 		
