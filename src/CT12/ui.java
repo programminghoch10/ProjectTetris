@@ -143,6 +143,8 @@ public class ui {
 			}
 		});
 		
+		frame.validate();
+		
 		while(!backend.started && backend.active) {
 			try{Thread.sleep(1000);} catch (InterruptedException ir) {}	
 		}
