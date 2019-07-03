@@ -30,11 +30,10 @@ public class ui {
 		//System.out.print(backend.gamematrix[1][1].split("-")[0]);
 		
 		JFrame frame = new JFrame("Tetris Game CT12"); 				//create new Frame
-		frame.setSize(601, 1001);									//set start size 		
+		frame.setSize(701, 1001);									//set start size 		
 		frame.setVisible(true);										//Window becomes visible
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);	//set window to do nothing on close, we got our own way to close
 		Container pane = frame.getContentPane();
-		
 		
 		
 	//=========================================================
@@ -211,19 +210,50 @@ public class ui {
 		
 	
 	//=========================================================
-	//BorderLayout
+	//score display
 		
-	//	frame.setLayout(new GridLayout
+		frame.setLayout(new BorderLayout());
+		
+		//Score
+		JPanel panelscore = new JPanel();
+		panelscore.setBackground(Color.BLACK);
+		
+		JLabel labelscore = new JLabel("Score: " + backend.score);
+		labelscore.setFont(labelscore.getFont().deriveFont(18f));
+		labelscore.setForeground(Color.GREEN);
+		panelscore.add(labelscore);
+		
+		//Next Stone
+		JPanel panelstone = new JPanel();
+		panelstone.setBackground(Color.BLACK);
+		
+		JLabel labelstone = new JLabel("Next Stone");
+		panelstone.add(labelstone);
+		
+		//Save Stone
+		JPanel panelsave = new JPanel();
+		panelsave.setBackground(Color.BLACK);
+		
+		JLabel labelsave = new JLabel("Save Stone");
+		panelsave.add(labelsave);
+		
+		//place panels
+		frame.add(panelscore, BorderLayout.NORTH);
+		frame.add(panelstone, BorderLayout.EAST);
+		frame.add(panelsave, BorderLayout.WEST);
+		
 	//=========================================================
 	//display the panels
 
+		JPanel panelgame = new JPanel();
+		frame.add(panelgame, BorderLayout.CENTER);
 		
-		frame.setLayout(new GridLayout(jpanelarray.length,jpanelarray[0].length));					//Elements in the container "frame" are displayed in a GridLayout
+		panelgame.setLayout(new GridLayout(jpanelarray.length,jpanelarray[0].length));					//Elements in the container "frame" are displayed in a GridLayout
 	    
 		for (int y = 0; y < jpanelarray.length; y++) {
 	    	for (int x = 0; x < jpanelarray[0].length; x++) {
 	    		jpanelarray[y][x] = new JPanel();
-		    	pane.add(jpanelarray[y][x]);
+		    	panelgame.add(jpanelarray[y][x]);
 	    	}
 	    }
 		
@@ -240,6 +270,12 @@ public class ui {
 				e1.printStackTrace();
 			}
 	 		
+	 		if (backend.gameover) {
+	 			labelscore.setText("GAME OVER!   Score: " + backend.score);
+	 		} else {
+	 			labelscore.setText("Score: " + backend.score);
+	 		}
+
 		    for (int y = 0; y < jpanelarray.length; y++) {
 		    	for (int x = 0; x < jpanelarray[0].length; x++) {
 
