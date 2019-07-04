@@ -218,6 +218,7 @@ public class ui {
 		
 		//Score
 		JPanel panelscore = new JPanel();
+		panelscore.setBorder(BorderFactory.createRaisedBevelBorder());
 		panelscore.setBackground(Color.BLACK);
 		
 		JLabel labelscore = new JLabel("Score: " + backend.score);
@@ -227,6 +228,7 @@ public class ui {
 		
 		//Next Stone
 		JPanel panelstone = new JPanel();
+		panelstone.setBorder(BorderFactory.createRaisedBevelBorder());
 		panelstone.setBackground(Color.BLACK);
 		panelstone.setPreferredSize(new Dimension(200, 0));
 		
@@ -235,6 +237,7 @@ public class ui {
 		
 		//Save Stone
 		JPanel panelsave = new JPanel();
+		panelsave.setBorder(BorderFactory.createRaisedBevelBorder());
 		panelsave.setBackground(Color.BLACK);
 		panelsave.setPreferredSize(new Dimension(200, 0));
 		
@@ -250,6 +253,7 @@ public class ui {
 	//display the panels
 
 		JPanel panelgame1 = new JPanel();
+		panelgame1.setBorder(BorderFactory.createRaisedBevelBorder());
 		frame.add(panelgame1, BorderLayout.CENTER);
 		
 		JPanel panelgame = new JPanel() {
