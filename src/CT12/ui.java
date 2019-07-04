@@ -115,7 +115,7 @@ public class ui {
 	    }
 		BufferedImage bufferedlogo = null;
 		try {
-			bufferedlogo = ImageIO.read(new File("Logo.png"));
+			bufferedlogo = ImageIO.read(new File("Logoneutransparent.png"));
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
