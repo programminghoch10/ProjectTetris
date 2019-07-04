@@ -297,10 +297,11 @@ public class ui {
 		    for (int y = 0; y < jpanelarray.length; y++) {
 		    	for (int x = 0; x < jpanelarray[0].length; x++) {
 
-		    		if(backend.gameover == true) {
+		    		if(backend.gameover) {
 		    			
 		    			
-		    		} else if (backend.paused == true) {
+		    		}
+		    			if (backend.paused) {
 		    				Color gridcolor = Color.DARK_GRAY;
 		    				if (backend.gamematrix[y][x] == "") {
 		    					jpanelarray[y][x].setBackground(Color.BLACK);
@@ -463,7 +464,42 @@ public class ui {
 			    	labelscore.setForeground(Color.WHITE);
 			    }
 			    else {
-			    	labelscore.setForeground(Color.GREEN);
+			    	Color labelcolor = Color.GREEN;
+			    	try {
+				    	switch (backend.currentstone.color) {
+	    				case "bk":
+	    					labelcolor = Color.BLACK;
+	    					break;
+	    				case "wh":
+	    					labelcolor = Color.WHITE;
+	    					break;
+	    				case "bl":
+	    					labelcolor = Color.BLUE;
+	    					break;
+	    				case "gr":
+	    					labelcolor = Color.GREEN;
+	    					break;
+	    				case "ye":
+	    					labelcolor = Color.YELLOW;
+	    					break;
+	    				case "re":
+	    					labelcolor = Color.RED;
+	    					break;
+	    				case "ma":
+	    					labelcolor = Color.MAGENTA;
+	    					break;
+	    				case "or":
+	    					labelcolor = Color.ORANGE;
+	    					break;
+	    				case "cy":
+	    					labelcolor = Color.CYAN;
+	    					break;
+	    				case "":
+	    					labelcolor = Color.GREEN;
+	    					break;
+	    				}
+			    	} catch (NullPointerException nullerr) {}
+			    	labelscore.setForeground(labelcolor);
 			    }
 	 		}   
  		}
