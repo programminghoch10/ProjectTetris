@@ -13,7 +13,7 @@ public class backend {
 	public static String mi = ""; //initial value for gamematrix and staticmatrix
 	public static String[][] gamematrix = new String[dimensiony][dimensionx];		//gamematrix contains everything that needs to be visible
 	public static String[][] staticmatrix = new String[dimensiony][dimensionx];		//staticmatrix only contains static (fallen) stones, to test collision
-	public static String[][] previewmatrix = new String[3*5][3];
+	public static String[][] previewmatrix = new String[3*4][3];
 	
 	public static int[] nextStoneTypes = new int[Stone.arrayStoneType.length * 2];
 	public static Stone currentstone = null;
@@ -137,8 +137,8 @@ public class backend {
 							}
 						}
 						try {
-						for (int i = 0; i < previewmatrix.length/4; i++) {
-							Stone currentpreviewstone = new Stone(Stone.arrayStoneType[nextStoneTypes[i]], 1, i * 4, Stone.arrayStoneTypeColor[nextStoneTypes[i]], false, false, false);
+						for (int i = 0; i < previewmatrix.length / 4; i++) {
+							Stone currentpreviewstone = new Stone(Stone.arrayStoneType[nextStoneTypes[i]], i * 4, Stone.arrayStoneTypeColor[nextStoneTypes[i]], false);
 							currentpreviewstone.insertintopreviewmatrix(currentpreviewstone.yPosition);
 						}
 						} catch (ArrayIndexOutOfBoundsException arrerr) {arrerr.printStackTrace();}
@@ -332,6 +332,82 @@ class Stone
 			}
 	}
 	
+	Stone (String type, int yPosition, String color, boolean ghost) {
+		this.type = type;
+		this.xPosition = 1;
+		this.yPosition = yPosition;
+		this.color = color;
+		this.dropping = false;
+		this.ghost = ghost;
+		this.endPosition = false;
+		switch (type) {
+		case "I":
+			this.relx2 = 0;
+			this.rely2 = -1;
+			this.relx3 = 0;
+			this.rely3 = 1;
+			this.relx4 = 0;
+			this.rely4 = 2;
+			break;
+		case "Ll":
+			this.relx2 = 0;
+			this.rely2 = -1;
+			this.relx3 = 0;
+			this.rely3 = 1;
+			this.relx4 = -1;
+			this.rely4 = 1;
+			break;
+		case "Lr":
+			this.relx2 = 0;
+			this.rely2 = -1;
+			this.relx3 = 0;
+			this.rely3 = 1;
+			this.relx4 = 1;
+			this.rely4 = 1;
+			break;
+		case "Sq":
+			this.relx2 = 1;
+			this.rely2 = 0;
+			this.relx3 = 1;
+			this.rely3 = 1;
+			this.relx4 = 0;
+			this.rely4 = 1;
+			break;
+		case "S":
+			this.relx2 = 0;
+			this.rely2 = -1;
+			this.relx3 = -1;
+			this.rely3 = 0;
+			this.relx4 = 1;
+			this.rely4 = -1;
+			break;
+		case "T":
+			this.relx2 = -1;
+			this.rely2 = -1;
+			this.relx3 = 0;
+			this.rely3 = -1;
+			this.relx4 = 1;
+			this.rely4 = -1;
+			break;
+		case "Z":
+			this.relx2 = -1;
+			this.rely2 = -1;
+			this.relx3 = 0;
+			this.rely3 = -1;
+			this.relx4 = 1;
+			this.rely4 = 0;
+			break;
+		default:
+			this.relx2 = 0;
+			this.rely2 = 0;
+			this.relx3 = 0;
+			this.rely3 = 0;
+			this.relx4 = 0;
+			this.rely4 = 0;
+			break;
+		}
+	}
+	
 	void insertintogamematrix() {
 		backend.gamematrix[this.yPosition][this.xPosition] = this.color + "-" + this.ghost + "-" + this.dropping;
 		backend.gamematrix[this.yPosition + this.rely2][this.xPosition + this.relx2] = this.color + "-" + this.ghost + "-" + this.dropping;
@@ -339,10 +415,10 @@ class Stone
 		backend.gamematrix[this.yPosition + this.rely4][this.xPosition + this.relx4] = this.color + "-" + this.ghost + "-" + this.dropping;
 	}
 	void insertintopreviewmatrix(int yPos) {
-		backend.previewmatrix[yPos][1] = this.color + "-" + this.ghost;
-		backend.previewmatrix[yPos + this.rely2][1 + this.relx2] = this.color + "-" + this.ghost;
-		backend.previewmatrix[yPos + this.rely3][1 + this.relx3] = this.color + "-" + this.ghost;
-		backend.previewmatrix[yPos + this.rely4][1 + this.relx4] = this.color + "-" + this.ghost;
+		backend.previewmatrix[yPos][this.xPosition] = this.color + "-" + this.ghost;
+		backend.previewmatrix[yPos + this.rely2][this.xPosition + this.relx2] = this.color + "-" + this.ghost;
+		backend.previewmatrix[yPos + this.rely3][this.xPosition + this.relx3] = this.color + "-" + this.ghost;
+		backend.previewmatrix[yPos + this.rely4][this.xPosition + this.relx4] = this.color + "-" + this.ghost;
 	}
 	
 	void rotate() {
