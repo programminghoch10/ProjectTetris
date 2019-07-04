@@ -16,6 +16,7 @@ public class backend {
 	
 	public static Stone currentstone = null;
 	public static Stone ghoststone = null;
+	public static Stone[] nextstone = new Stone[Stone.arrayStoneType.length * 2];
 	public static int score = 0;
 	
 	public static boolean fastdropping = false;		//defines if currentstone is fastdropping (when arrow down key is pressed)
@@ -50,7 +51,7 @@ public class backend {
 						try {
 							Thread.sleep(100);
 						} catch (InterruptedException e) {
-							e.printStackTrace();
+							//e.printStackTrace();
 						}
 						backend.currentstone.fall();
 					}
@@ -94,9 +95,52 @@ public class backend {
 					//general game managing loop
 					
 					if (currentstone == null) {
-						int nextStonetype = (int)(Math.random()*6);
-						currentstone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], true, false, false);
-						ghoststone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], true, true, false);
+						/*int nextStonetype = (int)(Math.random()*6);
+						currentstone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], false, false);
+						ghoststone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], true, false);*/
+						
+						//System.out.println("Generating new stone");
+						int nextlength = 0;
+						try {
+							while(nextstone[nextlength] != null && nextlength < nextstone.length) {nextlength++;} //count stones
+						} catch (ArrayIndexOutOfBoundsException arrayerr) {
+							nextlength = nextstone.length - 1;
+						}
+						//System.out.println("Length is " + nextlength);
+						
+						if (nextlength <= Stone.arrayStoneType.length) {		//check if nextstone array needs more stones
+							//System.out.println("Generating new stone array");
+							Stone prearray[] = new Stone[Stone.arrayStoneType.length];
+							for (int i = 0; i < Stone.arrayStoneType.length; i++) {		//generate every type if stone
+								prearray[i] = new Stone(Stone.arrayStoneType[i], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[i], false, false);
+								nextstone[nextlength + i] = null;
+							}
+							//System.out.println("Shuffle and add stones");
+							for (int i = 0; i < prearray.length; i++) {		//shuffle those stones
+								int nextplace = 0;
+								do {
+								nextplace = nextlength + (int)(Math.random()*prearray.length);
+								} while (nextstone[nextplace] != null);
+								nextstone[nextplace] = prearray[i];
+							}
+						}
+						//System.out.println("moving stones");
+						for (int i = 0; i < nextlength - 1; i++) {
+							nextstone[i] = nextstone[i + 1];
+						}
+						currentstone = nextstone[0];
+						ghoststone = new Stone(currentstone, true);
+						nextlength = 0;
+						try {
+							while(nextstone[nextlength] != null && nextlength < nextstone.length) {
+								nextlength++;
+							} //count stones
+						} catch (ArrayIndexOutOfBoundsException arrayerr) {
+							nextlength = nextstone.length - 1;
+						}
+						//System.out.println("Length is " + nextlength);
+						nextstone[nextlength - 1] = null;
+						
 						//System.out.println("new stone created: " + currentstone);
 						//System.out.println("X: " + currentstone.xPosition);
 						//System.out.println("Y: " + currentstone.yPosition);
@@ -178,7 +222,6 @@ class Stone
 	int 		xPosition;
 	int 		yPosition;
 	String 		color;
-	boolean 	dropping;
 	boolean 	ghost;
 	boolean 	endPosition;
 	
@@ -192,13 +235,12 @@ class Stone
 	int relx4 = 0;
 	int rely4 = 0;
 	
-	Stone(String type, int xPosition, int yPosition, String color, boolean dropping, boolean ghost, boolean endPosition) // constructor
+	Stone(String type, int xPosition, int yPosition, String color, boolean ghost, boolean endPosition) // constructor
 	{
 		this.type = type;
 		this.xPosition = xPosition;
 		this.yPosition = yPosition;
 		this.color = color;
-		this.dropping = dropping;
 		this.ghost = ghost;
 		this.endPosition = endPosition;
 		switch (type) {
@@ -273,18 +315,22 @@ class Stone
 		if (!(	backend.staticmatrix[this.yPosition][this.xPosition] == ""
 			 && backend.staticmatrix[this.yPosition + this.rely2][this.xPosition + this.rely2] == ""
 			 && backend.staticmatrix[this.yPosition + this.rely3][this.xPosition + this.rely3] == ""
-			 && backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.rely4] == "")) {
+			 && backend.staticmatrix[this.yPosition + this.rely4][this.xPosition + this.rely4] == "") && !this.ghost) {
 				backend.gameover = true;
 				backend.paused = true;
 				backend.currentstone = null;
 			}
 	}
 	
+	public Stone(Stone stone, boolean ghost) {
+		this(stone.type, stone.xPosition, stone.yPosition, stone.color, ghost, stone.endPosition);
+	}
+
 	void insertintogamematrix() {
-		backend.gamematrix[this.yPosition][this.xPosition] = this.color + "-" + this.ghost + "-" + this.dropping;
-		backend.gamematrix[this.yPosition + this.rely2][this.xPosition + this.relx2] = this.color + "-" + this.ghost + "-" + this.dropping;
-		backend.gamematrix[this.yPosition + this.rely3][this.xPosition + this.relx3] = this.color + "-" + this.ghost + "-" + this.dropping;
-		backend.gamematrix[this.yPosition + this.rely4][this.xPosition + this.relx4] = this.color + "-" + this.ghost + "-" + this.dropping;
+		backend.gamematrix[this.yPosition][this.xPosition] = this.color + "-" + this.ghost;
+		backend.gamematrix[this.yPosition + this.rely2][this.xPosition + this.relx2] = this.color + "-" + this.ghost;
+		backend.gamematrix[this.yPosition + this.rely3][this.xPosition + this.relx3] = this.color + "-" + this.ghost;
+		backend.gamematrix[this.yPosition + this.rely4][this.xPosition + this.relx4] = this.color + "-" + this.ghost;
 	}
 	
 	void rotate() {
