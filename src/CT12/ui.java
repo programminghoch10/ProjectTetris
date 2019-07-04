@@ -257,17 +257,14 @@ public class ui {
             @Override
             public Dimension getPreferredSize() {
                 Dimension d = this.getParent().getSize();
-                //int newSize = d.width > d.height ? d.height : d.width;
-                //newSize = newSize == 0 ? 100 : newSize;
                 int sizex = 0;
                 int sizey = 0;
-                if (d.width > d.height) {
-                	sizey = d.height;
-                	//sizex = d.height*(jpanelarray[0].length/jpanelarray.length);
-                	sizex = d.width;
+                if (d.width > d.height*(float)((float)jpanelarray[0].length/(float)jpanelarray.length)) {
+                    sizey = d.height;
+                    sizex = (int)(d.height*(float)((float)jpanelarray[0].length/(float)jpanelarray.length));
                 } else {
-                	sizex = d.width;
-                	sizey = d.height;
+                    sizex = d.width;
+                    sizey = (int)(d.width*(float)((float)jpanelarray.length/(float)jpanelarray[0].length));
                 }
                 return new Dimension(sizex, sizey);
             }
@@ -351,7 +348,7 @@ public class ui {
 	    					break;
 	    				case "":
 	    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
-	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK));							//displays a grid -> maingrid
+	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK));								//displays a grid -> maingrid
 	    					break;
 	    				}
 		    		}
@@ -423,7 +420,7 @@ public class ui {
 		    					break;
 		    				case "":
 		    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
-		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));		//displays a grid -> maingrid
+		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));								//displays a grid -> maingrid
 		    					break;
 		    				}	
 		    			}
