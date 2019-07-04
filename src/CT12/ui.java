@@ -228,6 +228,7 @@ public class ui {
 		//Next Stone
 		JPanel panelstone = new JPanel();
 		panelstone.setBackground(Color.BLACK);
+		panelstone.setPreferredSize(new Dimension(200, 0));
 		
 		JLabel labelstone = new JLabel("Next Stone");
 		panelstone.add(labelstone);
@@ -235,6 +236,7 @@ public class ui {
 		//Save Stone
 		JPanel panelsave = new JPanel();
 		panelsave.setBackground(Color.BLACK);
+		panelsave.setPreferredSize(new Dimension(200, 0));
 		
 		JLabel labelsave = new JLabel("Save Stone");
 		panelsave.add(labelsave);
@@ -445,7 +447,6 @@ public class ui {
 			    				case "":
 			    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
 			    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));							//displays a grid -> maingrid
-			    					//if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.WHITE);
 			    					break;
 			    				}
 		    			}
