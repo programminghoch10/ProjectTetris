@@ -14,6 +14,7 @@ public class backend {
 	public static String[][] gamematrix = new String[dimensiony][dimensionx];		//gamematrix contains everything that needs to be visible
 	public static String[][] staticmatrix = new String[dimensiony][dimensionx];		//staticmatrix only contains static (fallen) stones, to test collision
 	
+	public static int[] nextStoneTypes = new int[Stone.arrayStoneType.length * 2];
 	public static Stone currentstone = null;
 	public static Stone ghoststone = null;
 	public static int score = 0;
@@ -94,9 +95,44 @@ public class backend {
 					//general game managing loop
 					
 					if (currentstone == null) {
-						int nextStonetype = (int)(Math.random()*6);
-						currentstone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], true, false, false);
-						ghoststone = new Stone(Stone.arrayStoneType[nextStonetype], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStonetype], true, true, false);
+						int nextLength = 0;
+						try {
+							while (nextStoneTypes[nextLength] != 0 && nextLength < nextStoneTypes.length) {nextLength++;}
+						} catch (ArrayIndexOutOfBoundsException arrayerr) {
+							nextLength = nextStoneTypes.length - 1;
+						}
+						
+						if (nextLength <= Stone.arrayStoneType.length) {
+							int prearray[] = new int[Stone.arrayStoneType.length];
+							for (int i = 1; i <= Stone.arrayStoneType.length; i++) {		//generate every type if stone
+								prearray[i-1] = i;
+								nextStoneTypes[nextLength + i-1] = 0;
+							}
+							//System.out.println("Shuffle and add stones");
+							for (int i = 0; i < prearray.length; i++) {		//shuffle those stones
+								int nextplace = 0;
+								do {
+									nextplace = nextLength + (int)(Math.random()*prearray.length);
+								} while (nextStoneTypes[nextplace] != 0);
+								nextStoneTypes[nextplace] = prearray[i];
+							}
+						}
+						
+						for (int i = 0; i < nextLength - 1; i++) {
+							nextStoneTypes[i] = nextStoneTypes[i + 1];
+						}
+						nextLength = 0;
+						try {
+							while (nextStoneTypes[nextLength] != 0 && nextLength < nextStoneTypes.length) {nextLength++;}
+						} catch (ArrayIndexOutOfBoundsException arrayerr) {
+							nextLength = nextStoneTypes.length - 1;
+						}
+						nextStoneTypes[nextLength-1] = 0; 
+						//int nextStonetype = (int)(Math.random()*6);
+						
+						
+						currentstone = new Stone(Stone.arrayStoneType[nextStoneTypes[0]-1], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStoneTypes[0]-1], true, false, false);
+						ghoststone = new Stone(Stone.arrayStoneType[nextStoneTypes[0]-1], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStoneTypes[0]-1], true, true, false);
 						//System.out.println("new stone created: " + currentstone);
 						//System.out.println("X: " + currentstone.xPosition);
 						//System.out.println("Y: " + currentstone.yPosition);
