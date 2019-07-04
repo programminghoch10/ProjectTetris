@@ -247,8 +247,30 @@ public class ui {
 	//=========================================================
 	//display the panels
 
-		JPanel panelgame = new JPanel();
-		frame.add(panelgame, BorderLayout.CENTER);
+		JPanel panelgame1 = new JPanel();
+		frame.add(panelgame1, BorderLayout.CENTER);
+		
+		JPanel panelgame = new JPanel() {
+            private static final long serialVersionUID = 1L;
+            @Override
+            public Dimension getPreferredSize() {
+                Dimension d = this.getParent().getSize();
+                int sizex = 0;
+                int sizey = 0;
+                if (d.width > d.height*(float)((float)jpanelarray[0].length/(float)jpanelarray.length)) {
+                    sizey = d.height;
+                    sizex = (int)(d.height*(float)((float)jpanelarray[0].length/(float)jpanelarray.length));
+                } else {
+                    sizex = d.width;
+                    sizey = (int)(d.width*(float)((float)jpanelarray.length/(float)jpanelarray[0].length));
+                }
+                return new Dimension(sizex, sizey);
+            }
+        };
+        
+        panelgame1.setBackground(Color.BLACK);
+        
+        panelgame1.add(panelgame);
 		
 		panelgame.setLayout(new GridLayout(jpanelarray.length,jpanelarray[0].length));					//Elements in the container "frame" are displayed in a GridLayout
 	    
@@ -324,7 +346,7 @@ public class ui {
 	    					break;
 	    				case "":
 	    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
-	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK));							//displays a grid -> maingrid
+	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK));								//displays a grid -> maingrid
 	    					break;
 	    				}
 		    		}
@@ -396,7 +418,7 @@ public class ui {
 		    					break;
 		    				case "":
 		    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
-		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));		//displays a grid -> maingrid
+		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));								//displays a grid -> maingrid
 		    					break;
 		    				}	
 		    			}
