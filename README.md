@@ -34,7 +34,9 @@ We planned to implement a lot of features into our game. Here are the ones we wo
 ## Encountered problems
 we encountered a few problems on our path to completeing our game. This is how we dealt with them:
 1. To coordinate every move of a stone, every individual case for every individual stone would have to be coded. This proves to be way too much.
-* **solution:** working object-oriented every stone position can be calculated. We only need to worry about further movements.
-2. both pause menu and game over screen should include a grayscale when active. The grayscale however didnt apply.
-* **solution:** write a new if-query that checks if pause or gameover = true
+  * **solution:** working object-oriented every stone position can be calculated. We only need to worry about further movements.
+2. While trying to add a predetermined list of blocks to drop, the game over screen is bypassed.
+  * **solution** instead of saving the next block to generate, save the type of the next block.
+3. both pause menu and game over screen should include a grayscale when active. The grayscale however didnt apply.
+  * **solution:** write a new if-query that checks if pause or gameover = true
 ## Conclusion
