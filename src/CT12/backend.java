@@ -13,6 +13,7 @@ public class backend {
 	public static String mi = ""; //initial value for gamematrix and staticmatrix
 	public static String[][] gamematrix = new String[dimensiony][dimensionx];		//gamematrix contains everything that needs to be visible
 	public static String[][] staticmatrix = new String[dimensiony][dimensionx];		//staticmatrix only contains static (fallen) stones, to test collision
+	public static String[][] previewmatrix = new String[3*5][3];
 	
 	public static int[] nextStoneTypes = new int[Stone.arrayStoneType.length * 2];
 	public static Stone currentstone = null;
@@ -130,6 +131,29 @@ public class backend {
 						nextStoneTypes[nextLength-1] = -1;		//set last cell to "no type"
 						nextLength--;
 						
+						for (int y = 0; y < previewmatrix.length; y++) {
+							for (int x = 0; x < previewmatrix[0].length; x++) {
+								previewmatrix[y][x] = "";
+							}
+						}
+						try {
+						for (int i = 0; i < previewmatrix.length/4; i++) {
+							Stone currentpreviewstone = new Stone(Stone.arrayStoneType[nextStoneTypes[i]], 1, i * 4, Stone.arrayStoneTypeColor[nextStoneTypes[i]], false, false, false);
+							currentpreviewstone.insertintopreviewmatrix(currentpreviewstone.yPosition);
+						}
+						} catch (ArrayIndexOutOfBoundsException arrerr) {arrerr.printStackTrace();}
+						
+						for (int y = 0; y < previewmatrix.length; y++) {
+							for (int x = 0; x < previewmatrix[0].length; x++) {
+								if (previewmatrix[y][x] == "") {
+									System.out.print("-");
+								} else {
+									System.out.print("#");
+								}
+							}
+							System.out.println("");
+						}
+						System.out.println("=====");
 					}
 					
 					if (backend.currentstone.endPosition) {
@@ -313,6 +337,12 @@ class Stone
 		backend.gamematrix[this.yPosition + this.rely2][this.xPosition + this.relx2] = this.color + "-" + this.ghost + "-" + this.dropping;
 		backend.gamematrix[this.yPosition + this.rely3][this.xPosition + this.relx3] = this.color + "-" + this.ghost + "-" + this.dropping;
 		backend.gamematrix[this.yPosition + this.rely4][this.xPosition + this.relx4] = this.color + "-" + this.ghost + "-" + this.dropping;
+	}
+	void insertintopreviewmatrix(int yPos) {
+		backend.previewmatrix[yPos][1] = this.color + "-" + this.ghost;
+		backend.previewmatrix[yPos + this.rely2][1 + this.relx2] = this.color + "-" + this.ghost;
+		backend.previewmatrix[yPos + this.rely3][1 + this.relx3] = this.color + "-" + this.ghost;
+		backend.previewmatrix[yPos + this.rely4][1 + this.relx4] = this.color + "-" + this.ghost;
 	}
 	
 	void rotate() {
