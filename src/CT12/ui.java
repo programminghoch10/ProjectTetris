@@ -21,8 +21,6 @@ public class ui {
 	
 	static JPanel[] menuarray = new JPanel[20];
 	
-	static JPanel[][] panelarray = new JPanel[backend.staticmatrix.length][backend.staticmatrix[0].length];
-	
 	//=========================================================
 	
 	public static void main(String[] args) {
@@ -315,9 +313,9 @@ public class ui {
 	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorma));
 	    					break;
 	    				case "or":
-	    					Color coloro = new Color(120,120,120);
-	    					if (jpanelarray[y][x].getBackground() != coloro) jpanelarray[y][x].setBackground(coloro);
-	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(coloro));
+	    					Color colorro = new Color(120,120,120);
+	    					if (jpanelarray[y][x].getBackground() != colorro) jpanelarray[y][x].setBackground(colorro);
+	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorro));
 	    					break;
 	    				case "cy":
 	    					Color colorcy = new Color(140,140,140);
@@ -412,7 +410,7 @@ public class ui {
 		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
 		    					break;
 		    				case "wh":
-		    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
+		    					if (jpanelarray[y][x].getBackground() != Color.WHITE) jpanelarray[y][x].setBackground(Color.WHITE);
 		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE, 4));
 		    					break;
 		    				case "bl":
@@ -446,6 +444,7 @@ public class ui {
 		    				case "":
 		    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
 		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));							//displays a grid -> maingrid
+		    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.WHITE);
 		    					break;
 		    				}
 		    			}
