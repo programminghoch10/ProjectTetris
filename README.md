@@ -28,13 +28,46 @@ We planned to implement a lot of features into our game. Here are the ones we wo
 
 
 ## Development
--Code
--Functions
+* added temporary game matrix
+* start with adding class "stone "stone constructor" "array stone type"
+* generate empty frame
+* add relative coordinates for stones and set them up
+* added static matrix and rotate functionality
+* random initial rotation (starting pos.)
+* added horizontal movement and drop function
+* added random background and block colors
+* added paralled processing
+* added gameplay test area (console)
+* ------------comments              <---- important
+* last line detector
+* added fastdrop
+* random colors
+* 2 dimensional
+* regulating game refreshrate (increase)
+* pause function
+* borders
+* ----------------code clean       <---- important
+* logo
+* menu
+* ---------------structure progam   <--- important
+* fix window and border size
+* reduce flickering
+* rework pause menu
+* add game over
+* add stone projection at the bottom (ghost)
+* redesign menu
+* redesign game over
+* add credits
+* add greyscale when paused
+* design and design user interface
+
 
 ## Encountered problems
 we encountered a few problems on our path to completeing our game. This is how we dealt with them:
-1. To coordinate every move of a stone, every individual case for every individual stone would have to be coded. This proves to be way too much.
-* **solution:** working object-oriented every stone position can be calculated. We only need to worry about further movements.
-2. both pause menu and game over screen should include a grayscale when active. The grayscale however didnt apply.
-* **solution:** write a new if-query that checks if pause or gameover = true
+* To coordinate every move of a stone, every individual case for every individual stone would have to be coded. This proves to be way too much.
+  * **solution:** working object-oriented every stone position can be calculated. We only need to worry about further movements.
+* While trying to add a predetermined list of blocks to drop, the game over screen is bypassed.
+  * **solution:** instead of saving the next block to generate, save the type of the next block.
+* both pause menu and game over screen should include a grayscale when active. The grayscale however didnt apply.
+  * **solution:** write a new if-query that checks if pause or gameover = true
 ## Conclusion
