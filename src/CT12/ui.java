@@ -297,88 +297,71 @@ public class ui {
 		    for (int y = 0; y < jpanelarray.length; y++) {
 		    	for (int x = 0; x < jpanelarray[0].length; x++) {
 
-		    		if(backend.gameover == true | backend.paused == true) {
+		    		if(backend.gameover == true) {
 		    			
-		    			switch (backend.gamematrix[y][x].split("-")[0]) {
-	    				
-	    				case "bk":
-	    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
-	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
-	    					break;
-	    				case "wh":
-	    					if (jpanelarray[y][x].getBackground() != Color.WHITE) jpanelarray[y][x].setBackground(Color.WHITE);
-	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE, 4));
-	    					break;
-	    				case "bl":
-	    					Color colorbl = new Color(20,20,20);
-	    					if (jpanelarray[y][x].getBackground() != colorbl) jpanelarray[y][x].setBackground(colorbl);
-	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorbl));
-	    					break;
-	    				case "gr":
-	    					Color colorgr = new Color(40,40,40);
-	    					if (jpanelarray[y][x].getBackground() != colorgr) jpanelarray[y][x].setBackground(colorgr);
-	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorgr));
-	    					break;
-	    				case "ye":
-	    					Color colorye = new Color(60,60,60);
-	    					if (jpanelarray[y][x].getBackground() != colorye) jpanelarray[y][x].setBackground(colorye);
-	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorye));
-	    					break;
-	    				case "re":
-	    					Color colorre = new Color(80,80,80);
-	    					if (jpanelarray[y][x].getBackground() != colorre) jpanelarray[y][x].setBackground(colorre);
-	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorre));
-	    					break;
-	    				case "ma":
-	    					Color colorma = new Color(100,100,100);
-	    					if (jpanelarray[y][x].getBackground() != colorma) jpanelarray[y][x].setBackground(colorma);
-	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorma));
-	    					break;
-	    				case "or":
-	    					Color colorro = new Color(120,120,120);
-	    					if (jpanelarray[y][x].getBackground() != colorro) jpanelarray[y][x].setBackground(colorro);
-	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorro));
-	    					break;
-	    				case "cy":
-	    					Color colorcy = new Color(140,140,140);
-	    					if (jpanelarray[y][x].getBackground() != colorcy) jpanelarray[y][x].setBackground(colorcy);
-	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorcy));
-	    					break;
-	    				case "":
-	    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
-	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK));								//displays a grid -> maingrid
-	    					break;
-	    				}
-		    		}
-		    		
-		    		else {
-		    			if(backend.paused == true) {
-		    				
-		    				if(backend.gamematrix[y][x] == "") {
+		    			
+		    		} else if (backend.paused == true) {
+		    				Color gridcolor = Color.DARK_GRAY;
+		    				if (backend.gamematrix[y][x] == "") {
 		    					jpanelarray[y][x].setBackground(Color.BLACK);
-		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));						//displays a grid
-		    				}
-		    			
-		    				else {
-		    					
-		    					if((backend.gamematrix[y][x]+"-false").split("-")[1].contentEquals("false")) {
-		    						jpanelarray[y][x].setBackground(new Color (50,50,50));
-		    						jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(new Color(0,0,0 )));
+		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(gridcolor));						//displays a grid
+		    				} else {
+		    					boolean ghost = !(backend.gamematrix[y][x]+"-false").split("-")[1].contentEquals("false");
+		    					int thickness = 1;
+		    					if (ghost) {
+		    						jpanelarray[y][x].setBackground(Color.BLACK);
+		    						//jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(gridcolor, 4));
+		    						thickness = 4;
 		    					}
-		    					
-		    					else {
-		    						jpanelarray[y][x].setBackground(new Color(1,1,1));
-		    						jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(new Color(4,4,4)));
-		    					}
+		    						switch (backend.gamematrix[y][x].split("-")[0]) {
+		    	    				case "bk":
+		    	    					if (!ghost & jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
+		    	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK, thickness));
+		    	    					break;
+		    	    				case "wh":
+		    	    					if (!ghost & jpanelarray[y][x].getBackground() != Color.WHITE) jpanelarray[y][x].setBackground(Color.WHITE);
+		    	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE, thickness));
+		    	    					break;
+		    	    				case "bl":
+		    	    					Color colorbl = new Color(90,90,90);
+		    	    					if (!ghost & jpanelarray[y][x].getBackground() != colorbl) jpanelarray[y][x].setBackground(colorbl);
+		    	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorbl, thickness));
+		    	    					break;
+		    	    				case "gr":
+		    	    					Color colorgr = new Color(100,100,100);
+		    	    					if (!ghost & jpanelarray[y][x].getBackground() != colorgr) jpanelarray[y][x].setBackground(colorgr);
+		    	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorgr, thickness));
+		    	    					break;
+		    	    				case "ye":
+		    	    					Color colorye = new Color(110,110,110);
+		    	    					if (!ghost & jpanelarray[y][x].getBackground() != colorye) jpanelarray[y][x].setBackground(colorye);
+		    	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorye, thickness));
+		    	    					break;
+		    	    				case "re":
+		    	    					Color colorre = new Color(120,120,120);
+		    	    					if (!ghost & jpanelarray[y][x].getBackground() != colorre) jpanelarray[y][x].setBackground(colorre);
+		    	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorre, thickness));
+		    	    					break;
+		    	    				case "ma":
+		    	    					Color colorma = new Color(130,130,130);
+		    	    					if (!ghost & jpanelarray[y][x].getBackground() != colorma) jpanelarray[y][x].setBackground(colorma);
+		    	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorma, thickness));
+		    	    					break;
+		    	    				case "or":
+		    	    					Color colorro = new Color(140,140,140);
+		    	    					if (!ghost & jpanelarray[y][x].getBackground() != colorro) jpanelarray[y][x].setBackground(colorro);
+		    	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorro, thickness));
+		    	    					break;
+		    	    				case "cy":
+		    	    					Color colorcy = new Color(150,150,150);
+		    	    					if (!ghost & jpanelarray[y][x].getBackground() != colorcy) jpanelarray[y][x].setBackground(colorcy);
+		    	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorcy, thickness));
+		    	    					break;
+		    	    				}
 		    				}
-		    			}
-		    		
-		    			else {
-		    			
+		    			} else {
 		    				if ((backend.gamematrix[y][x]+"-false").split("-")[1].contentEquals("false")) {
-		    					
 		    					switch (backend.gamematrix[y][x].split("-")[0]) {
-		    					
 		    					case "bk":
 		    						if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
 		    						jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -419,53 +402,51 @@ public class ui {
 		    						if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
 		    						jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));								//displays a grid -> maingrid
 		    						break;
-		    					}	
-		    				}
-		    				
-		    				switch (backend.gamematrix[y][x].split("-")[0]) {
-		    				
-		    				case "bk":
-		    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
-		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
-		    					break;
-		    				case "wh":
-		    					if (jpanelarray[y][x].getBackground() != Color.WHITE) jpanelarray[y][x].setBackground(Color.WHITE);
-		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE, 4));
-		    					break;
-		    				case "bl":
-		    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
-		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLUE, 4));
-		    					break;
-		    				case "gr":
-		    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
-		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.GREEN, 4));
-		    					break;
-		    				case "ye":
-		    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
-		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.YELLOW, 4));
-		    					break;
-		    				case "re":
-		    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
-		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.RED, 4));
-		    					break;
-		    				case "ma":
-		    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
-		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.MAGENTA, 4));
-		    					break;
-		    				case "or":
-		    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
-		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.ORANGE, 4));
-		    					break;
-		    				case "cy":
-		    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
-		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.CYAN, 4));
-		    					break;
-		    				case "":
-		    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
-		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));							//displays a grid -> maingrid
-		    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.WHITE);
-		    					break;
-		    				}
+		    					}
+		    				} else {
+			    				switch (backend.gamematrix[y][x].split("-")[0]) {
+			    				case "bk":
+			    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
+			    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
+			    					break;
+			    				case "wh":
+			    					if (jpanelarray[y][x].getBackground() != Color.WHITE) jpanelarray[y][x].setBackground(Color.WHITE);
+			    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE, 4));
+			    					break;
+			    				case "bl":
+			    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
+			    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLUE, 4));
+			    					break;
+			    				case "gr":
+			    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
+			    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.GREEN, 4));
+			    					break;
+			    				case "ye":
+			    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
+			    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.YELLOW, 4));
+			    					break;
+			    				case "re":
+			    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
+			    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.RED, 4));
+			    					break;
+			    				case "ma":
+			    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
+			    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.MAGENTA, 4));
+			    					break;
+			    				case "or":
+			    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
+			    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.ORANGE, 4));
+			    					break;
+			    				case "cy":
+			    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
+			    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.CYAN, 4));
+			    					break;
+			    				case "":
+			    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
+			    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));							//displays a grid -> maingrid
+			    					//if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.WHITE);
+			    					break;
+			    				}
 		    			}
 		    		}
 		    	}    	
