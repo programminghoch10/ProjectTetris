@@ -1,11 +1,16 @@
 # ProjectTetris
 Tetris Project of WSS CT12 2019
 
+Team
 
+Organisations 
 
-Überschrift1
-Test 1 
+Our goals in this project 
 
-Überschrift2
-Test 2 
+Features 
 
+Funktions 
+
+Problems
+
+Results 
