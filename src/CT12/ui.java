@@ -214,11 +214,45 @@ public class ui {
 	//=========================================================
 	//score display
 		
+		JPanel framepanel = new JPanel();
 		frame.setLayout(new BorderLayout());
+		frame.add(framepanel);
+		
+		JPanel game = new JPanel() {
+            private static final long serialVersionUID = 12L;
+            @Override
+            public Dimension getPreferredSize() {
+                Dimension d = this.getParent().getSize();
+                int sizex = 0;
+                int sizey = 0;
+                if (d.width > d.height*(float)((float)jpanelarray[0].length/(float)jpanelarray.length)*1.6) {
+                //if (d.width > d.height) {
+                    sizey = d.height;
+                    sizex = (int)(d.height*(float)((float)jpanelarray[0].length/(float)jpanelarray.length)*1.6);
+                    //sizex = d.width;
+                } else {
+                    sizex = d.width;
+                    sizey = (int)(d.width*(float)((float)jpanelarray.length/(float)jpanelarray[0].length)*0.6);
+                    //sizey = d.height;
+                }
+                return new Dimension(sizex, sizey);
+            }
+        };
+		
+        framepanel.add(game, BorderLayout.CENTER);
+        framepanel.setBackground(Color.BLACK);
+        
+        game.setBackground(Color.MAGENTA);
+        
+		game.setLayout(new BorderLayout());
+		
+		JPanel southpadding = new JPanel();
+		southpadding.setBackground(Color.BLACK);
+		southpadding.setPreferredSize(new Dimension(0, 5));
+		
 		
 		//Score
 		JPanel panelscore = new JPanel();
-		panelscore.setBorder(BorderFactory.createRaisedBevelBorder());
 		panelscore.setBackground(Color.BLACK);
 		
 		JLabel labelscore = new JLabel("Score: " + backend.score);
@@ -228,7 +262,6 @@ public class ui {
 		
 		//Next Stone
 		JPanel panelstone = new JPanel();
-		panelstone.setBorder(BorderFactory.createRaisedBevelBorder());
 		panelstone.setBackground(Color.BLACK);
 		panelstone.setPreferredSize(new Dimension(200, 0));
 		
@@ -237,7 +270,6 @@ public class ui {
 		
 		//Save Stone
 		JPanel panelsave = new JPanel();
-		panelsave.setBorder(BorderFactory.createRaisedBevelBorder());
 		panelsave.setBackground(Color.BLACK);
 		panelsave.setPreferredSize(new Dimension(200, 0));
 		
@@ -245,18 +277,20 @@ public class ui {
 		panelsave.add(labelsave);
 		
 		//place panels
-		frame.add(panelscore, BorderLayout.NORTH);
-		frame.add(panelstone, BorderLayout.EAST);
-		frame.add(panelsave, BorderLayout.WEST);
+		game.add(panelscore, BorderLayout.NORTH);
+		game.add(panelstone, BorderLayout.EAST);
+		game.add(panelsave, BorderLayout.WEST);
+		game.add(southpadding, BorderLayout.SOUTH);
 		
 	//=========================================================
 	//display the panels
 
 		JPanel panelgame1 = new JPanel();
-		panelgame1.setBorder(BorderFactory.createRaisedBevelBorder());
-		frame.add(panelgame1, BorderLayout.CENTER);
+		game.add(panelgame1, BorderLayout.CENTER);
 		
-		JPanel panelgame = new JPanel() {
+		JPanel panelgame=panelgame1;
+		
+		/*JPanel panelgame = new JPanel() {
             private static final long serialVersionUID = 1L;
             @Override
             public Dimension getPreferredSize() {
@@ -272,11 +306,11 @@ public class ui {
                 }
                 return new Dimension(sizex, sizey);
             }
-        };
+        };*/
         
         panelgame1.setBackground(Color.BLACK);
         
-        panelgame1.add(panelgame);
+        //panelgame1.add(panelgame);
 		
 		panelgame.setLayout(new GridLayout(jpanelarray.length,jpanelarray[0].length));					//Elements in the container "frame" are displayed in a GridLayout
 	    
