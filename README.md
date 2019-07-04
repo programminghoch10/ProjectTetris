@@ -28,8 +28,39 @@ We planned to implement a lot of features into our game. Here are the ones we wo
 
 
 ## Development
--Code
--Functions
+-added temporary game matrix
+-start with adding class "stone "stone constructor" "array stone type"
+-generate empty frame
+-add relative coordinates for stones and set them up
+-added static matrix and rotate functionality
+-random initial rotation (starting pos.)
+-added horizontal movement and drop function
+-added random background and block colors
+-added paralled processing
+-added gameplay test area (console)
+------------comments              <---- important
+-last line detector
+-added fastdrop
+-random colors
+-2 dimensional
+-regulating game refreshrate (increase)
+-pause function
+-borders
+----------------code clean       <---- important
+-logo
+-menu
+---------------structure progam   <--- important
+-fix window and border size
+-reduce flickering
+-rework pause menu
+-add game over
+-add stone projection at the bottom (ghost)
+-redesign menu
+-redesign game over
+-add credits
+-add greyscale when paused
+-design and design user interface
+
 
 ## Encountered problems
 we encountered a few problems on our path to completeing our game. This is how we dealt with them:
