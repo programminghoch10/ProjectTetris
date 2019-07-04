@@ -156,7 +156,7 @@ public class ui {
 		Font f = new Font("Monospaced" , Font.BOLD , 15);
 		pane.add(credits);
 		credits.setFocusable(false);
-		credits.setText("Credits: CT_12_19");
+		credits.setText("Credits: WSSCT20");
 		credits.setFont(f);
 		credits.setBackground(Color.BLACK);
 		credits.setForeground(Color.GREEN);
