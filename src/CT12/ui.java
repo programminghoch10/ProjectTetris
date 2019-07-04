@@ -21,6 +21,8 @@ public class ui {
 	
 	static JPanel[] menuarray = new JPanel[20];
 	
+	static JPanel[][] panelarray = new JPanel[backend.staticmatrix.length][backend.staticmatrix[0].length];
+	
 	//=========================================================
 	
 	public static void main(String[] args) {
@@ -275,7 +277,61 @@ public class ui {
 		    for (int y = 0; y < jpanelarray.length; y++) {
 		    	for (int x = 0; x < jpanelarray[0].length; x++) {
 
+		    		if(backend.gameover == true | backend.paused == true) {
+		    			
+		    			switch (backend.gamematrix[y][x].split("-")[0]) {
+	    				
+	    				case "bk":
+	    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
+	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK, 4));
+	    					break;
+	    				case "wh":
+	    					if (jpanelarray[y][x].getBackground() != Color.WHITE) jpanelarray[y][x].setBackground(Color.WHITE);
+	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE, 4));
+	    					break;
+	    				case "bl":
+	    					Color colorbl = new Color(20,20,20);
+	    					if (jpanelarray[y][x].getBackground() != colorbl) jpanelarray[y][x].setBackground(colorbl);
+	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorbl));
+	    					break;
+	    				case "gr":
+	    					Color colorgr = new Color(40,40,40);
+	    					if (jpanelarray[y][x].getBackground() != colorgr) jpanelarray[y][x].setBackground(colorgr);
+	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorgr));
+	    					break;
+	    				case "ye":
+	    					Color colorye = new Color(60,60,60);
+	    					if (jpanelarray[y][x].getBackground() != colorye) jpanelarray[y][x].setBackground(colorye);
+	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorye));
+	    					break;
+	    				case "re":
+	    					Color colorre = new Color(80,80,80);
+	    					if (jpanelarray[y][x].getBackground() != colorre) jpanelarray[y][x].setBackground(colorre);
+	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorre));
+	    					break;
+	    				case "ma":
+	    					Color colorma = new Color(100,100,100);
+	    					if (jpanelarray[y][x].getBackground() != colorma) jpanelarray[y][x].setBackground(colorma);
+	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorma));
+	    					break;
+	    				case "or":
+	    					Color coloro = new Color(120,120,120);
+	    					if (jpanelarray[y][x].getBackground() != coloro) jpanelarray[y][x].setBackground(coloro);
+	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(coloro));
+	    					break;
+	    				case "cy":
+	    					Color colorcy = new Color(140,140,140);
+	    					if (jpanelarray[y][x].getBackground() != colorcy) jpanelarray[y][x].setBackground(colorcy);
+	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(colorcy));
+	    					break;
+	    				case "":
+	    					if (jpanelarray[y][x].getBackground() != Color.BLACK) jpanelarray[y][x].setBackground(Color.BLACK);
+	    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK));							//displays a grid -> maingrid
+	    					break;
+	    				}
+		    		}
 		    		
+		    		else {
 		    		if(backend.paused == true) {
 		    			
 		    			if(backend.gamematrix[y][x] == "") {
@@ -285,14 +341,15 @@ public class ui {
 		    			
 		    			else {
 		    				
+		    				
 		    				if((backend.gamematrix[y][x]+"-false").split("-")[1].contentEquals("false")) {
-		    					jpanelarray[y][x].setBackground(Color.GRAY);
-		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.GRAY));
+		    					jpanelarray[y][x].setBackground(new Color (50,50,50));
+		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(new Color(0,0,0 )));
 		    				}
 		    				
 		    				else {
-		    					jpanelarray[y][x].setBackground(Color.BLACK);
-		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 4));
+		    					jpanelarray[y][x].setBackground(new Color(1,1,1));
+		    					jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(new Color(4,4,4)));
 		    				}
 		    			}
 		    		}
@@ -394,6 +451,8 @@ public class ui {
 		    			}
 			    	}
 		    	}
+		    }
+		    	
 		    }
 		    
 		    if (backend.gameover) {
