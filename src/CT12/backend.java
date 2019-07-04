@@ -88,6 +88,11 @@ public class backend {
 		while (!started && active) {try{Thread.sleep(1000);} catch (InterruptedException ir) {}}   //wait for UI to start game
 		Dropper.start();	//Comment this line out to disable gameplay/dropping
 		
+		int nextLength = 0;		//nextStone initial setup
+		for (int i = 0; i < nextStoneTypes.length; i++) {
+			nextStoneTypes[i] = -1;
+		}
+		
 		System.out.println("Main started");
 		while (active) {
 			try {
@@ -95,49 +100,36 @@ public class backend {
 					//general game managing loop
 					
 					if (currentstone == null) {
-						int nextLength = 0;
-						try {
-							while (nextStoneTypes[nextLength] != 0 && nextLength < nextStoneTypes.length) {nextLength++;}
-						} catch (ArrayIndexOutOfBoundsException arrayerr) {
-							nextLength = nextStoneTypes.length - 1;
-						}
-						
 						if (nextLength <= Stone.arrayStoneType.length) {
 							int prearray[] = new int[Stone.arrayStoneType.length];
-							for (int i = 1; i <= Stone.arrayStoneType.length; i++) {		//generate every type if stone
-								prearray[i-1] = i;
-								nextStoneTypes[nextLength + i-1] = 0;
+							for (int i = 0; i < Stone.arrayStoneType.length; i++) {		//generate every type if stone
+								prearray[i] = i;
+								nextStoneTypes[nextLength + i] = -1;
 							}
-							//System.out.println("Shuffle and add stones");
 							for (int i = 0; i < prearray.length; i++) {		//shuffle those stones
 								int nextplace = 0;
 								do {
 									nextplace = nextLength + (int)(Math.random()*prearray.length);
-								} while (nextStoneTypes[nextplace] != 0);
+								} while (nextStoneTypes[nextplace] != -1);
 								nextStoneTypes[nextplace] = prearray[i];
 							}
+							nextLength += prearray.length;
 						}
 						
-						for (int i = 0; i < nextLength - 1; i++) {
-							nextStoneTypes[i] = nextStoneTypes[i + 1];
-						}
-						nextLength = 0;
-						try {
-							while (nextStoneTypes[nextLength] != 0 && nextLength < nextStoneTypes.length) {nextLength++;}
-						} catch (ArrayIndexOutOfBoundsException arrayerr) {
-							nextLength = nextStoneTypes.length - 1;
-						}
-						nextStoneTypes[nextLength-1] = 0; 
-						//int nextStonetype = (int)(Math.random()*6);
-						
-						
-						currentstone = new Stone(Stone.arrayStoneType[nextStoneTypes[0]-1], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStoneTypes[0]-1], true, false, false);
-						ghoststone = new Stone(Stone.arrayStoneType[nextStoneTypes[0]-1], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStoneTypes[0]-1], true, true, false);
+						currentstone = new Stone(Stone.arrayStoneType[nextStoneTypes[0]], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStoneTypes[0]], true, false, false);
+						ghoststone = new Stone(Stone.arrayStoneType[nextStoneTypes[0]], (int)(backend.staticmatrix[0].length / 2), 1, Stone.arrayStoneTypeColor[nextStoneTypes[0]], true, true, false);
 						//System.out.println("new stone created: " + currentstone);
 						//System.out.println("X: " + currentstone.xPosition);
 						//System.out.println("Y: " + currentstone.yPosition);
 						//System.out.println("Type: " + currentstone.type);
 						//System.out.println("Color: " + currentstone.color);
+						
+						for (int i = 0; i < nextLength - 1; i++) {
+							nextStoneTypes[i] = nextStoneTypes[i + 1];		//move stone up one cell
+						}
+						nextStoneTypes[nextLength-1] = -1;		//set last cell to "no type"
+						nextLength--;
+						
 					}
 					
 					if (backend.currentstone.endPosition) {
