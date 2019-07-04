@@ -308,7 +308,7 @@ public class ui {
             }
         };*/
         
-        panelgame1.setBackground(Color.BLACK);
+        panelgame1.setBackground(Color.DARK_GRAY);
         
         //panelgame1.add(panelgame);
 		
