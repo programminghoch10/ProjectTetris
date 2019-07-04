@@ -249,8 +249,33 @@ public class ui {
 	//=========================================================
 	//display the panels
 
-		JPanel panelgame = new JPanel();
-		frame.add(panelgame, BorderLayout.CENTER);
+		JPanel panelgame1 = new JPanel();
+		frame.add(panelgame1, BorderLayout.CENTER);
+		
+		JPanel panelgame = new JPanel() {
+            private static final long serialVersionUID = 1L;
+            @Override
+            public Dimension getPreferredSize() {
+                Dimension d = this.getParent().getSize();
+                //int newSize = d.width > d.height ? d.height : d.width;
+                //newSize = newSize == 0 ? 100 : newSize;
+                int sizex = 0;
+                int sizey = 0;
+                if (d.width > d.height) {
+                	sizey = d.height;
+                	//sizex = d.height*(jpanelarray[0].length/jpanelarray.length);
+                	sizex = d.width;
+                } else {
+                	sizex = d.width;
+                	sizey = d.height;
+                }
+                return new Dimension(sizex, sizey);
+            }
+        };
+        
+        panelgame1.setBackground(Color.BLACK);
+        
+        panelgame1.add(panelgame);
 		
 		panelgame.setLayout(new GridLayout(jpanelarray.length,jpanelarray[0].length));					//Elements in the container "frame" are displayed in a GridLayout
 	    
