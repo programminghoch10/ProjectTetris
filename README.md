@@ -1,16 +1,17 @@
 # ProjectTetris
 Tetris Project of WSS CT12 2019
 
-Team
 
-Organisations 
+Goal of this project
+-Features 
 
-Our goals in this project 
+Management
+-Team
 
-Features 
+Development
+-Code
+-Functions
 
-Funktions 
+Encountered problems
 
-Problems
-
-Results 
+Conclusion
