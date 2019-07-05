@@ -1,7 +1,7 @@
 # ProjectTetris
 Tetris Project of WSS CT12 2019
 
-![Tetris logo](https://github.com/wssct12/ProjectTetris/blob/master/TETRIS_LOGO_NEW.png)
+![Tetris logo](https://github.com/wssct12/ProjectTetris/blob/master/NEW_TETRIS_LOGO.png)
 
 ## Goal of this project
 
@@ -26,7 +26,7 @@ To complete the project in the predetermined timespan, every individual working 
 * **[Hartu666](https://github.com/Hartu666)** was part of the ui team, designing the game over screen and creating various menus
 * **[Juka27](https://github.com/Juka27)** was part of the ui team, creating the icon of the game and redesigning multiple menus
 * **[Gr0g98](https://github.com/Gr0g98)** was part of the documentation team. He was also responsible for the creation of use-case diagrams.
-* **[Ivan42069](https://github.com/Ivan42069)** was part of the documentation team. He was also responsible for the creation of class diagrams.
+* **[Ivan42069](https://github.com/Ivan42069)** was part of the documentation team. He was also responsible for the creation of class diagrams and the rework of the Tetris logo.
 
 
 ## Development progress
