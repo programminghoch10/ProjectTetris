@@ -1,7 +1,7 @@
 # ProjectTetris
 Tetris Project of WSS CT12 2019
 
-![Tetris logo](https://github.com/wssct12/ProjectTetris/blob/master/NEW_TETRIS_LOGO.png)
+![Tetris logo](logo/tetrislogotransparent.png)
 
 ## Goal of this project
 
