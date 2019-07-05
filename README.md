@@ -7,15 +7,15 @@ Tetris Project of WSS CT12 2019
 
 Before beginning with any work, our team sat together and thought about some key features that should be present in a Tetris game. And so, the list below was created:
 1. visuals
-  *   ake the game more visually pleasing, backgrounds colored bricks were considered.
-1. ighscores
-  1.  Highscores would be saved by the game and shown to the current player. New highscores would wear an editable signature from the player that beat the older highscores
+   *  To make the game more visually pleasing, backgrounds colored bricks were considered.
+1. Highscores
+   *  Highscores would be saved by the game and shown to the current player. New highscores would wear an editable signature from the player that beat the older highscores
 1. Bricks
-  1. The bricks would be randomly selected from a predetermined couple of shapes and colors. The player controls the bricks by rotating and moving them to progress in the level. To prematurely place a block, a faster fall speed would be present by activating it with a button.
+   * The bricks would be randomly selected from a predetermined couple of shapes and colors. The player controls the bricks by rotating and moving them to progress in the level. To prematurely place a block, a faster fall speed would be present by activating it with a button.
 1. Progress in-game
-  1. To keep the player invested in the game, increasing difficulty in form of faster falling blocks would be present.
+   * To keep the player invested in the game, increasing difficulty in form of faster falling blocks would be present.
 1. Credits
-  1. The names of everyone involved in the creation of the game would be shown when a button labeled "credits" would be selected
+   * The names of everyone involved in the creation of the game would be shown when a button labeled "credits" would be selected
 
 ## Management
 
