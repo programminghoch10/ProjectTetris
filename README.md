@@ -5,21 +5,21 @@ Tetris Project of WSS CT12 2019
 
 ## Goal of this project
 
-We planned to implement a lot of features into our game. Here are the ones we worked out:
-* visuals
-  * To make the game more visually pleasing, backgrounds colored bricks were considered.
-* Highscores
-  * Highscores would be saved by the game and shown to the current player. New highscores would wear an editable signature from the player that beat the older highscores
-* Bricks
-  * The bricks would be randomly selected from a predetermined couple of shapes and colors. The player controls the bricks by rotating and moving them to progress in the level. To prematurely place a block, a faster fall speed would be present by activating it with a button.
-* Progress in-game
-  * To keep the player invested in the game, increasing difficulty in form of faster falling blocks would be present.
-* Credits
-  * The names of everyone involved in the creation of the game would be shown when a button labeled "credits" would be selected
+Before beginning with any work, our team sat together and thought about some key features that should be present in a Tetris game. And so, the list below was created:
+1. visuals
+  *   ake the game more visually pleasing, backgrounds colored bricks were considered.
+1. ighscores
+  1.  Highscores would be saved by the game and shown to the current player. New highscores would wear an editable signature from the player that beat the older highscores
+1. Bricks
+  1. The bricks would be randomly selected from a predetermined couple of shapes and colors. The player controls the bricks by rotating and moving them to progress in the level. To prematurely place a block, a faster fall speed would be present by activating it with a button.
+1. Progress in-game
+  1. To keep the player invested in the game, increasing difficulty in form of faster falling blocks would be present.
+1. Credits
+  1. The names of everyone involved in the creation of the game would be shown when a button labeled "credits" would be selected
 
 ## Management
 
-* To complete the project in the predetermined timespan, every individual working on the project was assigned to one or more tasks which would in turn benefit the whole team.
+To complete the project in the predetermined timespan, every individual working on the project was assigned to one or more tasks which would in turn benefit the whole team.
 * **[ElyshaPhoenix](https://github.com/ElyshaPhoenix)** overviewed and organized the team, while he himself was working at the backend.
 * **[programminghoch10](https://github.com/programminghoch10)** coordianted the team and was the main source of technical knowledge, while also working at the backend
 * **[jjw2202](https://github.com/jjw2202)** was part of the ui team, designing and creating game screens as well as handling the communication between backend and frontend
@@ -67,7 +67,7 @@ We planned to implement a lot of features into our game. Here are the ones we wo
 
 ## Encountered problems
 
-we encountered a few problems on our path to completeing our game. This is how we dealt with them:
+Following errors and problems were encountered during development. The ui team worked on solutions to resolve those issues. The most memorable ones are listed below:
 * To coordinate every move of a stone, every individual case for every individual stone would have to be coded. This proves to be way too much.
   * **solution:** working object-oriented every stone position can be calculated. We only need to worry about further movements.
 * While trying to add a predetermined list of blocks to drop, the game over screen is bypassed.
