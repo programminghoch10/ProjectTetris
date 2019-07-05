@@ -138,7 +138,7 @@ public class backend {
 						}
 						try {
 						for (int i = 0; i < previewmatrix.length / 4; i++) {
-							Stone currentpreviewstone = new Stone(Stone.arrayStoneType[nextStoneTypes[i]], i * 4, Stone.arrayStoneTypeColor[nextStoneTypes[i]], false);
+							Stone currentpreviewstone = new Stone(Stone.arrayStoneType[nextStoneTypes[i]], (i * 4) + 1, Stone.arrayStoneTypeColor[nextStoneTypes[i]], false);
 							currentpreviewstone.insertintopreviewmatrix(currentpreviewstone.yPosition);
 						}
 						} catch (ArrayIndexOutOfBoundsException arrerr) {arrerr.printStackTrace();}
@@ -405,6 +405,11 @@ class Stone
 			this.relx4 = 0;
 			this.rely4 = 0;
 			break;
+		}
+		if (this.type != "I") {
+			for (int i = 0; i<((int)(Math.random()*3)); i++) {
+				this.rotate();
+			}
 		}
 	}
 	
