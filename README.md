@@ -72,6 +72,8 @@ we encountered a few problems on our path to completeing our game. This is how w
 * While trying to add a predetermined list of blocks to drop, the game over screen is bypassed.
   * **solution:** instead of saving the next block to generate, save the type of the next block.
 * both pause menu and game over screen should include a grayscale when active. The grayscale however didnt apply.
-  * **solution:** write a new if-query that checks if pause or gameover = true
+  * **solution:** write a new if-query that checks if pause or gameover = true.
+* The window adjusts itself without following any predetermined values, resulting in the window stretching out in all directions.
+  * **solution:** use the method getPreferredSize() from JPanel to overwrite the value and set a size.
   
 ## Conclusion
