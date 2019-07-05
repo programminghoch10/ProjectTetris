@@ -19,13 +19,13 @@ We planned to implement a lot of features into our game. Here are the ones we wo
 ## Management
 
 * To complete the project in the predetermined timespan, every individual working on the project was assigned to one or more tasks which would in turn benefit the whole team.
-* **ElyshaPhoenix** overviewed and organized the team, while he himself was working at the backend.
-* **programminghoch10** coordianted the team and was the main source of technical knowledge, while also working at the backend
-* **jjw2202** was part of the ui team, designing and creating game screens as well as handling the communication between backend and frontend
-* **Hartu666** was part of the ui team, designing the game over screen and creating various menus
-* **Juka27** was part of the ui team, creating the icon of the game and redesigning multiple menus
-* **Gr0g98** was part of the documentation team. He was also responsible for the creation of use-case diagrams.
-* **Ivan42069** was part of the documentation team. He was also responsible for the creation of class diagrams.
+* **[ElyshaPhoenix](https://github.com/ElyshaPhoenix)** overviewed and organized the team, while he himself was working at the backend.
+* **[programminghoch10](https://github.com/programminghoch10)** coordianted the team and was the main source of technical knowledge, while also working at the backend
+* **[jjw2202](https://github.com/jjw2202)** was part of the ui team, designing and creating game screens as well as handling the communication between backend and frontend
+* **[Hartu666](https://github.com/Hartu666)** was part of the ui team, designing the game over screen and creating various menus
+* **[Juka27](https://github.com/Juka27)** was part of the ui team, creating the icon of the game and redesigning multiple menus
+* **[Gr0g98](https://github.com/Gr0g98)** was part of the documentation team. He was also responsible for the creation of use-case diagrams.
+* **[Ivan42069](https://github.com/Ivan42069)** was part of the documentation team. He was also responsible for the creation of class diagrams.
 
 
 ## Development progress
