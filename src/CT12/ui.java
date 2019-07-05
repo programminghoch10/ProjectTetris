@@ -275,11 +275,27 @@ public class ui {
 		
 		JPanel panelabstand = new JPanel();
 		panelabstand.setBackground(Color.BLACK);
-		panelabstand.setPreferredSize(new Dimension(40, 0));
+		panelabstand.setPreferredSize(new Dimension(10, 0));
 		panelstone.add(panelabstand, BorderLayout.WEST);
 		
-		JPanel panelpreview = new JPanel();
-		panelstone.add(panelpreview, BorderLayout.CENTER);
+		
+		JPanel panelpreview1 = new JPanel();
+		JPanel panelpreview = new JPanel() {
+            private static final long serialVersionUID = 112L;
+            @Override
+            public Dimension getPreferredSize() {
+                Dimension d = this.getParent().getSize();
+                int sizex = 0;
+                int sizey = 0;
+                double scale = 0.7;
+                sizex = (int) (d.height*(float)((float)previewarray[0].length/(float)previewarray.length)*scale);
+                sizey = (int) (d.height * scale);
+                return new Dimension(sizex, sizey);
+            }
+        };
+        panelpreview1.add(panelpreview);
+		panelstone.add(panelpreview1, BorderLayout.CENTER);
+		panelpreview1.setBackground(Color.BLACK);
 		
 		panelpreview.setBackground(Color.BLACK);
 		panelpreview.setLayout(new GridLayout(previewarray.length,previewarray[0].length));					//Elements in the container "frame" are displayed in a GridLayout
