@@ -3,6 +3,8 @@ Tetris Project of WSS CT12 2019
 
 ![Tetris logo](logo/tetrislogotransparent.png)
 
+[Download JAR](tetris.jar)
+
 ## Goal of this project
 
 Before beginning with any work, our team sat together and thought about some key features that should be present in a Tetris game. And so, the list below was created:

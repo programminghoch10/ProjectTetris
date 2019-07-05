@@ -31,7 +31,14 @@ public class ui {
 		//System.out.print(backend.gamematrix[1][1].split("-")[0]);
 		
 		JFrame frame = new JFrame("Tetris Game WSSCT20"); 			//create new Frame
-		ImageIcon img = new ImageIcon("logo/icon.png");
+		//ImageIcon img = new ImageIcon("/CT12/icon.png");
+		ImageIcon img = null;
+		try {
+			img = new ImageIcon(ImageIO.read(backend.class.getResourceAsStream("/CT12/icon.png")));
+		} catch (IOException e3) {
+			// TODO Auto-generated catch block
+			e3.printStackTrace();
+		}
 		frame.setIconImage(img.getImage());
 		frame.setSize(1600, 900);									//set start size 		
 		frame.setVisible(true);										//Window becomes visible
@@ -118,7 +125,8 @@ public class ui {
 	    }
 		BufferedImage bufferedlogo = null;
 		try {
-			bufferedlogo = ImageIO.read(new File("logo/tetrislogotransparent.png"));
+			//bufferedlogo = ImageIO.read(new File("logo/tetrislogotransparent.png"));
+			bufferedlogo = ImageIO.read(backend.class.getResourceAsStream("/CT12/tetrislogotransparent.png"));
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
