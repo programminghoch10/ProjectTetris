@@ -136,24 +136,12 @@ public class backend {
 								previewmatrix[y][x] = "";
 							}
 						}
-						try {
-						for (int i = 0; i < previewmatrix.length / 4; i++) {
-							Stone currentpreviewstone = new Stone(Stone.arrayStoneType[nextStoneTypes[i]], (i * 4) + 1, Stone.arrayStoneTypeColor[nextStoneTypes[i]], false);
-							currentpreviewstone.insertintopreviewmatrix(currentpreviewstone.yPosition);
-						}
-						} catch (ArrayIndexOutOfBoundsException arrerr) {arrerr.printStackTrace();}
-						
-						for (int y = 0; y < previewmatrix.length; y++) {
-							for (int x = 0; x < previewmatrix[0].length; x++) {
-								if (previewmatrix[y][x] == "") {
-									System.out.print("-");
-								} else {
-									System.out.print("#");
-								}
+							for (int i = 0; i < previewmatrix.length / 4; i++) {
+								Stone currentpreviewstone = new Stone(Stone.arrayStoneType[nextStoneTypes[i]], (i * 4) + 1, Stone.arrayStoneTypeColor[nextStoneTypes[i]], false);
+								try {
+									currentpreviewstone.insertintopreviewmatrix(currentpreviewstone.yPosition);
+								} catch (ArrayIndexOutOfBoundsException arrerr) {}
 							}
-							System.out.println("");
-						}
-						System.out.println("=====");
 					}
 					
 					if (backend.currentstone.endPosition) {
