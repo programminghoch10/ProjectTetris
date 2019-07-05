@@ -6,30 +6,31 @@ Tetris Project of WSS CT12 2019
 
 We planned to implement a lot of features into our game. Here are the ones we worked out:
 * visuals
-*	To make the game more visually pleasing, backgrounds colored bricks were considered.
+  * To make the game more visually pleasing, backgrounds colored bricks were considered.
 * Highscores
-*	Highscores would be saved by the game and shown to the current player. New highscores would wear an editable signature from the player that beat the older highscores
+  * Highscores would be saved by the game and shown to the current player. New highscores would wear an editable signature from the player that beat the older highscores
 * Bricks
-*	The bricks would be randomly selected from a predetermined couple of shapes and colors. The player controls the bricks by rotating and moving them to progress in the level. To prematurely place a block, a faster fall speed would be present by activating it with a button.
+  * The bricks would be randomly selected from a predetermined couple of shapes and colors. The player controls the bricks by rotating and moving them to progress in the level. To prematurely place a block, a faster fall speed would be present by activating it with a button.
 * Progress in-game
-*	To keep the player invested in the game, increasing difficulty in form of faster falling blocks would be present.
+  * To keep the player invested in the game, increasing difficulty in form of faster falling blocks would be present.
 * Credits
-	The names of everyone involved in the creation of the game would be shown when a button labeled "credits" would be selected
+  * The names of everyone involved in the creation of the game would be shown when a button labeled "credits" would be selected
 
 ## Management
 
-* ElyshaPhoenix – Responsible for organisation within the team and for backend
-* programminghoch10  - Responsible for technic matters, coordination within the team and for backend
-* jjw2202 –Responsible for communication between backend and frontend and for creating and designing of game screen; member of UI team
-* Hartu666 –Responsible for creating of menu and designing game over cover in the game; member of UI team
-* Juka27 –Responsible for creating the icon of the game and redesing of menu in the game; member of UI team
-* Gr0g98 – Responsible for use-case diagrams and dokumentation of project 
-* Ivan42069 – Responsible for class diagram and dokumentation of project
+* To complete the project in the predetermined timespan, every individual working on the project was assigned to one or more tasks which would in turn benefit the whole team.
+* **ElyshaPhoenix** overviewed and organized the team, while he himself was working at the backend.
+* **programminghoch10** coordianted the team and was the main source of technical knowledge, while also working at the backend
+* **jjw2202** was part of the ui team, designing and creating game screens as well as handling the communication between backend and frontend
+* **Hartu666** was part of the ui team, designing the game over screen and creating various menus
+* **Juka27** was part of the ui team, creating the icon of the game and redesigning multiple menus
+* **Gr0g98** was part of the documentation team. He was also responsible for the creation of use-case diagrams.
+* **Ivan42069** was part of the documentation team. He was also responsible for the creation of class diagrams.
 
 
 ## Development progress
 
-* keeping a code polished is very important. It helps making it clear for every party involved. Because of that reason the code has been cleaned, restructured as well as getting updates commented every few steps of development.
+* To keep the development clear for every party involved, the code was polished after every few of its evolving steps. It was achieved by being cleaned, restructured as well as getting new updates commented.
 * added temporary game matrix
 * The first added classes were: "stone" "stone constructor" and "array stone type"
 * Generate an empty frame
