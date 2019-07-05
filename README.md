@@ -27,42 +27,44 @@ We planned to implement a lot of features into our game. Here are the ones we wo
 * Ivan42069 – Responsible for class diagram and dokumentation of project
 
 
-## Development
+## Development progress
+
+* keeping a code polished is very important. It helps making it clear for every party involved. Because of that reason the code has been cleaned, restructured as well as getting updates commented every few steps of development.
 * added temporary game matrix
-* start with adding class "stone "stone constructor" "array stone type"
-* generate empty frame
-* add relative coordinates for stones and set them up
-* added static matrix and rotate functionality
-* random initial rotation (starting pos.)
-* added horizontal movement and drop function
-* added random background and block colors
-* added paralled processing
-* added gameplay test area (console)
-* ------------comments              <---- important
-* last line detector
-* added fastdrop
-* random colors
-* 2 dimensional
-* regulating game refreshrate (increase)
-* pause function
-* borders
-* ----------------code clean       <---- important
-* logo
-* menu
-* ---------------structure progam   <--- important
-* fix window and border size
-* reduce flickering
-* rework pause menu
-* add game over
-* add stone projection at the bottom (ghost)
-* redesign menu
-* redesign game over
-* add credits
-* add greyscale when paused
-* design and design user interface
+* The first added classes were: "stone" "stone constructor" and "array stone type"
+* Generate an empty frame
+* Added relative coordinates for stones and set them up
+* Added static matrix and rotation functionality
+* Implemented a random initial rotation at the starting position when a new block is generated
+* Added horizontal movement and the rate at which blocks drop down
+* Added randomized background colors
+* Added paralled processing
+* Added a gameplay test area in the console
+* To detect when blocks hit the last line, a last line detector was implemented
+* Added the feature to fastdrop blocks
+* Added randomized block colors
+* Made the jpanelarray static and 2 dimensional to fit the gamematrix
+* Increased the game refreshrate for a smoother experience
+* Every full line of blocks nowgets removed
+* Added controls to move blocks and pause the game
+* The functionality of the pause menu is expanded
+* Added borders to the game window
+* Created a logo for the game
+* Main menu is now put together
+* Fixing up window and border size of the game
+* Reduced flickering
+* Rework of the pause menu
+* Added a game over screen
+* Added a stone placement prediction at the bottom of the window (ghost)
+* Main menu gets redesigned
+* Game over screen gets redesigned
+* Added credits
+* Added the feature of greyscaling the screen when paused
+* The look of the user interface gets added
 
 
 ## Encountered problems
+
 we encountered a few problems on our path to completeing our game. This is how we dealt with them:
 * To coordinate every move of a stone, every individual case for every individual stone would have to be coded. This proves to be way too much.
   * **solution:** working object-oriented every stone position can be calculated. We only need to worry about further movements.
@@ -70,4 +72,5 @@ we encountered a few problems on our path to completeing our game. This is how w
   * **solution:** instead of saving the next block to generate, save the type of the next block.
 * both pause menu and game over screen should include a grayscale when active. The grayscale however didnt apply.
   * **solution:** write a new if-query that checks if pause or gameover = true
+  
 ## Conclusion
