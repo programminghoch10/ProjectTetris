@@ -297,6 +297,7 @@ public class ui {
 		panelsave.setPreferredSize(new Dimension(200, 0));
 		
 		JLabel labelsave = new JLabel("Save Stone");
+		labelsave.setForeground(Color.BLACK);
 		panelsave.add(labelsave);
 		
 		//place panels
@@ -518,48 +519,58 @@ public class ui {
 		    for (int y = 0; y < previewarray.length; y++) {
 		    	for (int x = 0; x < previewarray[0].length; x++) {
 		    		try {
-			    		switch (backend.previewmatrix[y][x].split("-")[0]) {
-						case "bk":
-							if (previewarray[y][x].getBackground() != Color.BLACK) previewarray[y][x].setBackground(Color.BLACK);
-							previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK));
-							break;
-						case "wh":
-							if (previewarray[y][x].getBackground() != Color.WHITE) previewarray[y][x].setBackground(Color.WHITE);
-							previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE));
-							break;
-						case "bl":
-							if (previewarray[y][x].getBackground() != Color.BLUE) previewarray[y][x].setBackground(Color.BLUE);
-							previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLUE));
-							break;
-						case "gr":
-							if (previewarray[y][x].getBackground() != Color.GREEN) previewarray[y][x].setBackground(Color.GREEN);
-							previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.GREEN));
-							break;
-						case "ye":
-							if (previewarray[y][x].getBackground() != Color.YELLOW) previewarray[y][x].setBackground(Color.YELLOW);
-							previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.YELLOW));
-							break;
-						case "re":
-							if (previewarray[y][x].getBackground() != Color.RED) previewarray[y][x].setBackground(Color.RED);
-							previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.RED));
-							break;
-						case "ma":
-							if (previewarray[y][x].getBackground() != Color.MAGENTA) previewarray[y][x].setBackground(Color.MAGENTA);
-							previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.MAGENTA));
-							break;
-						case "or":
-							if (previewarray[y][x].getBackground() != Color.ORANGE) previewarray[y][x].setBackground(Color.ORANGE);
-							previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.ORANGE));
-							break;
-						case "cy":
-							if (previewarray[y][x].getBackground() != Color.CYAN) previewarray[y][x].setBackground(Color.CYAN);
-							previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.CYAN));
-							break;
-						case "":
-							if (previewarray[y][x].getBackground() != Color.BLACK) previewarray[y][x].setBackground(Color.BLACK);
-							previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));								//displays a grid -> maingrid
-							break;
-						}
+		    			if (backend.paused) {
+		    				if (backend.previewmatrix[y][x].split("-")[0] == "") {
+		    					if (previewarray[y][x].getBackground() != Color.BLACK) previewarray[y][x].setBackground(Color.BLACK);
+		    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+		    				} else {
+		    					if (previewarray[y][x].getBackground() != Color.DARK_GRAY) previewarray[y][x].setBackground(Color.DARK_GRAY);
+		    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+		    				}
+		    			} else {
+		    				switch (backend.previewmatrix[y][x].split("-")[0]) {
+		    				case "bk":
+		    					if (previewarray[y][x].getBackground() != Color.BLACK) previewarray[y][x].setBackground(Color.BLACK);
+		    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+		    					break;
+		    				case "wh":
+		    					if (previewarray[y][x].getBackground() != Color.WHITE) previewarray[y][x].setBackground(Color.WHITE);
+		    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE));
+		    					break;
+		    				case "bl":
+		    					if (previewarray[y][x].getBackground() != Color.BLUE) previewarray[y][x].setBackground(Color.BLUE);
+		    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLUE));
+		    					break;
+		    				case "gr":
+		    					if (previewarray[y][x].getBackground() != Color.GREEN) previewarray[y][x].setBackground(Color.GREEN);
+		    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.GREEN));
+		    					break;
+		    				case "ye":
+		    					if (previewarray[y][x].getBackground() != Color.YELLOW) previewarray[y][x].setBackground(Color.YELLOW);
+		    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.YELLOW));
+		    					break;
+		    				case "re":
+		    					if (previewarray[y][x].getBackground() != Color.RED) previewarray[y][x].setBackground(Color.RED);
+		    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.RED));
+		    					break;
+		    				case "ma":
+		    					if (previewarray[y][x].getBackground() != Color.MAGENTA) previewarray[y][x].setBackground(Color.MAGENTA);
+		    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.MAGENTA));
+		    					break;
+		    				case "or":
+		    					if (previewarray[y][x].getBackground() != Color.ORANGE) previewarray[y][x].setBackground(Color.ORANGE);
+		    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.ORANGE));
+		    					break;
+		    				case "cy":
+		    					if (previewarray[y][x].getBackground() != Color.CYAN) previewarray[y][x].setBackground(Color.CYAN);
+		    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.CYAN));
+		    					break;
+		    				case "":
+		    					if (previewarray[y][x].getBackground() != Color.BLACK) previewarray[y][x].setBackground(Color.BLACK);
+		    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));								//displays a grid -> maingrid
+		    					break;
+		    				}
+		    			}
 		    		} catch (NullPointerException nullerr) {}
 		    	}
 		    } 
@@ -567,12 +578,14 @@ public class ui {
 		    if (backend.gameover) {
 	 			labelscore.setText("GAME OVER!   Score: " + backend.score);
 	 			labelscore.setForeground(Color.RED);
+	 			labelstone.setForeground(Color.DARK_GRAY);
 	 		}
 		    else {
 	 			labelscore.setText("Score: " + backend.score);
 	 			
 	 			if(backend.paused == true) {
 			    	labelscore.setForeground(Color.WHITE);
+			    	labelstone.setForeground(Color.WHITE);
 			    }
 			    else {
 			    	Color labelcolor = Color.GREEN;
@@ -611,6 +624,7 @@ public class ui {
 	    				}
 			    	} catch (NullPointerException nullerr) {}
 			    	labelscore.setForeground(labelcolor);
+			    	labelstone.setForeground(labelcolor);
 			    }
 	 		}   
  		}
