@@ -30,7 +30,9 @@ public class ui {
 	public static void UIstart(String[] args) {
 		//System.out.print(backend.gamematrix[1][1].split("-")[0]);
 		
-		JFrame frame = new JFrame("Tetris Game CT12"); 				//create new Frame
+		JFrame frame = new JFrame("Tetris Game WSSCT20"); 			//create new Frame
+		ImageIcon img = new ImageIcon("frameicon.png");
+		frame.setIconImage(img.getImage());
 		frame.setSize(1600, 900);									//set start size 		
 		frame.setVisible(true);										//Window becomes visible
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);	//set window to do nothing on close, we got our own way to close
