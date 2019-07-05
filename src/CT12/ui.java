@@ -18,6 +18,7 @@ public class ui {
 	//=========================================================
 	
 	static JPanel[][] jpanelarray = new JPanel[backend.staticmatrix.length][backend.staticmatrix[0].length];
+	static JPanel[][] previewarray = new JPanel[backend.previewmatrix.length][backend.previewmatrix[0].length];
 	
 	static JPanel[] menuarray = new JPanel[20];
 	
@@ -257,7 +258,7 @@ public class ui {
 		
 		JLabel labelscore = new JLabel("Score: " + backend.score);
 		labelscore.setFont(labelscore.getFont().deriveFont(18f));
-		labelscore.setForeground(Color.GREEN);
+		labelscore.setForeground(Color.WHITE);
 		panelscore.add(labelscore);
 		
 		//Next Stone
@@ -265,8 +266,30 @@ public class ui {
 		panelstone.setBackground(Color.BLACK);
 		panelstone.setPreferredSize(new Dimension(200, 0));
 		
-		JLabel labelstone = new JLabel("Next Stone");
-		panelstone.add(labelstone);
+		panelstone.setLayout(new BorderLayout());
+		
+		JLabel labelstone = new JLabel("        Next Stone:");
+		labelstone.setFont(labelscore.getFont().deriveFont(18f));
+		labelstone.setForeground(Color.WHITE);
+		panelstone.add(labelstone, BorderLayout.NORTH);
+		
+		JPanel panelabstand = new JPanel();
+		panelabstand.setBackground(Color.BLACK);
+		panelabstand.setPreferredSize(new Dimension(40, 0));
+		panelstone.add(panelabstand, BorderLayout.WEST);
+		
+		JPanel panelpreview = new JPanel();
+		panelstone.add(panelpreview, BorderLayout.CENTER);
+		
+		panelpreview.setBackground(Color.BLACK);
+		panelpreview.setLayout(new GridLayout(previewarray.length,previewarray[0].length));					//Elements in the container "frame" are displayed in a GridLayout
+	    
+		for (int y = 0; y < previewarray.length; y++) {
+	    	for (int x = 0; x < previewarray[0].length; x++) {
+	    		previewarray[y][x] = new JPanel();
+		    	panelpreview.add(previewarray[y][x]);
+	    	}
+	    }
 		
 		//Save Stone
 		JPanel panelsave = new JPanel();
@@ -491,6 +514,53 @@ public class ui {
 		    		}
 		    	}    	
 		    }
+		    
+		    for (int y = 0; y < previewarray.length; y++) {
+		    	for (int x = 0; x < previewarray[0].length; x++) {
+		    		switch (backend.previewmatrix[y][x].split("-")[0]) {
+					case "bk":
+						if (previewarray[y][x].getBackground() != Color.BLACK) previewarray[y][x].setBackground(Color.BLACK);
+						previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+						break;
+					case "wh":
+						if (previewarray[y][x].getBackground() != Color.WHITE) previewarray[y][x].setBackground(Color.WHITE);
+						previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE));
+						break;
+					case "bl":
+						if (previewarray[y][x].getBackground() != Color.BLUE) previewarray[y][x].setBackground(Color.BLUE);
+						previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLUE));
+						break;
+					case "gr":
+						if (previewarray[y][x].getBackground() != Color.GREEN) previewarray[y][x].setBackground(Color.GREEN);
+						previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.GREEN));
+						break;
+					case "ye":
+						if (previewarray[y][x].getBackground() != Color.YELLOW) previewarray[y][x].setBackground(Color.YELLOW);
+						previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.YELLOW));
+						break;
+					case "re":
+						if (previewarray[y][x].getBackground() != Color.RED) previewarray[y][x].setBackground(Color.RED);
+						previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.RED));
+						break;
+					case "ma":
+						if (previewarray[y][x].getBackground() != Color.MAGENTA) previewarray[y][x].setBackground(Color.MAGENTA);
+						previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.MAGENTA));
+						break;
+					case "or":
+						if (previewarray[y][x].getBackground() != Color.ORANGE) previewarray[y][x].setBackground(Color.ORANGE);
+						previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.ORANGE));
+						break;
+					case "cy":
+						if (previewarray[y][x].getBackground() != Color.CYAN) previewarray[y][x].setBackground(Color.CYAN);
+						previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.CYAN));
+						break;
+					case "":
+						if (previewarray[y][x].getBackground() != Color.BLACK) previewarray[y][x].setBackground(Color.BLACK);
+						previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));								//displays a grid -> maingrid
+						break;
+					}
+		    	}
+		    } 
 		    
 		    if (backend.gameover) {
 	 			labelscore.setText("GAME OVER!   Score: " + backend.score);
