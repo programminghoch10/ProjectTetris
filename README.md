@@ -1,9 +1,9 @@
 # ProjectTetris
 Tetris Project of WSS CT12 2019
 
-![Tetris logo](logo/tetrislogotransparent.png)
+![Tetris logo](logo/CT12/tetrislogotransparent.png)
 
-[Download JAR](tetris.jar)
+[Download JAR](Tetris.jar)
 
 ## Goal of this project
 
