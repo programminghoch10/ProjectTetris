@@ -98,6 +98,6 @@ Tetris Project of WSS CT12 2019
 ## Future outlook
 
 **The game has been brought to finish and is now in a playable state. Our team however still had many ideas to continue the project:**
-  Adding different music trcks for the menus and the playing environment
-* Online high scores to compete between players
-* A list of credits with full names which can be brought up through a main menu button and closed whenever the player wishes
+ * Adding different music trcks for the menus and the playing environment
+ * Online high scores to compete between players
+ * A list of credits with full names which can be brought up through a main menu button and closed whenever the player wishes to do so
