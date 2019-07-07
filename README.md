@@ -45,24 +45,24 @@ Download the JAR [here](Tetris.jar)
 ![Class diagrams](https://github.com/wssct12/ProjectTetris/blob/master/klassendiagramme1.png)
 
 **With these preperations in place, the ui team could start to work on the code. And to keep the development clear for every party involved, the code was polished after every few of its evolving steps. It was achieved by being cleaned, restructured as well as getting new updates commented.**
-* added temporary game matrix
-* The first added classes were: "stone" "stone constructor" and "array stone type"
-* Generate an empty frame
+* added the main game matrix
+* The first added class was "stone" with its constructor and an array of stone types
+* Generate an empty windows
 * Added relative coordinates for stones and set them up
 * Added static matrix and rotation functionality
 * Implemented a random initial rotation at the starting position when a new block is generated
 * Added horizontal movement and the rate at which blocks drop down
-* Added randomized background colors
-* Added paralled processing
-* Added a gameplay test area in the console
+* Added randomized background colors -------------------------------------------------------------------------
+* Added parallel processing
+* Added a gameplay test output in the console
 * To detect when blocks hit the last line, a last line detector was implemented
 * Added the feature to fastdrop blocks
-* Added randomized block colors
+* Added block colors
 * Made the jpanelarray static and 2 dimensional to fit the gamematrix
 * Increased the game refreshrate for a smoother experience
-* Every full line of blocks nowgets removed
+* Every full line of blocks now gets removed
 * Added controls to move blocks and pause the game
-* The functionality of the pause menu is expanded
+* The functionality of the pause menu was expanded
 * Added borders to the game window
 * Created a logo for the game
 * Main menu is now put together
@@ -75,8 +75,8 @@ Download the JAR [here](Tetris.jar)
 * Game over screen gets redesigned
 * Added credits
 * Added the feature of greyscaling the screen when paused
-* A string of following blocks is now shown at the right side of the screen
-* The look of the user interface gets added
+* A list of upcoming blocks is now shown at the right side of the screen
+* The look of the user interface gets improved
 
 
 ## Encountered problems and cut features
