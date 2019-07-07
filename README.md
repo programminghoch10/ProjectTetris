@@ -91,13 +91,16 @@ Tetris Project of WSS CT12 2019
   * **solution:** use the method getPreferredSize() from JPanel to overwrite the value and set a size.
   
 **Some expectations prove too difficult for our team to realise in the available time and had to be cut during development. The most important ones are listed below:**
- * The pause screen menu
- * The local saved high scores
- * The background music
+ * The pause screen menu has no buttons
+ * The local saved high scores are not available
+ * The background music was not implemented
+ * The button leading to the credits was scrapped and replaced with a textbox on the main menu displaying the developer teams name
  
 ## Future outlook
 
-**The game has been brought to finish and is now in a playable state. Our team however still had many ideas to continue the project:**
- * Adding different music trcks for the menus and the playing environment
+**The game has been brought to finish and is now in a playable state. Our team however still had some ideas on how to advance the project even further:**
+ * Adding different music tracks for the menus and the playing environment
  * Online high scores to compete between players
+ * The ability to rotate blocks in both directions
+ * Difficulty settings or a level selection system
  * A list of credits with full names which can be brought up through a main menu button and closed whenever the player wishes to do so
