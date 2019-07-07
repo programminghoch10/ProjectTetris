@@ -9,13 +9,13 @@ Download the JAR [here](Tetris.jar)
 
 **Before beginning with any work, our team sat together and thought about some key features that should be present in a Tetris game. And so, the list below was created:**
 1. visuals
-   *  To make the game more visually pleasing, backgrounds colored bricks were considered.
+   *  To make the game more visually pleasing, backgrounds colored stones were considered.
 1. Highscores
    *  Highscores would be saved by the game and shown to the current player. New highscores would wear an editable signature from the player that beat the older highscores
-1. Bricks
-   * The bricks would be randomly selected from a predetermined couple of shapes and colors. The player controls the bricks by rotating and moving them to progress in the level. To prematurely place a block, a faster fall speed would be present by activating it with a button.
+1. Stones
+   * The stones would be randomly selected from a predetermined couple of shapes and colors. The player controls the stones by rotating and moving them to progress in the level. To prematurely place a stone, a faster fall speed would be present by activating it with a button.
 1. Progress in-game
-   * To keep the player invested in the game, increasing difficulty in form of faster falling blocks would be present.
+   * To keep the player invested in the game, increasing difficulty in form of faster falling stones would be present.
 1. Credits
    * The names of everyone involved in the creation of the game would be shown when a button labeled "credits" would be selected
 
@@ -34,15 +34,26 @@ Download the JAR [here](Tetris.jar)
 ## Development progress
 
 **To allow the ui team to code accordingly to the expectations, several use-case diagrams had to be created to visualise the individual routines present in the program. This task was completed by [Gr0g98](https://github.com/Gr0g98). He chose to visualize following steps:**
-1.  [Starting the game](https://github.com/wssct12/ProjectTetris/blob/master/Use-Case%20(finished)/1.%20das%20Starten.pdf)
-2.  [Opening the main menu](https://github.com/wssct12/ProjectTetris/blob/master/Use-Case%20(finished)/2.%20Men%C3%BC%20anzeigen.pdf)
-3.  [Generating the main menu](https://github.com/wssct12/ProjectTetris/blob/master/Use-Case%20(finished)/3.%20Men%C3%BCstruktur.pdf)
-4.  [Playing the game](https://github.com/wssct12/ProjectTetris/blob/master/Use-Case%20(finished)/4.%20Das%20Spielen.pdf)
-5.  [Opening the pause menu](https://github.com/wssct12/ProjectTetris/blob/master/Use-Case%20(finished)/5.%20Das%20Aufrufen%20des%20Pausenmen%C3%BCs%20-%20Spiel%20unterbrechen.pdf)
-6.  [Exiting the game](https://github.com/wssct12/ProjectTetris/blob/master/Use-Case%20(finished)/6.%20Spiel%20beenden.pdf)
+1. [Starting the game](https://github.com/wssct12/ProjectTetris/blob/master/Use-Case%20(finished)/1.%20das%20Starten.pdf)
+2. [Opening the main menu](https://github.com/wssct12/ProjectTetris/blob/master/Use-Case%20(finished)/2.%20Men%C3%BC%20anzeigen.pdf)
+3. [Generating the main menu](https://github.com/wssct12/ProjectTetris/blob/master/Use-Case%20(finished)/3.%20Men%C3%BCstruktur.pdf)
+4. [Playing the game](https://github.com/wssct12/ProjectTetris/blob/master/Use-Case%20(finished)/4.%20Das%20Spielen.pdf)
+5. [Opening the pause menu](https://github.com/wssct12/ProjectTetris/blob/master/Use-Case%20(finished)/5.%20Das%20Aufrufen%20des%20Pausenmen%C3%BCs%20-%20Spiel%20unterbrechen.pdf)
+6. [Exiting the game](https://github.com/wssct12/ProjectTetris/blob/master/Use-Case%20(finished)/6.%20Spiel%20beenden.pdf)
 
 **Additionally, the main classes had to be defined. To achieve this, [Ivan42069](https://github.com/Ivan42069) created specific class diagrams which are shown below:**
 ![Class diagrams](https://github.com/wssct12/ProjectTetris/blob/master/klassendiagramme1.png)
+
+**At the end, keys had to be selected to be bound to specific functions. Here is how the team settled:**
+* Menu:
+  * Use TAB to navigate and SPACE to select, or use the mouse for both
+* Gameplay:
+  * P - pause the game
+  * ESC - exit the game
+  * W / Arrow up - rotate the stone
+  * A | D / Arrow left | right - move the stone
+  * S / Arrow down - increase fall speed of the stone
+  * SPACE - drop the stone
 
 **With these preperations in place, the ui team could start to work on the code. And to keep the development clear for every party involved, the code was polished after every few of its evolving steps. It was achieved by being cleaned, restructured as well as getting new updates commented.**
 * added the main game matrix
@@ -50,22 +61,22 @@ Download the JAR [here](Tetris.jar)
 * Generate an empty windows
 * Added relative coordinates for stones and set them up
 * Added static matrix and rotation functionality
-* Implemented a random initial rotation at the starting position when a new block is generated
-* Added horizontal movement and the rate at which blocks drop down
+* Implemented a random initial rotation at the starting position when a new stone is generated
+* Added horizontal movement and the rate at which stones drop down
 * Added parallel processing
 * Added a gameplay test output in the console
-* To detect when blocks hit the last line, a last line detector was implemented
-* Added the feature to fastdrop blocks
-* Added block colors
+* To detect when stones hit the last line, a last line detector was implemented
+* Added the feature to fastdrop stones
+* Added stone colors
 * Made the jpanelarray static and 2 dimensional to fit the gamematrix
 * Increased the game refreshrate for a smoother experience
-* Every full line of blocks now gets removed
-* Added controls to move blocks and pause the game
+* Every full line of stones now gets removed
+* Added controls to move stones and pause the game
 * The functionality of the pause menu was expanded
 * Added borders to the game window
 * Created a logo for the game
 * Main menu is now put together
-* Fixing up window and border size of the game
+* Fixed up window and border size of the game
 * Reduced flickering
 * Rework of the pause menu
 * Added a game over screen
@@ -74,7 +85,7 @@ Download the JAR [here](Tetris.jar)
 * Game over screen gets redesigned
 * Added credits
 * Added the feature of greyscaling the screen when paused
-* A list of upcoming blocks is now shown at the right side of the screen
+* A list of upcoming stones is now shown at the right side of the screen
 * The look of the user interface gets improved
 
 
@@ -82,9 +93,9 @@ Download the JAR [here](Tetris.jar)
 
 **Following errors and problems were encountered during development. The ui team worked on solutions to resolve those issues. The most memorable ones are listed below:**
 * To coordinate every move of a stone, every individual case for every individual stone would have to be coded. This proves to be way too much.
-  * **solution:** working object-oriented every stone position can be calculated. We only need to worry about further movements.
-* While trying to add a predetermined list of blocks to drop, the game over screen is bypassed.
-  * **solution:** instead of saving the next block to generate, save the type of the next block.
+  * **solution:** working object-oriented every stone position can be calculated. Work has to be focused only on further movements.
+* While trying to add a predetermined list of stones to drop, the game over screen is bypassed.
+  * **solution:** instead of saving the next stone to generate, save the type of the next stone.
 * Both pause menu and game over screen should include a grayscale when active. The grayscale however didnt apply.
   * **solution:** write a new if-query that checks if pause or gameover = true.
 * The window adjusts itself without following any predetermined values, resulting in the window stretching out in all directions.
@@ -102,6 +113,6 @@ Download the JAR [here](Tetris.jar)
  * Adding different music tracks for the menus and the playing environment
  * Online high scores to compete between players
  * Showing a timer to display the game sessions time
- * The ability to rotate blocks in both directions
+ * The ability to rotate stones in both directions
  * Difficulty settings or a level selection system
  * A list of credits with full names which can be brought up through a main menu button and closed whenever the player wishes to do so
