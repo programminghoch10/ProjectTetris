@@ -52,7 +52,6 @@ Download the JAR [here](Tetris.jar)
 * Added static matrix and rotation functionality
 * Implemented a random initial rotation at the starting position when a new block is generated
 * Added horizontal movement and the rate at which blocks drop down
-* Added randomized background colors -------------------------------------------------------------------------
 * Added parallel processing
 * Added a gameplay test output in the console
 * To detect when blocks hit the last line, a last line detector was implemented
