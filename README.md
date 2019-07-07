@@ -75,6 +75,7 @@ Download the JAR [here](Tetris.jar)
 * Game over screen gets redesigned
 * Added credits
 * Added the feature of greyscaling the screen when paused
+* A string of following blocks is now shown at the right side of the screen
 * The look of the user interface gets added
 
 
@@ -101,6 +102,7 @@ Download the JAR [here](Tetris.jar)
 **The game has been brought to finish and is now in a playable state. Our team however still had some ideas on how to advance the project even further:**
  * Adding different music tracks for the menus and the playing environment
  * Online high scores to compete between players
+ * Showing a timer to display the game sessions time
  * The ability to rotate blocks in both directions
  * Difficulty settings or a level selection system
  * A list of credits with full names which can be brought up through a main menu button and closed whenever the player wishes to do so
