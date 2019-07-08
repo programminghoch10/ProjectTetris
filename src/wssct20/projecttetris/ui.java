@@ -20,6 +20,7 @@ public class ui {
 	static JPanel[][] previewarray = new JPanel[backend.previewmatrix.length][backend.previewmatrix[0].length];
 	
 	static JPanel[] menuarray = new JPanel[20];
+	static JPanel[] optionsarray = new JPanel[20];
 	
 	//=========================================================
 	
@@ -314,19 +315,105 @@ public class ui {
 	    	}
 	    }
 		
-		//Save Stone
-		JPanel panelsave = new JPanel();
-		panelsave.setBackground(Color.BLACK);
-		panelsave.setPreferredSize(new Dimension(200, 0));
+		//options
+		JPanel paneloptions = new JPanel();
+		paneloptions.setBackground(Color.BLACK);
+		paneloptions.setPreferredSize(new Dimension(200, 0));
 		
-		JLabel labelsave = new JLabel("Save Stone");
-		labelsave.setForeground(Color.BLACK);
-		panelsave.add(labelsave);
+		JLabel labeloptions = new JLabel("Options");
+		labeloptions.setFont(labeloptions.getFont().deriveFont(18f));
+		labeloptions.setForeground(Color.WHITE);
+		paneloptions.add(labeloptions);
+		
+		//==========================================================
+		
+		paneloptions.setLayout(new GridLayout(6,3));
+		
+		for (int y = 0; y < 4; y++) {
+	    	optionsarray[y] = new JPanel();
+	    	paneloptions.add(optionsarray[y]);
+	    }
+		
+		for (int y = 4; y < 6; y++) {
+	    	optionsarray[y] = new JPanel();
+	    	paneloptions.add(optionsarray[y]);
+	    }
+		JButton resetbutton = new JButton("Reset");
+		Font optionsfont = new Font("Serif" , Font.BOLD , 30);
+		resetbutton.setFont(optionsfont);
+		resetbutton.setBorder(BorderFactory.createLineBorder(new Color(0,0,0)));
+		resetbutton.setBackground(new Color(15,15,15));
+		resetbutton.setForeground(Color.GREEN);
+		
+		paneloptions.add(resetbutton);
+		
+		for (int y = 6; y < 8; y++) {
+    		optionsarray[y] = new JPanel();
+    		paneloptions.add(optionsarray[y]);
+    	}
+	
+		JButton exitbutton = new JButton("EXIT");
+		exitbutton.setFont(optionsfont);
+		exitbutton.setBorder(BorderFactory.createLineBorder(new Color(0,0,0)));
+		exitbutton.setBackground(new Color(15,15,15));
+		exitbutton.setForeground(Color.GREEN);
+		paneloptions.add(exitbutton);
+		
+		for (int y = 8; y < 14; y++) {
+    		optionsarray[y] = new JPanel();
+    		paneloptions.add(optionsarray[y]);
+		}
+		
+		Label optionscredits = new Label();
+		Font optionscreditsfont = new Font("Monospaced" , Font.BOLD , 15);
+		paneloptions.add(optionscredits);
+		optionscredits.setFocusable(false);
+		optionscredits.setText("Credits: WSSCT20");
+		optionscredits.setFont(optionscreditsfont);
+		optionscredits.setBackground(Color.BLACK);
+		optionscredits.setForeground(Color.GREEN);
+		optionscredits.setAlignment(Label.CENTER);
+		
+		
+		
+		resetbutton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("reset");
+				backend.started = true;
+			}
+		});
+		
+		exitbutton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("exit");
+				backend.active = false;
+			}
+		});
+		
+		for (int y = 0; y < 14; y++) {
+	    	optionsarray[y].setBackground(Color.black);
+		   
+	    }
+		
+		resetbutton.grabFocus();
+		
+		while(!backend.started && backend.active) {
+			try{Thread.sleep(1000);} catch (InterruptedException ir) {}	
+		}
+		
+		for (int y = 0; y < 14; y++) {
+			//System.out.println(y);
+			paneloptions.remove(optionsarray[y]);
+    	}
+		
+		//==========================================================
 		
 		//place panels
 		game.add(panelscore, BorderLayout.NORTH);
 		game.add(panelstone, BorderLayout.EAST);
-		game.add(panelsave, BorderLayout.WEST);
+		game.add(paneloptions, BorderLayout.WEST);
 		game.add(southpadding, BorderLayout.SOUTH);
 		
 	//=========================================================
@@ -602,6 +689,7 @@ public class ui {
 	 			labelscore.setText("GAME OVER!   Score: " + backend.score);
 	 			labelscore.setForeground(Color.RED);
 	 			labelstone.setForeground(Color.DARK_GRAY);
+	 			labeloptions.setForeground(Color.WHITE);
 	 		}
 		    else {
 	 			labelscore.setText("Score: " + backend.score);
@@ -609,6 +697,7 @@ public class ui {
 	 			if(backend.paused == true) {
 			    	labelscore.setForeground(Color.WHITE);
 			    	labelstone.setForeground(Color.WHITE);
+			    	labeloptions.setForeground(Color.WHITE);
 			    }
 			    else {
 			    	Color labelcolor = Color.GREEN;
@@ -648,6 +737,7 @@ public class ui {
 			    	} catch (NullPointerException nullerr) {}
 			    	labelscore.setForeground(labelcolor);
 			    	labelstone.setForeground(labelcolor);
+			    	labeloptions.setForeground(labelcolor);
 			    }
 	 		}   
  		}
