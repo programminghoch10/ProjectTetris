@@ -12,7 +12,6 @@ import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Map;
 
 public class ui {
 	
@@ -37,7 +36,6 @@ public class ui {
 		try {
 			img = new ImageIcon(ImageIO.read(backend.class.getResourceAsStream("/wssct20/projecttetris/icon.png")));
 		} catch (IOException e3) {
-			// TODO Auto-generated catch block
 			e3.printStackTrace();
 		}
 		frame.setIconImage(img.getImage());
@@ -483,7 +481,7 @@ public class ui {
          
          HashMap<String, Color> colortable = new HashMap<String, Color>() {
              /**
-			 * 
+			 * HashMap containing almost all needed colors of the game.
 			 */
 			private static final long serialVersionUID = 2192183556642580997L;
 
@@ -577,37 +575,35 @@ public class ui {
 		    
 		    for (int y = 0; y < previewarray.length; y++) {
 		    	for (int x = 0; x < previewarray[0].length; x++) {
-		    		try {
-		    			if (backend.paused) {
-		    				Color gridcolor = colortable.get("gridcolor");
-		    				if (backend.previewmatrix[y][x] == "") {
-		    					previewarray[y][x].setBackground(colortable.get("empty"));
-		    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(gridcolor));						//displays a grid
-		    				} else {
-		    					boolean ghost = !(backend.previewmatrix[y][x]+"-false").split("-")[1].contentEquals("false");
-		    					int currentthickness = 1;
-		    					if (ghost) {
-		    						previewarray[y][x].setBackground(colortable.get("G"));
-		    						currentthickness = ghostthickness;
-		    					}
-		    					Color currentcolor = colortable.get("G" + backend.previewmatrix[y][x].split("-")[0]);
-		    					if (!ghost & previewarray[y][x].getBackground() != currentcolor) previewarray[y][x].setBackground(currentcolor);
-    	    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(currentcolor, currentthickness));
-		    					
-		    				}		    				
-		    				
-		    			} else {
-		    				
-		    				if (backend.previewmatrix[y][x].split("-")[0] == "") {
-		    					if (previewarray[y][x].getBackground() != colortable.get("empty")) previewarray[y][x].setBackground(colortable.get("empty"));
-	    						previewarray[y][x].setBorder(BorderFactory.createLineBorder(colortable.get("gridcolor")));
-		    				} else {
-		    					Color currentcolor = colortable.get(backend.previewmatrix[y][x].split("-")[0]);
-			    				if (previewarray[y][x].getBackground() != currentcolor) previewarray[y][x].setBackground(currentcolor);
-	    						previewarray[y][x].setBorder(BorderFactory.createLineBorder(currentcolor));
-		    				}
-		    			}
-		    		} catch (NullPointerException nullerr) {}
+	    			if (backend.paused) {
+	    				Color gridcolor = colortable.get("gridcolor");
+	    				if (backend.previewmatrix[y][x] == "") {
+	    					previewarray[y][x].setBackground(colortable.get("empty"));
+	    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(gridcolor));						//displays a grid
+	    				} else {
+	    					boolean ghost = !(backend.previewmatrix[y][x]+"-false").split("-")[1].contentEquals("false");
+	    					int currentthickness = 1;
+	    					if (ghost) {
+	    						previewarray[y][x].setBackground(colortable.get("G"));
+	    						currentthickness = ghostthickness;
+	    					}
+	    					Color currentcolor = colortable.get("G" + backend.previewmatrix[y][x].split("-")[0]);
+	    					if (!ghost & previewarray[y][x].getBackground() != currentcolor) previewarray[y][x].setBackground(currentcolor);
+	    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(currentcolor, currentthickness));
+	    					
+	    				}		    				
+	    				
+	    			} else {
+	    				
+	    				if (backend.previewmatrix[y][x].split("-")[0] == "") {
+	    					if (previewarray[y][x].getBackground() != colortable.get("empty")) previewarray[y][x].setBackground(colortable.get("empty"));
+    						previewarray[y][x].setBorder(BorderFactory.createLineBorder(colortable.get("gridcolor")));
+	    				} else {
+	    					Color currentcolor = colortable.get(backend.previewmatrix[y][x].split("-")[0]);
+		    				if (previewarray[y][x].getBackground() != currentcolor) previewarray[y][x].setBackground(currentcolor);
+    						previewarray[y][x].setBorder(BorderFactory.createLineBorder(currentcolor));
+	    				}
+	    			}
 		    	}
 		    } 
 		    
@@ -619,19 +615,17 @@ public class ui {
 	 			resetbutton.setForeground(Color.WHITE);
 	 			exitbutton.setForeground(Color.WHITE);
 	 			pausebutton.setForeground(Color.WHITE);
-	 		}
-		    else {
+	 		} else {
 	 			labelscore.setText("Score: " + backend.score);
 	 			
-	 			if(backend.paused == true) {
+	 			if(backend.paused) {
 			    	labelscore.setForeground(Color.WHITE);
 			    	labelstone.setForeground(Color.WHITE);
 			    	labeloptions.setForeground(Color.WHITE);
 			    	resetbutton.setForeground(Color.WHITE);
 			    	exitbutton.setForeground(Color.WHITE);
 			    	pausebutton.setForeground(Color.WHITE);
-			    }
-			    else {
+			    } else {
 			    	Color labelcolor = Color.GREEN;
 			    	if (backend.currentstone != null) {
 			    		labelcolor = colortable.get(backend.currentstone.color);
