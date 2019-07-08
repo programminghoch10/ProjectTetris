@@ -1,4 +1,4 @@
-package CT12;
+package wssct20.projecttetris;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -10,7 +10,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public class ui {
@@ -31,10 +30,9 @@ public class ui {
 		//System.out.print(backend.gamematrix[1][1].split("-")[0]);
 		
 		JFrame frame = new JFrame("Tetris Game WSSCT20"); 			//create new Frame
-		//ImageIcon img = new ImageIcon("/CT12/icon.png");
 		ImageIcon img = null;
 		try {
-			img = new ImageIcon(ImageIO.read(backend.class.getResourceAsStream("/CT12/icon.png")));
+			img = new ImageIcon(ImageIO.read(backend.class.getResourceAsStream("/wssct20/projecttetris/icon.png")));
 		} catch (IOException e3) {
 			// TODO Auto-generated catch block
 			e3.printStackTrace();
@@ -125,8 +123,7 @@ public class ui {
 	    }
 		BufferedImage bufferedlogo = null;
 		try {
-			//bufferedlogo = ImageIO.read(new File("logo/tetrislogotransparent.png"));
-			bufferedlogo = ImageIO.read(backend.class.getResourceAsStream("/CT12/tetrislogotransparent.png"));
+			bufferedlogo = ImageIO.read(backend.class.getResourceAsStream("/wssct20/projecttetris/tetrislogotransparent.png"));
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
