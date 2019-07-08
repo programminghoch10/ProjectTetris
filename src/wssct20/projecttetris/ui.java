@@ -515,11 +515,19 @@ public class ui {
          final int ghostthickness = 4;
          
  		while(backend.active) {
-	 		try {
-				Thread.sleep(1);
-			} catch (InterruptedException e1) {
-				e1.printStackTrace();
-			}
+ 			if (backend.paused) {
+ 				try {
+					Thread.sleep(250);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+ 			} else {
+		 		try {
+					Thread.sleep(1);
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+ 			}
 	 		
 		    for (int y = 0; y < jpanelarray.length; y++) {
 		    	for (int x = 0; x < jpanelarray[0].length; x++) {
