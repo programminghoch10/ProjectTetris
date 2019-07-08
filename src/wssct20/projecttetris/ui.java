@@ -76,19 +76,24 @@ public class ui {
  					backend.currentstone.move(+1);
  					break;
  				case KeyEvent.VK_SPACE:
- 					if (backend.paused) {
+ 					if (backend.paused &&!backend.gameover) {
  						backend.paused = false;
+ 						System.out.println("new pause state: " + backend.paused);
  						break;
  					}
  					backend.currentstone.drop();
  					break;
  				case KeyEvent.VK_P:
- 					backend.paused = !backend.paused;
- 					System.out.println("new pause state: " + backend.paused);
+ 					if (!backend.gameover) {
+ 						backend.paused = !backend.paused;
+ 						System.out.println("new pause state: " + backend.paused);
+ 					}
  					break;
  				case KeyEvent.VK_ESCAPE:
  					backend.active = false;
  					break;
+ 				case KeyEvent.VK_R:
+ 					backend.reset();
  				}
  				} catch (NullPointerException e) {} //catch error if currentstone is null
  			}
