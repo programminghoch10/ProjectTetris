@@ -20,7 +20,7 @@ public class ui {
 	static JPanel[][] previewarray = new JPanel[backend.previewmatrix.length][backend.previewmatrix[0].length];
 	
 	static JPanel[] menuarray = new JPanel[20];
-	static JPanel[] optionsarray = new JPanel[20];
+	static JPanel[] optionsarray = new JPanel[5];
 	
 	//=========================================================
 	
@@ -281,7 +281,7 @@ public class ui {
 		
 		panelstone.setLayout(new BorderLayout());
 		
-		JLabel labelstone = new JLabel("        Next Stone:");
+		JLabel labelstone = new JLabel("        Next Stone");
 		labelstone.setFont(labelscore.getFont().deriveFont(18f));
 		labelstone.setForeground(Color.WHITE);
 		panelstone.add(labelstone, BorderLayout.NORTH);
@@ -325,48 +325,97 @@ public class ui {
 		paneloptions.setBackground(Color.BLACK);
 		paneloptions.setPreferredSize(new Dimension(200, 0));
 		
+		paneloptions.setLayout(new BorderLayout());
+		
 		JLabel labeloptions = new JLabel("Options");
 		labeloptions.setFont(labeloptions.getFont().deriveFont(18f));
 		labeloptions.setForeground(Color.WHITE);
-		paneloptions.add(labeloptions);
+		paneloptions.add(labeloptions, BorderLayout.NORTH);
 		
-		paneloptions.setLayout(new GridLayout(6,3));
+		JPanel panelabstand2 = new JPanel();
+		panelabstand2.setBackground(Color.BLACK);
+		panelabstand2.setPreferredSize(new Dimension(35, 0));
+		paneloptions.add(panelabstand2, BorderLayout.EAST);
 		
-		for (int y = 0; y < 4; y++) {
-	    	optionsarray[y] = new JPanel();
-	    	paneloptions.add(optionsarray[y]);
+		JPanel paneloptionbuttons = new JPanel();
+		paneloptionbuttons.setBackground(Color.BLACK);
+		paneloptions.add(paneloptionbuttons, BorderLayout.CENTER);
+		
+		paneloptionbuttons.setLayout(new GridLayout(20,3));
+		
+		for (int x = 0; x < 0; x++) {
+	    	optionsarray[x] = new JPanel();
+	    	paneloptionbuttons.add(optionsarray[x]);
 	    }
+		JPanel panelabstand3 = new JPanel();
+		panelabstand3.setBackground(Color.BLACK);
+		panelabstand3.setPreferredSize(new Dimension(0,0));
+		paneloptionbuttons.add(panelabstand3);
 		
-		for (int y = 4; y < 6; y++) {
-	    	optionsarray[y] = new JPanel();
-	    	paneloptions.add(optionsarray[y]);
+		for (int x = 1 ; x < 1; x++) {
+	    	optionsarray[x] = new JPanel();
+	    	paneloptionbuttons.add(optionsarray[x]);
+	    }
+		JButton pausebutton = new JButton("PAUSE");
+		pausebutton.setFocusable(false);
+		Font optionsfont = new Font("Serif",Font.BOLD,20);
+		pausebutton.setFont(optionsfont);
+		pausebutton.setBorder(BorderFactory.createLineBorder(new Color(0,0,0)));
+		pausebutton.setBackground(new Color(15,15,15));
+		pausebutton.setForeground(Color.WHITE);
+		paneloptionbuttons.add(pausebutton);
+		
+		for (int x = 2; x < 2; x++) {
+	    	optionsarray[x] = new JPanel();
+	    	paneloptionbuttons.add(optionsarray[x]);
+	    }
+		JPanel panelabstand4 = new JPanel();
+		panelabstand4.setBackground(Color.BLACK);
+		panelabstand4.setPreferredSize(new Dimension(0,0));
+		paneloptionbuttons.add(panelabstand4);
+		
+		for (int x = 4; x < 4; x++) {
+	    	optionsarray[x] = new JPanel();
+	    	paneloptionbuttons.add(optionsarray[x]);
 	    }
 		JButton resetbutton = new JButton("RESET");
-		Font optionsfont = new Font("Serif" , Font.BOLD , 20);
+		resetbutton.setFocusable(false);
 		resetbutton.setFont(optionsfont);
 		resetbutton.setBorder(BorderFactory.createLineBorder(new Color(0,0,0)));
 		resetbutton.setBackground(new Color(15,15,15));
-		resetbutton.setForeground(Color.GREEN);
+		resetbutton.setForeground(Color.WHITE);
+		paneloptionbuttons.add(resetbutton);
 		
-		paneloptions.add(resetbutton);
-		
-		for (int y = 6; y < 8; y++) {
-    		optionsarray[y] = new JPanel();
-    		paneloptions.add(optionsarray[y]);
+		for (int x = 5; x < 5; x++) {
+    		optionsarray[x] = new JPanel();
+    		paneloptionbuttons.add(optionsarray[x]);
     	}
-	
 		JButton exitbutton = new JButton("EXIT");
+		exitbutton.setFocusable(false);
 		exitbutton.setFont(optionsfont);
 		exitbutton.setBorder(BorderFactory.createLineBorder(new Color(0,0,0)));
 		exitbutton.setBackground(new Color(15,15,15));
-		exitbutton.setForeground(Color.GREEN);
-		paneloptions.add(exitbutton);
+		exitbutton.setForeground(Color.WHITE);
+		paneloptionbuttons.add(exitbutton);
 		
-		for (int y = 8; y < 14; y++) {
-    		optionsarray[y] = new JPanel();
-    		paneloptions.add(optionsarray[y]);
+		for (int x = 0; x < 5; x++) {
+    		optionsarray[x] = new JPanel();
+    		paneloptionbuttons.add(optionsarray[x]);
 		}
 		
+		pausebutton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				backend.paused = !backend.paused;
+				System.out.println("new pause state: " + backend.paused);
+			}
+		});
+		
+		if (pausebutton.getText() == "PAUSE") {
+			pausebutton.setText("CONTINUE");
+		} else {
+			pausebutton.setText("PAUSE");
+		}
 		
 		resetbutton.addActionListener(new ActionListener() {
 			@Override
@@ -384,8 +433,8 @@ public class ui {
 			}
 		});
 		
-		for (int y = 0; y < 14; y++) {
-	    	optionsarray[y].setBackground(Color.black);
+		for (int x = 0; x < 5; x++) {
+	    	optionsarray[x].setBackground(Color.BLACK);
 		   
 	    }
 		
@@ -393,13 +442,10 @@ public class ui {
 			try{Thread.sleep(1000);} catch (InterruptedException ir) {}	
 		}
 		
-		for (int y = 0; y < 14; y++) {
+		for (int x = 0; x < 5; x++) {
 			//System.out.println(y);
-			paneloptions.remove(optionsarray[y]);
+			paneloptionbuttons.remove(optionsarray[x]);
     	}
-		
-//		resetbutton.grabFocus();
-// 		exitbutton.grabFocus();
 		
 		//==========================================================
 		
@@ -416,28 +462,8 @@ public class ui {
 		game.add(panelgame1, BorderLayout.CENTER);
 		
 		JPanel panelgame=panelgame1;
-		
-		/*JPanel panelgame = new JPanel() {
-            private static final long serialVersionUID = 1L;
-            @Override
-            public Dimension getPreferredSize() {
-                Dimension d = this.getParent().getSize();
-                int sizex = 0;
-                int sizey = 0;
-                if (d.width > d.height*(float)((float)jpanelarray[0].length/(float)jpanelarray.length)) {
-                    sizey = d.height;
-                    sizex = (int)(d.height*(float)((float)jpanelarray[0].length/(float)jpanelarray.length));
-                } else {
-                    sizex = d.width;
-                    sizey = (int)(d.width*(float)((float)jpanelarray.length/(float)jpanelarray[0].length));
-                }
-                return new Dimension(sizex, sizey);
-            }
-        };*/
         
         panelgame1.setBackground(Color.DARK_GRAY);
-        
-        //panelgame1.add(panelgame);
 		
 		panelgame.setLayout(new GridLayout(jpanelarray.length,jpanelarray[0].length));					//Elements in the container "frame" are displayed in a GridLayout
 	    
@@ -466,9 +492,11 @@ public class ui {
 
 		    		if(backend.gameover) {
 		    			
-		    			
 		    		}
 		    			if (backend.paused) {
+		    				
+		    				if (backend.paused == true) pausebutton.setText("CONTINUE");
+		    				
 		    				Color gridcolor = Color.DARK_GRAY;
 		    				if (backend.gamematrix[y][x] == "") {
 		    					jpanelarray[y][x].setBackground(Color.BLACK);
@@ -478,7 +506,6 @@ public class ui {
 		    					int thickness = 1;
 		    					if (ghost) {
 		    						jpanelarray[y][x].setBackground(Color.BLACK);
-		    						//jpanelarray[y][x].setBorder(BorderFactory.createLineBorder(gridcolor, 4));
 		    						thickness = 4;
 		    					}
 		    						switch (backend.gamematrix[y][x].split("-")[0]) {
@@ -528,6 +555,9 @@ public class ui {
 		    	    				}
 		    				}
 		    			} else {
+		    				
+		    				if (backend.paused == false) pausebutton.setText("PAUSE");
+		    				
 		    				if ((backend.gamematrix[y][x]+"-false").split("-")[1].contentEquals("false")) {
 		    					switch (backend.gamematrix[y][x].split("-")[0]) {
 		    					case "bk":
@@ -623,13 +653,64 @@ public class ui {
 		    	for (int x = 0; x < previewarray[0].length; x++) {
 		    		try {
 		    			if (backend.paused) {
-		    				if (backend.previewmatrix[y][x].split("-")[0] == "") {
-		    					if (previewarray[y][x].getBackground() != Color.BLACK) previewarray[y][x].setBackground(Color.BLACK);
-		    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
+		    				Color gridcolor = Color.DARK_GRAY;
+		    				if (backend.previewmatrix[y][x] == "") {
+		    					previewarray[y][x].setBackground(Color.BLACK);
+		    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(gridcolor));						//displays a grid
 		    				} else {
-		    					if (previewarray[y][x].getBackground() != Color.DARK_GRAY) previewarray[y][x].setBackground(Color.DARK_GRAY);
-		    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY));
-		    				}
+		    					boolean ghost = !(backend.previewmatrix[y][x]+"-false").split("-")[1].contentEquals("false");
+		    					int thickness = 1;
+		    					if (ghost) {
+		    						previewarray[y][x].setBackground(Color.BLACK);
+		    						thickness = 4;
+		    					}
+		    						switch (backend.previewmatrix[y][x].split("-")[0]) {
+		    	    				case "bk":
+		    	    					if (!ghost & previewarray[y][x].getBackground() != Color.BLACK) previewarray[y][x].setBackground(Color.BLACK);
+		    	    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.BLACK, thickness));
+		    	    					break;
+		    	    				case "wh":
+		    	    					if (!ghost & previewarray[y][x].getBackground() != Color.WHITE) previewarray[y][x].setBackground(Color.WHITE);
+		    	    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(Color.WHITE, thickness));
+		    	    					break;
+		    	    				case "bl":
+		    	    					Color colorbl = new Color(90,90,90);
+		    	    					if (!ghost & previewarray[y][x].getBackground() != colorbl) previewarray[y][x].setBackground(colorbl);
+		    	    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(colorbl, thickness));
+		    	    					break;
+		    	    				case "gr":
+		    	    					Color colorgr = new Color(100,100,100);
+		    	    					if (!ghost & previewarray[y][x].getBackground() != colorgr) previewarray[y][x].setBackground(colorgr);
+		    	    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(colorgr, thickness));
+		    	    					break;
+		    	    				case "ye":
+		    	    					Color colorye = new Color(110,110,110);
+		    	    					if (!ghost & previewarray[y][x].getBackground() != colorye) previewarray[y][x].setBackground(colorye);
+		    	    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(colorye, thickness));
+		    	    					break;
+		    	    				case "re":
+		    	    					Color colorre = new Color(120,120,120);
+		    	    					if (!ghost & previewarray[y][x].getBackground() != colorre) previewarray[y][x].setBackground(colorre);
+		    	    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(colorre, thickness));
+		    	    					break;
+		    	    				case "ma":
+		    	    					Color colorma = new Color(130,130,130);
+		    	    					if (!ghost & previewarray[y][x].getBackground() != colorma) previewarray[y][x].setBackground(colorma);
+		    	    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(colorma, thickness));
+		    	    					break;
+		    	    				case "or":
+		    	    					Color colorro = new Color(140,140,140);
+		    	    					if (!ghost & previewarray[y][x].getBackground() != colorro) previewarray[y][x].setBackground(colorro);
+		    	    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(colorro, thickness));
+		    	    					break;
+		    	    				case "cy":
+		    	    					Color colorcy = new Color(150,150,150);
+		    	    					if (!ghost & previewarray[y][x].getBackground() != colorcy) previewarray[y][x].setBackground(colorcy);
+		    	    					previewarray[y][x].setBorder(BorderFactory.createLineBorder(colorcy, thickness));
+		    	    					break;
+		    	    				}
+		    				}		    				
+		    				
 		    			} else {
 		    				switch (backend.previewmatrix[y][x].split("-")[0]) {
 		    				case "bk":
@@ -683,6 +764,9 @@ public class ui {
 	 			labelscore.setForeground(Color.RED);
 	 			labelstone.setForeground(Color.DARK_GRAY);
 	 			labeloptions.setForeground(Color.WHITE);
+	 			resetbutton.setForeground(Color.WHITE);
+	 			exitbutton.setForeground(Color.WHITE);
+	 			pausebutton.setForeground(Color.WHITE);
 	 		}
 		    else {
 	 			labelscore.setText("Score: " + backend.score);
@@ -691,6 +775,9 @@ public class ui {
 			    	labelscore.setForeground(Color.WHITE);
 			    	labelstone.setForeground(Color.WHITE);
 			    	labeloptions.setForeground(Color.WHITE);
+			    	resetbutton.setForeground(Color.WHITE);
+			    	exitbutton.setForeground(Color.WHITE);
+			    	pausebutton.setForeground(Color.WHITE);
 			    }
 			    else {
 			    	Color labelcolor = Color.GREEN;
@@ -731,6 +818,9 @@ public class ui {
 			    	labelscore.setForeground(labelcolor);
 			    	labelstone.setForeground(labelcolor);
 			    	labeloptions.setForeground(labelcolor);
+			    	resetbutton.setForeground(labelcolor);
+			    	exitbutton.setForeground(labelcolor);
+			    	pausebutton.setForeground(labelcolor);
 			    }
 	 		}   
  		}
