@@ -330,8 +330,6 @@ public class ui {
 		labeloptions.setForeground(Color.WHITE);
 		paneloptions.add(labeloptions);
 		
-		//==========================================================
-		
 		paneloptions.setLayout(new GridLayout(6,3));
 		
 		for (int y = 0; y < 4; y++) {
@@ -343,8 +341,8 @@ public class ui {
 	    	optionsarray[y] = new JPanel();
 	    	paneloptions.add(optionsarray[y]);
 	    }
-		JButton resetbutton = new JButton("Reset");
-		Font optionsfont = new Font("Serif" , Font.BOLD , 30);
+		JButton resetbutton = new JButton("RESET");
+		Font optionsfont = new Font("Serif" , Font.BOLD , 20);
 		resetbutton.setFont(optionsfont);
 		resetbutton.setBorder(BorderFactory.createLineBorder(new Color(0,0,0)));
 		resetbutton.setBackground(new Color(15,15,15));
@@ -369,23 +367,12 @@ public class ui {
     		paneloptions.add(optionsarray[y]);
 		}
 		
-		Label optionscredits = new Label();
-		Font optionscreditsfont = new Font("Monospaced" , Font.BOLD , 15);
-		paneloptions.add(optionscredits);
-		optionscredits.setFocusable(false);
-		optionscredits.setText("Credits: WSSCT20");
-		optionscredits.setFont(optionscreditsfont);
-		optionscredits.setBackground(Color.BLACK);
-		optionscredits.setForeground(Color.GREEN);
-		optionscredits.setAlignment(Label.CENTER);
-		
-		
 		
 		resetbutton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("reset");
-				backend.started = true;
+				backend.reset();
 			}
 		});
 		
@@ -402,8 +389,6 @@ public class ui {
 		   
 	    }
 		
-		resetbutton.grabFocus();
-		
 		while(!backend.started && backend.active) {
 			try{Thread.sleep(1000);} catch (InterruptedException ir) {}	
 		}
@@ -412,6 +397,9 @@ public class ui {
 			//System.out.println(y);
 			paneloptions.remove(optionsarray[y]);
     	}
+		
+//		resetbutton.grabFocus();
+// 		exitbutton.grabFocus();
 		
 		//==========================================================
 		
