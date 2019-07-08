@@ -14,6 +14,7 @@ public class backend {
 	public static String[][] gamematrix = new String[dimensiony][dimensionx];		//gamematrix contains everything that needs to be visible
 	public static String[][] staticmatrix = new String[dimensiony][dimensionx];		//staticmatrix only contains static (fallen) stones, to test collision
 	public static String[][] previewmatrix = new String[3*4][3];
+	public static int nextLength = 0;	
 	
 	public static int[] nextStoneTypes = new int[Stone.arrayStoneType.length * 2];
 	public static Stone currentstone = null;
@@ -88,9 +89,8 @@ public class backend {
 		UI.start();			//comment this line out to disable UI
 		while (!started && active) {try{Thread.sleep(1000);} catch (InterruptedException ir) {}}   //wait for UI to start game
 		Dropper.start();	//Comment this line out to disable gameplay/dropping
-		
-		int nextLength = 0;		//nextStone initial setup
-		for (int i = 0; i < nextStoneTypes.length; i++) {
+			
+		for (int i = 0; i < nextStoneTypes.length; i++) {	//nextStone initial setup
 			nextStoneTypes[i] = -1;
 		}
 		
@@ -209,6 +209,32 @@ public class backend {
 		}
 		System.out.println("Score: " + score);
 		System.out.println("Main stopped");
+	}
+	
+	public static void reset() {
+		backend.gameover = true;
+		backend.paused = true;
+		backend.score = 0;
+		for (int y = 0; y < staticmatrix.length; y++) {				//setup initial values of matrices
+			for (int x = 0; x < staticmatrix[0].length; x++) {
+				staticmatrix[y][x] = mi;
+				gamematrix[y][x] = mi;
+			}
+		}
+		for (int y = 0; y < previewmatrix.length; y++) {				//setup initial values of matrices
+			for (int x = 0; x < previewmatrix[0].length; x++) {
+				previewmatrix[y][x] = "";
+			}
+		}
+		for (int i = 0; i < nextStoneTypes.length; i++) {
+			nextStoneTypes[i] = -1;
+		}
+		backend.nextLength = 0;
+		backend.currentstone = null;
+		backend.ghoststone = null;
+		backend.gameover = false;
+		backend.paused = false;
+		System.out.println("Resetted game.");
 	}
 }
 
